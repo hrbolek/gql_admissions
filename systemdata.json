@@ -1,0 +1,17 @@
+{
+    "admissions": [
+        {
+            "id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81",
+            "startdate": "2024-11-01T00:00:00",
+            "enddate": "2025-03-31T23:59:59",
+
+            "program_id": "77bb4a23-1003-4dd4-af62-4511fc013e6d"
+        }
+    ],
+    "admission_exam_results": [
+        {
+            "id": "759f2205-44ca-4060-92c2-58b4a13da1b6",
+            "user_id": "15315904-811b-4248-ac96-f670104646d6"
+        }
+    ]
+}
