@@ -20,9 +20,12 @@ class AdDisciplineTypeGQLModel(BaseGQLModel):
     def get_table_resolvers(cls):
         return {
             "id": lambda row: row.id, 
-            "start_date": lambda row: row.startdate,
-            "end_date": lambda row: row.enddate,
-            "program_id": lambda row: row.program_id
+            "name": lambda row: row.name,
+            "name_en": lambda row: row.name_en,
+            "description": lambda row: row.description,
+            "description_en": lambda row: row.description_en,
+            "weight": lambda row: row.weight,
+            "min_score": lambda row: row.min_score
         }
     
     @classmethod

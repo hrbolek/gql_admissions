@@ -22,4 +22,5 @@ class DisciplineResulModel(BaseModel):
     discipline_id = Column(ForeignKey("admission_disciplines.id"), comment="Která disciplína (část předmětu)")
     exam_planed_date = Column(DateTime, comment="Naplánované datum")
 
+    discipline = relationship("DisciplineModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
     pass

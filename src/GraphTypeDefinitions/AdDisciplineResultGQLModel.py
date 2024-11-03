@@ -21,9 +21,12 @@ class AdDisciplineResultGQLModel(BaseGQLModel):
     def get_table_resolvers(cls):
         return {
             "id": lambda row: row.id, 
-            "start_date": lambda row: row.startdate,
-            "end_date": lambda row: row.enddate,
-            "program_id": lambda row: row.program_id
+            "description": lambda row: row.description,
+            "score": lambda row: row.score,
+            "user_id": lambda row: row.user_id,
+            "examiner_id": lambda row: row.examiner_id,
+            "discipline_id": lambda row: row.discipline_id,
+            "exam_planed_date": lambda row: row.exam_planed_date
         }
     
     @classmethod
@@ -42,6 +45,9 @@ class AdDisciplineResultGQLModel(BaseGQLModel):
 
     @strawberry.field(description="")
     async def student(self, info: strawberry.types.Info) -> typing.Optional["AcProgramStudentGQLModel"]:
+        from .AcProgramStudentGQLModel import AcProgramStudentGQLModel
+        result = await AcProgramStudentGQLModel.resolve_reference(info=info, id=self.user_id)
+        return result
         raise NotImplementedError()
         from .AcProgramStudentGQLModel import AcProgramStudentGQLModel
         result = await AcProgramStudentGQLModel.resolve_reference(info=info, id=self.program_id)
@@ -56,19 +62,27 @@ class AdDisciplineResultGQLModel(BaseGQLModel):
     @strawberry.field(description="")
     async def examiner(self, info: strawberry.types.Info) -> typing.Optional["UserGQLModel"]:
         from .UserGQLModel import UserGQLModel
-        result = await AcProgramStudentGQLModel.resolve_reference(info=info, id=self.examiner_id)
+        result = await UserGQLModel.resolve_reference(info=info, id=self.examiner_id)
         return result
 
     @strawberry.field(description="")
     async def discipline(self, info: strawberry.types.Info) -> typing.Optional["AdDisciplineGQLModel"]:
         from .AdDisciplineGQLModel import AdDisciplineGQLModel
-        result = await AdDisciplineGQLModel.resolve_reference(info=info, id=self.discipline_id)
+        result = await AdDisciplineGQLModel.load_with_loader(info=info, id=self.discipline_id)
         return result
 
     @strawberry.field(description="")
     async def admission(self, info: strawberry.types.Info) -> typing.Optional["AdmissionGQLModel"]:
-        raise NotImplementedError()
+        # raise NotImplementedError()
         from .AdmissionGQLModel import AdmissionGQLModel
-        result = await AdmissionGQLModel.resolve_reference(info=info, id=self.examiner_id)
+        result = await AdmissionGQLModel.load_with_loader(info=info, id=self.examiner_id)
         return result
 
+    @strawberry.field(description="")
+    async def passed(self, info: strawberry.types.Info) -> typing.Optional[bool]:
+        # raise NotImplementedError()
+        from .AdDisciplineGQLModel import AdDisciplineGQLModel
+        disciple_gql = await AdDisciplineGQLModel.load_with_loader(info=info, id=self.discipline_id)
+        result = self.score >= disciple_gql.min_score
+        return result
+        

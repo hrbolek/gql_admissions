@@ -4,9 +4,13 @@ import strawberry
 class Query:
     from .AdmissionGQLModel import admission_by_id
 
+
+from .UserGQLModel import UserGQLModel
 schema = strawberry.federation.Schema(
     query=Query, 
-    extensions=[]
+    extensions=[],
+    types=(UserGQLModel, ),
+    enable_federation_2=True
 )
 
 from uoishelpers.schema import WhoAmIExtension

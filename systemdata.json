@@ -107,6 +107,7 @@
     "admission_disciplines": [
         {
             "id": "c64ec760-7361-4cd2-a879-f867d7a98af0",
+            "name": "TSP",
             "max_score": 60,
             "min_score": 20,
             "discipline_type_id": "1fe08f56-1a45-4483-9090-0b5d586aed24",
@@ -114,6 +115,7 @@
         },
         {
             "id": "7c81f985-d015-456f-88db-a6f5c711493e",
+            "name": "TAJ",
             "max_score": 50,
             "min_score": 20,
             "discipline_type_id": "9e081724-27a0-4adc-8cab-f01c592cb174",
@@ -121,6 +123,7 @@
         },
         {
             "id": "d8f7808b-7ce5-43c8-bfaa-664ba8493766",
+            "name": "TIT",
             "max_score": 30,
             "min_score": 2,
             "discipline_type_id": "e11ccb73-af79-40e6-b1b6-8d40accd558b",
@@ -128,6 +131,7 @@
         },
         {
             "id": "ecae0c20-6bed-4344-8941-44ab47dbbf33",
+            "name": "Běh 12 minut",
             "max_score": 25,
             "min_score": 5,
             "discipline_type_id": "a2b2a61e-a567-4183-b2bb-0b4b9aeba04e",
@@ -135,6 +139,7 @@
         },
         {
             "id": "a24f3394-ba8a-4727-aae4-e9b356f7e648",
+            "name": "Sedy lehy 1 minuta",
             "max_score": 25,
             "min_score": 5,
             "discipline_type_id": "a2b2a61e-a567-4183-b2bb-0b4b9aeba04e",
