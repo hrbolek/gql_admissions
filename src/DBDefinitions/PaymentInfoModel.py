@@ -1,4 +1,10 @@
-from sqlalchemy import Column, String, DateTime, Float
+from sqlalchemy import (
+    Column, 
+    String, 
+    DateTime, 
+    Float,
+    ForeignKey
+)
 
 from .BaseModel import BaseModel, UUIDFKey
 

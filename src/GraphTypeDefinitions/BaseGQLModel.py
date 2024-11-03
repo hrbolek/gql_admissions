@@ -18,7 +18,7 @@ class BaseGQLModel:
             for name, resolver in keyed_resolvers.items()
         } if db_row is not None else {}
 
-        print(f"{cls}, {instance_values}", flush=True)
+        # print(f"{cls}, {instance_values}", flush=True)
         instance = cls(**instance_values) if db_row is not None else None
         return instance
 

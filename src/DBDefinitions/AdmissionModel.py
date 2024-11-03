@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 
 from .BaseModel import BaseModel, UUIDFKey
 
@@ -24,5 +25,7 @@ class AdmissionModel(BaseModel):
     exam_start_date = Column(DateTime, comment="První možný den přijímacích zkoušek")
     exam_last_date = Column(DateTime, comment="Poslední možný den přijímacích zkoušek")
     student_entry_date = Column(DateTime, comment="Den zápisu")
+
+    discipline = relationship("PaymentInfoModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
 
     pass

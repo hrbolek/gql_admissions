@@ -2,6 +2,8 @@
 uvicorn main:app --env-file environment.txt --port 8001
 ```
 
+http://localhost:8001/voyager
+
 ```bash
 pytest --cov-report term-missing --cov=src --log-cli-level=INFO -x
 ```
@@ -107,6 +109,62 @@ query
           admission {
             program { id }
             stateId
+          }
+        }
+      }
+    }  
+  }
+}
+```
+
+```gql
+{
+	_entities(representations: [{ __typename: "UserGQLModel", id: "15315904-811b-4248-ac96-f670104646d6" }]) {
+  	...on UserGQLModel {
+      admissionDisciplineResults {
+        __typename
+        id
+        description
+        score
+        examiner { id }
+        passed
+        discipline {
+          __typename
+          id
+          name
+          minScore
+          maxScore
+          type {
+            id
+            name
+            description
+            weight
+            minScore
+          }
+          admission {
+            program { id }
+            stateId
+          }
+        }
+      }
+    	admissions {
+        __typename
+        id
+        state { id }
+        program { id }
+        disciplines {
+          __typename
+          name
+          minScore
+          maxScore
+          type {
+            __typename
+            id
+            name
+            description
+            minScore
+            weight
+            
           }
         }
       }

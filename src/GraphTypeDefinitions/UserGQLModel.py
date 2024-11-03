@@ -18,6 +18,10 @@ class UserGQLModel:
         return result
     
     @strawberry.field(description="Výsledky zkoušek (disciplín) v přijímacím řízení")
+    async def remove(self, info: strawberry.types.Info) -> typing.Optional[str]:
+        return f"{dir(UserGQLModel.UserAdmissionModel.__strawberry_definition__)}"
+
+    @strawberry.field(description="Výsledky zkoušek (disciplín) v přijímacím řízení")
     async def admission_discipline_results(self, info: strawberry.types.Info) -> typing.List[AdDisciplineResultGQLModel]:
         from .AdDisciplineResultGQLModel import AdDisciplineResultGQLModel
         loader = AdDisciplineResultGQLModel.getloader(info=info)
@@ -32,7 +36,8 @@ class UserGQLModel:
 
         loader = AdDisciplineResultGQLModel.getloader(info=info)
         rows = await loader.filter_by(user_id=self.id)
-        results = (AdmissionGQLModel.from_sqlalchemy(row.discipline.admission) for row in rows)
+        index = {row.discipline.admission.id: row for row in rows}
+        results = (AdmissionGQLModel.from_sqlalchemy(row.discipline.admission) for row in index.values())
         return results
                 
     @strawberry.field(description="Platby za přijímací řízení")
