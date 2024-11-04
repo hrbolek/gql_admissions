@@ -2,7 +2,7 @@ import typing
 import strawberry
 import uuid
 
-@strawberry.federation.type(keys=["id"], extend=True, description="user linked with study program")
+@strawberry.federation.type(keys=["id"], extend=True) # , description="user linked with study program")
 class AcProgramStudentGQLModel:
     id: uuid.UUID = strawberry.field()
 
@@ -21,6 +21,6 @@ class AcProgramStudentGQLModel:
         return self.id
     
     @strawberry.field(description="Zaplaceno za přijímací řízení")
-    async def admission_payed(self) -> typing.Optional[bool]:
+    async def admission_paid(self) -> typing.Optional[bool]:
         raise NotImplementedError()
         return self.id    
