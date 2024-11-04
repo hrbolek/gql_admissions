@@ -11,10 +11,10 @@ class AcProgramStudentGQLModel:
         result = cls(**data)
         return result
 
-
-    program_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
-    user_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
-    state_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
+    # apollo crying
+    # program_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
+    # user_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
+    # state_id: typing.Optional[uuid.UUID] = strawberry.federation.field(external=True, default=None)
 
     @strawberry.field(description="unique number for student (user) and program")
     async def register_number(self) -> uuid.UUID:
