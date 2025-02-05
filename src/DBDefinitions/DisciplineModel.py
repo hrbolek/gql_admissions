@@ -1,29 +1,28 @@
-from sqlalchemy import (
-    Column, 
-    
-    String, 
-    DateTime,
-    Integer,
-    Float,
-
-    ForeignKey
-)
+from .UUIDColumn import UUIDColumn, UUIDFKey
+from sqlalchemy import Column, DateTime, Boolean, Integer, ForeignKey
+from .BaseModel import BaseModel
 from sqlalchemy.orm import relationship
-
-from .BaseModel import BaseModel, UUIDFKey
-
+import sqlalchemy
 
 class DisciplineModel(BaseModel):
-    __tablename__ = "admission_disciplines"
+    """
+    Represents a discipline linked to a discipline type and an exam, including scoring and metadata.
+    """
+    __tablename__ = "disciplines"
 
+    id = UUIDColumn()
 
-    name = Column(String, comment="Maximální počet bodů, které lze v disciplíne dosáhnout")
-    max_score = Column(Float, comment="Maximální počet bodů, které lze v disciplíne dosáhnout")
-    min_score = Column(Float, comment="Minimální počet bodů, kdy lze ještě splnit disciplínu")
-    discipline_type_id = Column(ForeignKey("admission_discipline_types.id"), comment="Fakticky předmět přijímacího řízení")
-    admission_id = Column(ForeignKey("admissions.id"), comment="")
-    
-    discipline_type = relationship("DisciplineTypeModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
-    admission = relationship("AdmissionModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
+    disciplinetype_id = Column(ForeignKey("disciplinetypes.id"), index=True, comment="Foreign key referencing the associated discipline type")
+    disciplinetype = relationship("DisciplineTypeModel", back_populates="disciplines")
 
-    pass
+    exam_id = Column(ForeignKey("exams.id"), index=True, comment="Foreign key referencing the associated exam")
+    exam = relationship("ExamModel", back_populates="disciplines")
+
+    score = Column(Integer, comment="Score achieved in this discipline")
+
+    valid = Column(Boolean, default=True, comment="Indicates if the discipline record is valid")
+    created = Column(DateTime, server_default=sqlalchemy.sql.func.now(), comment="Timestamp when the discipline record was created")
+    lastchange = Column(DateTime, server_default=sqlalchemy.sql.func.now(), comment="Timestamp of the last modification")
+    createdby = UUIDFKey(nullable=True, comment="User ID of the creator")
+    changedby = UUIDFKey(nullable=True, comment="User ID of the last modifier")
+    rbacobject = UUIDFKey(nullable=True, comment="User or group ID that controls access to the discipline record")

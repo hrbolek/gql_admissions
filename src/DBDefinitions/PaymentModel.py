@@ -1,14 +1,18 @@
-from sqlalchemy import Column, String, DateTime, Float, ForeignKey
-
-from .BaseModel import BaseModel, UUIDFKey
+from sqlalchemy import ForeignKey, String, Float
+from sqlalchemy.orm import relationship, mapped_column, Mapped
+from .BaseModel import BaseModel
+import uuid
 
 class PaymentModel(BaseModel):
-    __tablename__ = "admission_payments"
+    """
+    Represents a unique payment for admission.
+    """
+    __tablename__ = "payments"
 
-    payment_info_id = Column(ForeignKey("admission_payment_infos.id"), comment="Generální platební podmínky")
-    bank_unique_data = Column(String, comment="unikátní identifikátor platby vystavený bankou (link do banky)")
-    variable_symbol = Column(String, comment="uvedený variabilní symbol")
-    student_id = UUIDFKey(comment="identifikovaná přihláška / student")
-    amount = Column(Float, comment="zaplacená částka")
+    payment_info_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("payment_infos.id"), default=None, nullable=True, index=True, comment="Foreign key referencing the related payment info")
 
-    pass
+    bank_unique_data: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Unique bank identifier or something")
+    variable_symbol: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Variable symbol of transaction")
+    amount: Mapped[float] = mapped_column(Float, default=None, nullable=True, comment="Paid amount of the transaction")
+
+    payment_info = relationship("PaymentInfoModel", viewonly=True, lazy="joined")

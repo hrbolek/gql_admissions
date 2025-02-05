@@ -1,0 +1,28 @@
+query{
+  result: examPage{
+    __typename
+    ...Exam
+  }
+}
+
+fragment Exam on ExamGQLModel{
+  lastchange
+  id
+  name
+  nameEn
+  examDate
+  examTypeId
+  created
+  createdbyId
+  createdby{
+    id
+  }
+  changedbyId
+  changedby{
+    id
+  }
+  rbacobjectId
+  rbacobject{
+    id
+  }
+}

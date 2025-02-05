@@ -1,0 +1,40 @@
+mutation AddExamType($id: UUID, $name: String!, $master_exam_type_id: UUID, $name_en: String, $min_score: Float, $max_score: Float, $min_required_score: Float, $data: String, $duration: Int, $admission_id: UUID!) {
+  examTypeInsert(
+    examType: {
+      id: $id
+      masterExamTypeId: $master_exam_type_id
+      name: $name
+      nameEn: $name_en
+      minScore: $min_score
+      maxScore: $max_score
+      minRequiredScore: $min_required_score
+      data: $data
+      duration: $duration
+      admissionId: $admission_id  
+    }
+  ) {
+    __typename
+    ...Error
+    ...FE
+  }
+}
+
+fragment Error on InsertError{
+  msg
+  input
+  failed
+}
+
+fragment FE on ExamTypeGQLModel{
+  lastchange
+  id
+  masterExamTypeId
+  name
+  nameEn
+  minScore
+  maxScore
+  minRequiredScore
+  data
+  duration
+  admissionId
+}
