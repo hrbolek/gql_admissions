@@ -1,20 +1,19 @@
-from sqlalchemy import (
-    Column, 
-    String, 
-    DateTime, 
-    Float,
-    ForeignKey
-)
-
-from .BaseModel import BaseModel, UUIDFKey
+from sqlalchemy import String, Float
+from sqlalchemy.orm import mapped_column, Mapped
+from .BaseModel import BaseModel
 
 class PaymentInfoModel(BaseModel):
-    __tablename__ = "admission_payment_infos"
+    """
+    Represents a general payment information related to admission.
+    """
+    __tablename__ = "payment_infos"
 
-    account_number = Column(String, comment="číslo účtu s kódem banky za lomítkem")
-    specific_symbol = Column(String, comment="specifický symbol")
-    constant_symbol = Column(String, comment="konstantní symbol")
-    IBAN = Column(String, comment="IBAN code")
-    SWIFT = Column(String, comment="SWIFT bank code")
-    amount = Column(Float, comment="Částka k zaplacení")
-    pass
+    name: Mapped[str] = mapped_column(nullable=True, default=None, comment="Name of the payment information")
+    name_en: Mapped[str] = mapped_column(nullable=True, default=None, comment="English name of the payment information")
+    account_number: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Bank account number")
+    specific_symbol: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Specific symbol for transaction")
+    constant_symbol: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Constat symbol for transaction")
+    IBAN: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="International Bank Account Number")
+    SWIFT: Mapped[str] = mapped_column(String, default=None, nullable=True, comment="Swift account number")
+
+    amount: Mapped[float] = mapped_column(Float, default=None, nullable=True, comment="Amount to pay")

@@ -1,188 +1,899 @@
 {
-    "admissions": [
-        {
-            "id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81",
-            "startdate": "2024-11-01T00:00:00",
-            "enddate": "2025-03-31T23:59:59",
-
-            "program_id": "77bb4a23-1003-4dd4-af62-4511fc013e6d",
-            "payment_info_id": "2dd560b8-7c4c-41a5-aaeb-75f9f8e30409",
-            "state_id": "cd8ec638-fcfc-4f86-a18f-9adc656fd4a3",
-
-            "application_start_date": "2024-11-01T00:00:00",
-            "application_last_date": "2025-03-31T23:59:59",
-            "end_date": "",
-            "condition_date": "2025-06-13T23:59:59",
-            "payment_date": "2025-04-05T23:59:59",
-            "condition_extended_date": "2025-09-30T23:59:59",
-            "request_condition_extend_date": "",
-            "request_extra_conditions_date": "",
-            "request_extra_date_date": "2025-06-13T23:59:59",
-            "exam_start_date": "2025-04-22T00:00:00",
-            "exam_last_date": "2025-06-03T23:59:59",
-            "student_entry_date": ""
-        
-        }
-    ],
-    "admission_exam_results": [
-        {
-            "id": "759f2205-44ca-4060-92c2-58b4a13da1b6",
-            "user_id": "15315904-811b-4248-ac96-f670104646d6"
-        }
-    ],
-    "admission_payment_infos": [
-        {
-            "id": "2dd560b8-7c4c-41a5-aaeb-75f9f8e30409",
-            "account_number": "19-26030881/0710",
-            "specific_symbol": "299400",
-            "constant_symbol": "558",
-            "IBAN": "CZ52 0710 0000 1900 2603 0881",
-            "SWIFT": "CNBACZPP",
-            "amount": 400
-
-        }
-    ],
-    "admission_payments": [
-        {
-            "id": "c3af1c6d-78f2-4d9c-b963-82f1fba09abf",
-            "payment_info_id": "2dd560b8-7c4c-41a5-aaeb-75f9f8e30409",
-            "bank_unique_data": "",
-            "variable_symbol": "",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "amount": 400
-        }
-    ],
-    "admission_discipline_results": [
-        {
-            "id": "4c57223e-cb53-4e31-9744-27d3637fdade",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "description": "",
-            "score": 20,
-            "user_id": "15315904-811b-4248-ac96-f670104646d6",
-            "examiner_id": "ccb397ad-0de7-46e7-bff0-42452f11dd5e",
-            "discipline_id": "c64ec760-7361-4cd2-a879-f867d7a98af0",
-            "exam_planed_date": ""       
-        },
-        {
-            "id": "4b1dc28a-fbdb-4a9d-9fb0-187531b4ba19",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "description": "",
-            "score": 20,
-            "user_id": "15315904-811b-4248-ac96-f670104646d6",
-            "examiner_id": "ccb397ad-0de7-46e7-bff0-42452f11dd5e",
-            "discipline_id": "7c81f985-d015-456f-88db-a6f5c711493e",
-            "exam_planed_date": ""       
-        },
-        {
-            "id": "65a98754-a707-422c-96bf-3fa96a7eb9e7",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "description": "",
-            "score": 2,
-            "user_id": "15315904-811b-4248-ac96-f670104646d6",
-            "examiner_id": "ccb397ad-0de7-46e7-bff0-42452f11dd5e",
-            "discipline_id": "d8f7808b-7ce5-43c8-bfaa-664ba8493766",
-            "exam_planed_date": ""       
-        },
-        {
-            "id": "31fa4314-c7bd-4cb0-ab14-0bc7066c2469",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "description": "",
-            "score": 5,
-            "user_id": "15315904-811b-4248-ac96-f670104646d6",
-            "examiner_id": "ccb397ad-0de7-46e7-bff0-42452f11dd5e",
-            "discipline_id": "ecae0c20-6bed-4344-8941-44ab47dbbf33",
-            "exam_planed_date": ""       
-        },
-        {
-            "id": "0d4ed048-0a3f-4ff7-94fe-e2bca6c663c3",
-            "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "description": "",
-            "score": 5,
-            "user_id": "15315904-811b-4248-ac96-f670104646d6",
-            "examiner_id": "ccb397ad-0de7-46e7-bff0-42452f11dd5e",
-            "discipline_id": "a24f3394-ba8a-4727-aae4-e9b356f7e648",
-            "exam_planed_date": ""
-        }
-    ],
-    "admission_disciplines": [
-        {
-            "id": "c64ec760-7361-4cd2-a879-f867d7a98af0",
-            "name": "TSP",
-            "max_score": 60,
-            "min_score": 20,
-            "discipline_type_id": "1fe08f56-1a45-4483-9090-0b5d586aed24",
-            "admission_id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81"
-        },
-        {
-            "id": "7c81f985-d015-456f-88db-a6f5c711493e",
-            "name": "TAJ",
-            "max_score": 50,
-            "min_score": 20,
-            "discipline_type_id": "9e081724-27a0-4adc-8cab-f01c592cb174",
-            "admission_id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81"
-        },
-        {
-            "id": "d8f7808b-7ce5-43c8-bfaa-664ba8493766",
-            "name": "TIT",
-            "max_score": 30,
-            "min_score": 2,
-            "discipline_type_id": "e11ccb73-af79-40e6-b1b6-8d40accd558b",
-            "admission_id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81"
-        },
-        {
-            "id": "ecae0c20-6bed-4344-8941-44ab47dbbf33",
-            "name": "Běh 12 minut",
-            "max_score": 25,
-            "min_score": 5,
-            "discipline_type_id": "a2b2a61e-a567-4183-b2bb-0b4b9aeba04e",
-            "admission_id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81"
-        },
-        {
-            "id": "a24f3394-ba8a-4727-aae4-e9b356f7e648",
-            "name": "Sedy lehy 1 minuta",
-            "max_score": 25,
-            "min_score": 5,
-            "discipline_type_id": "a2b2a61e-a567-4183-b2bb-0b4b9aeba04e",
-            "admission_id": "995a0dd2-3697-4e40-ae68-5bc3d9fe8c81"
-        }
-    ],
-    "admission_discipline_types": [
-        {
-            "id": "1fe08f56-1a45-4483-9090-0b5d586aed24",
-            "name": "Písemný test studijních předpokladů",
-            "name_en": "",
-            "description": "ověření matematických znalostí a dovedností, numerického myšlení a logického uvažování",
-            "description_en": "",
-            "weight": 0.25,
-            "min_score": 20
-        },
-        {
-            "id": "9e081724-27a0-4adc-8cab-f01c592cb174",
-            "name": "Písemný test z anglického jazyka",
-            "name_en": "",
-            "description": "ověření znalostí a jazykových schopností uchazeče v anglickém jazyce",
-            "description_en": "",
-            "weight": 0.25,
-            "min_score": 20
-        },
-        {
-            "id": "e11ccb73-af79-40e6-b1b6-8d40accd558b",
-            "name": "Písemný test znalostí z informačních technologií",
-            "name_en": "",
-            "description": "ověření všeobecných znalostí z oblasti informačních technologií",
-            "description_en": "",
-            "weight": 0.25,
-            "min_score": 2
-        },
-        {
-            "id": "a2b2a61e-a567-4183-b2bb-0b4b9aeba04e",
-            "name": "Praktické ověření tělesné zdatnosti",
-            "name_en": "",
-            "description": "fyzického ověření tělesné zdatnosti",
-            "description_en": "",
-            "weight": 0.25,
-            "min_score": 10
-        }        
-    ]
-    
+  "payment_infos":
+  [
+    {
+      "id": "3c2b1d89-a7f6-42d5-9e2b-3d8f1e2c5a74",
+      "name": "Platební informace pro Fakultu Vojenské Matematiky",
+      "name_en": "Payment Information for Faculty of Military Mathematics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    },
+    {
+      "id": "58b193be-2e77-457c-9f1f-94f9bb423711",
+      "name": "Platební informace pro Fakultu Vojenské Fyziky",
+      "name_en": "Payment Information for Faculty of Military Physics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    },
+    {
+      "id": "e48d11a4-421c-4930-91e4-ab1bf9bc0dd4",
+      "name": "Platební informace pro Fakultu Vojenské Informatiky",
+      "name_en": "Payment Information for Faculty of Military Informatics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    },
+    {
+      "id": "d57dc3e0-1b10-4531-9e6d-fdc2309903fc",
+      "name": "Platební informace na Fakultu vojenské kybernetiky",
+      "name_en": "Payment Information for Faculty of Military Cybernetics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.0
+    },
+    {
+      "id": "47ed204d-ee6b-424a-bf8d-a41a440463e0",
+      "name": "Platební informace pro Fakultu Vojenské Techniky",
+      "name_en": "Payment Information for Faculty of Military Technics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    },
+    {
+      "id": "a6a73663-d7cd-43a4-ac7c-3766ea8ff3ac",
+      "name": "Platební informace pro Fakultu Vojenské Robotiky",
+      "name_en": "Payment Information for Faculty of Military Robotics",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    },
+    {
+      "id": "0f6a5e77-99f9-4a37-afe1-782f37c8a1bd",
+      "name": "Platební informace na Fakultu Vojesnké Přípravy",
+      "name_en": "Payment Information for Faculty of Military Training",
+      "account_number": "19-26030881/0710",
+      "specific_symbol": "299400",
+      "constant_symbol": "558",
+      "IBAN": "CZ5207100000190026030881",
+      "SWIFT": "CNBACZPP",
+      "amount": 400.00
+    }
+  ],
+  "payments":
+  [
+    {
+      "id": "c3163ba0-2ffd-462b-bbb8-b928c32d2915",
+      "payment_info_id": "3c2b1d89-a7f6-42d5-9e2b-3d8f1e2c5a74",
+      "bank_unique_data": "A1B2C3D4E5F67890",
+      "variable_symbol": "123456789",
+      "amount": 400.00
+    },
+    {
+      "id": "f73816f9-728f-448f-ab33-0bb0fa54902f",
+      "payment_info_id": "3c2b1d89-a7f6-42d5-9e2b-3d8f1e2c5a74",
+      "bank_unique_data": "9Z8Y7X6W5V4U3T2S1",
+      "variable_symbol": "987654321",
+      "amount": 400.00
+    },
+    {
+      "id": "4c15ff3c-2951-4bb7-93b2-aac16bac424b",
+      "payment_info_id": "58b193be-2e77-457c-9f1f-94f9bb423711",
+      "bank_unique_data": "M9N8O7P6Q5R4S3T2U1",
+      "variable_symbol": "192837465",
+      "amount": 400.00
+    },
+    {
+      "id": "16243bdf-d5ba-4f0b-b7a5-79005006b59b",
+      "payment_info_id": "58b193be-2e77-457c-9f1f-94f9bb423711",
+      "bank_unique_data": "J6K5L4M3N2O1P0Q9R",
+      "variable_symbol": "564738291",
+      "amount": 400.00
+    },
+    {
+      "id": "7e16cbaa-19f2-4a25-b3db-5de6cbb1109f",
+      "payment_info_id": "e48d11a4-421c-4930-91e4-ab1bf9bc0dd4",
+      "bank_unique_data": "Z9Y8X7W6V5U43210",
+      "variable_symbol": "987654321",
+      "amount": 400.00
+    },
+    {
+      "id": "553ec15e-3a47-4a2d-84f0-94438612c23b",
+      "payment_info_id": "e48d11a4-421c-4930-91e4-ab1bf9bc0dd4",
+      "bank_unique_data": "B1C2D3E4F5G67890",
+      "variable_symbol": "112233445",
+      "amount": 400.00
+    },
+    {
+      "id": "b5e38c0d-c5d9-41fe-a99c-05a866bd7ad2",
+      "payment_info_id": "d57dc3e0-1b10-4531-9e6d-fdc2309903fc",
+      "bank_unique_data": "M3N4O5P6Q7R89012",
+      "variable_symbol": "556677889",
+      "amount": 400.00
+    },
+    {
+      "id": "773ca3d6-110b-4001-90c8-1b4649e63af1",
+      "payment_info_id": "d57dc3e0-1b10-4531-9e6d-fdc2309903fc",
+      "bank_unique_data": "K1L2M3N4O5P67890",
+      "variable_symbol": "998877665",
+      "amount": 400.00
+    },
+    {
+      "id": "4ebbc17a-d069-401b-b1b1-b453dfa7a2d8",
+      "payment_info_id": "47ed204d-ee6b-424a-bf8d-a41a440463e0",
+      "bank_unique_data": "X7Y8Z9A1B2C34567",
+      "variable_symbol": "445566778",
+      "amount": 400.00
+    },
+    {
+      "id": "c6e48389-73e0-44a0-b8cd-1dd6935eea67",
+      "payment_info_id": "47ed204d-ee6b-424a-bf8d-a41a440463e0",
+      "bank_unique_data": "T1U2V3W4X5Y67890",
+      "variable_symbol": "123123123",
+      "amount": 400.00
+    },
+    {
+      "id": "db547fe6-3705-4de2-8672-8e96b7f1477f",
+      "payment_info_id": "a6a73663-d7cd-43a4-ac7c-3766ea8ff3ac",
+      "bank_unique_data": "C1D2E3F4G5H67890",
+      "variable_symbol": "321321321",
+      "amount": 400.00
+    },
+    {
+      "id": "f200185c-972e-49b2-8bd3-92873384955f",
+      "payment_info_id": "a6a73663-d7cd-43a4-ac7c-3766ea8ff3ac",
+      "bank_unique_data": "R5S6T7U8V9W01234",
+      "variable_symbol": "666777888",
+      "amount": 400.00
+    },
+    {
+      "id": "669f7c20-89fc-4b0f-840f-57da22f99a67",
+      "payment_info_id": "0f6a5e77-99f9-4a37-afe1-782f37c8a1bd",
+      "bank_unique_data": "L1M2N3O4P5Q67890",
+      "variable_symbol": "777888999",
+      "amount": 400.00
+    },
+    {
+      "id": "8e10158d-4264-434e-a4c3-8901413136e3",
+      "payment_info_id": "0f6a5e77-99f9-4a37-afe1-782f37c8a1bd",
+      "bank_unique_data": "P1Q2R3S4T5U67890",
+      "variable_symbol": "888999000",
+      "amount": 400.00
+    }
+  ],
+  "admissions": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Přijímací řízení Vojenská Matematika 2025/26",
+      "name_en": "Admission Military Mathematics 2025/26",
+      "state_id": null,
+      "program_id": "49911672-9d97-4316-968b-923d58d137d3",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "3c2b1d89-a7f6-42d5-9e2b-3d8f1e2c5a74"
+    },
+    {
+      "id": "e6785ba5-9d70-43e5-9456-8694968bead4",
+      "name": "Přijímací řízení Vojenská Fyzika 2025/26",
+      "name_en": "Admission Military Physics 2025/26",
+      "state_id": null,
+      "program_id": "2b06370d-b7aa-49a4-8a23-991b1da2a535",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "58b193be-2e77-457c-9f1f-94f9bb423711"
+    },
+    {
+      "id": "5ac9e31c-b60d-425d-afea-f87737fbc314",
+      "name": "Přijímací řízení Vojenská Informatika 2025/26",
+      "name_en": "Admission Military Informatics 2025/26",
+      "state_id": null,
+      "program_id": "ea50c020-1994-4b05-9a89-10d3d72917a8",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "e48d11a4-421c-4930-91e4-ab1bf9bc0dd4"
+    },
+    {
+      "id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886",
+      "name": "Přijímací řízení Vojenská Kybernetika 2025/26",
+      "name_en": "Admission Military Cybernetics 2025/26",
+      "state_id": null,
+      "program_id": "004b2a33-b952-4fe0-9f21-24123a233802",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "d57dc3e0-1b10-4531-9e6d-fdc2309903fc"
+    },
+    {
+      "id": "5ade9748-b6af-49cf-9076-8eff1d8897d9",
+      "name": "Přijímací řízení Vojenská Technika 2025/26",
+      "name_en": "Admission Military Technics 2025/26",
+      "state_id": null,
+      "program_id": "e30929a6-729b-405e-8409-85b9e16ece5d",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "47ed204d-ee6b-424a-bf8d-a41a440463e0"
+    },
+    {
+      "id": "ad36999a-0369-462c-8e22-8d3a1a51baf5",
+      "name": "Přijímací řízení Vojenská Robotika 2025/26",
+      "name_en": "Admission Military Robotics 2025/26",
+      "state_id": null,
+      "program_id": "73891a0e-cb14-482d-b8dc-3b68e2ce2e4b",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "a6a73663-d7cd-43a4-ac7c-3766ea8ff3ac"
+    },
+    {
+      "id": "e212b0bd-f7df-4b7e-a308-c31396ace922",
+      "name": "Přijímací řízení Vojenská Příprava 2025/26",
+      "name_en": "Admission Military Training 2025/26",
+      "state_id": null,
+      "program_id": "7c9dc2f8-c850-470a-aa40-28ba3cd82828",
+      "application_start_date": "2024-01-01T09:00:00Z",
+      "application_last_date": "2024-03-15T23:59:59Z",
+      "end_date": "2024-09-01T00:00:00Z",
+      "condition_date": "2024-05-01T23:59:59Z",
+      "request_condition_start_date": "2024-05-02T00:00:00Z",
+      "request_condition_last_date": "2024-05-31T23:59:59Z",
+      "request_exam_start_date": "2024-04-01T09:00:00Z",
+      "request_exam_last_date": "2024-04-30T23:59:59Z",
+      "payment_date": "2024-03-20T00:00:00Z",
+      "request_enrollment_start_date": "2024-07-01T09:00:00Z",
+      "request_enrollment_end_date": "2024-08-15T23:59:59Z",
+      "payment_info_id": "0f6a5e77-99f9-4a37-afe1-782f37c8a1bd"
+    }
+  ],
+  "student_admissions": [
+    {
+      "id": "d2815b9c-75ee-4d2e-9c8a-ffc8df088135",
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000",
+      "student_id": "8f7b59dc-f2a8-4d4f-b1d5-91d8b6d6f301",
+      "state_id": null,
+      "extended_condition_date": "2024-08-15T00:00:00",
+      "admissioned": true,
+      "enrollment_date": "2024-09-01T00:00:00",
+      "payment_id": "c3163ba0-2ffd-462b-bbb8-b928c32d2915"
+    },
+    {
+      "id": "89b10735-ef94-49d4-965f-fbd475d65d1f",
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000",
+      "student_id": "8f7b59dc-f2a8-4d4f-b1d5-91d8b6d6f301",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": false,
+      "enrollment_date": "2024-09-10T00:00:00",
+      "payment_id": "f73816f9-728f-448f-ab33-0bb0fa54902f"
+    },
+    {
+      "id": "7b5dc42a-8e33-4223-85c4-6526993c1063",
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4",
+      "student_id": "d5c7f8f4-a0a7-4316-bc9f-7f3e4d1e5f5c",
+      "state_id": null,
+      "extended_condition_date": "2024-09-20T00:00:00",
+      "admissioned": true,
+      "enrollment_date": "2024-10-01T00:00:00",
+      "payment_id": "4c15ff3c-2951-4bb7-93b2-aac16bac424b"
+    },
+    {
+      "id": "8076d3f3-63b1-49f5-a65a-eea917e41a35",
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4",
+      "student_id": "d5c7f8f4-a0a7-4316-bc9f-7f3e4d1e5f5c",
+      "state_id": null,
+      "extended_condition_date": "2024-09-25T00:00:00",
+      "admissioned": false,
+      "enrollment_date": "2024-10-10T00:00:00",
+      "payment_id": "16243bdf-d5ba-4f0b-b7a5-79005006b59b"
+    },
+    {
+      "id": "a9158244-5ce6-4582-bfa2-281923561062",
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314",
+      "student_id": "2f6c5b9e-b5d4-4326-9a7f-8e4d7d6c5e5f",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": true,
+      "enrollment_date": "2024-11-01T00:00:00",
+      "payment_id": "7e16cbaa-19f2-4a25-b3db-5de6cbb1109f"
+    },
+    {
+      "id": "203b4081-7f33-463c-b3cf-a61874e18429",
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314",
+      "student_id": "2f6c5b9e-b5d4-4326-9a7f-8e4d7d6c5e5f",
+      "state_id": null,
+      "extended_condition_date": "2024-08-15T00:00:00",
+      "admissioned": true,
+      "enrollment_date": "2024-09-01T00:00:00",
+      "payment_id": "553ec15e-3a47-4a2d-84f0-94438612c23b"
+    },
+    {
+      "id": "b788d1ac-67d0-4f1a-b625-2c58341c7b5c",
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886",
+      "student_id": "c1a7b40d-2b4a-4f56-a845-3f4e5d4c3b07",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": false,
+      "enrollment_date": "2024-09-10T00:00:00",
+      "payment_id": "b5e38c0d-c5d9-41fe-a99c-05a866bd7ad2"
+    },
+    {
+      "id": "597d173d-ade5-4fd8-8f1d-cae21fad5e57",
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886",
+      "student_id": "c1a7b40d-2b4a-4f56-a845-3f4e5d4c3b07",
+      "state_id": null,
+      "extended_condition_date": "2024-09-20T00:00:00",
+      "admissioned": true,
+      "enrollment_date": "2024-10-01T00:00:00",
+      "payment_id": "773ca3d6-110b-4001-90c8-1b4649e63af1"
+    },
+    {
+      "id": "b60db85a-7191-4c11-838e-f727133c9833",
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9",
+      "student_id": "a9d8f1c3-3e4b-42d5-b6a5-5f1d3a3c2b12",
+      "state_id": null,
+      "extended_condition_date": "2024-09-25T00:00:00",
+      "admissioned": false,
+      "enrollment_date": "2024-10-10T00:00:00",
+      "payment_id": "4ebbc17a-d069-401b-b1b1-b453dfa7a2d8"
+    },
+    {
+      "id": "9251709c-ebb0-450b-89b7-e7c89c8edc89",
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9",
+      "student_id": "a9d8f1c3-3e4b-42d5-b6a5-5f1d3a3c2b12",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": true,
+      "enrollment_date": "2024-11-01T00:00:00",
+      "payment_id": "c6e48389-73e0-44a0-b8cd-1dd6935eea67"
+    },
+    {
+      "id": "9b86f7f2-cef9-47bf-b13c-f213cef24b49",
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5",
+      "student_id": "76b54479-554a-4cd2-ad00-9d83dc7dd66b",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": false,
+      "enrollment_date": "2024-09-10T00:00:00",
+      "payment_id": "db547fe6-3705-4de2-8672-8e96b7f1477f"
+    },
+    {
+      "id": "31237b59-8a46-4584-af31-261d79625525",
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5",
+      "student_id": "76b54479-554a-4cd2-ad00-9d83dc7dd66b",
+      "state_id": null,
+      "extended_condition_date": "2024-09-20T00:00:00",
+      "admissioned": true,
+      "enrollment_date": "2024-10-01T00:00:00",
+      "payment_id": "f200185c-972e-49b2-8bd3-92873384955f"
+    },
+    {
+      "id": "3847378c-27a1-43fe-8f32-5040566330c0",
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922",
+      "student_id": "55f45411-aaed-4d56-81d4-82337db2410b",
+      "state_id": null,
+      "extended_condition_date": "2024-09-25T00:00:00",
+      "admissioned": false,
+      "enrollment_date": "2024-10-10T00:00:00",
+      "payment_id": "669f7c20-89fc-4b0f-840f-57da22f99a67"
+    },
+    {
+      "id": "43f1c7c9-e608-4fe7-8975-610df574eaea",
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922",
+      "student_id": "55f45411-aaed-4d56-81d4-82337db2410b",
+      "state_id": null,
+      "extended_condition_date": null,
+      "admissioned": true,
+      "enrollment_date": "2024-11-01T00:00:00",
+      "payment_id": "8e10158d-4264-434e-a4c3-8901413136e3"
+    }
+  ],
+  "exam_types": [
+    {
+      "id": "f2f93692-430f-46bb-8ef5-be3063e51fa8",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "id": "852a68ad-ccc3-4c06-a1fb-8cc556f05889",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4"
+    },
+    {
+      "id": "f7a10d85-8352-48a7-84b4-14bae8d249c0",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314"
+    },
+    {
+      "id": "a5b2fca8-79f8-4d9a-aeb6-00af2edc1666",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886"
+    },
+    {
+      "id": "519dc802-f492-4c69-85da-f1c888476bde",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9"
+    },
+    {
+      "id": "ab24dd3b-6ec9-4d2a-9ed3-3160913484be",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5"
+    },
+    {
+      "id": "b3b01e43-e185-403c-a9e1-7848ca832560",
+      "name": "Test studijních předpokladů",
+      "name_en": "Study prerequisites test",
+      "min_score": 0.0,
+      "max_score": 60.0,
+      "min_required_score": 20.0,
+      "duration": 70,
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922"
+    },
+    {
+      "id": "ae23feb8-729c-4733-bdf4-1314a47a7180",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "id": "a6865ec2-43a9-421c-af50-bcfc8bef7212",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4"
+    },
+    {
+      "id": "34812a43-e775-4fd8-8d84-e3a6ed41abb5",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314"
+    },
+    {
+      "id": "4a0ae516-5752-43ee-8280-58caf5038600",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886"
+    },
+    {
+      "id": "329a7086-1f50-4d48-b96a-4fce71281814",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9"
+    },
+    {
+      "id": "574a9176-8970-40d1-ad06-70f1e4340bee",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5"
+    },
+    {
+      "id": "c9c34d50-3711-4348-9c98-0d19b10c3bb1",
+      "name": "Test z anglického jazyka",
+      "name_en": "English language test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 20.0,
+      "duration": 50,
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922"
+    },
+    {
+      "id": "2df4d01b-d568-4ce2-b915-354c2c31715b",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "id": "aedf3f83-7cbc-4296-ae20-afb5a6cfab99",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "2df4d01b-d568-4ce2-b915-354c2c31715b",
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "id": "883047cb-013e-4295-9e59-296dd5f093c1",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "2df4d01b-d568-4ce2-b915-354c2c31715b",
+      "admission_id": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "id": "f9dd8a28-da94-48a7-905b-64940e7a14be",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4"
+    },
+    {
+      "id": "57b05fbf-ac0e-4da5-9291-0747fffc2b3f",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "f9dd8a28-da94-48a7-905b-64940e7a14be",
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4"
+    },
+    {
+      "id": "013735e4-0b2d-457b-8793-c3792ae3bf27",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "f9dd8a28-da94-48a7-905b-64940e7a14be",
+      "admission_id": "e6785ba5-9d70-43e5-9456-8694968bead4"
+    },
+    {
+      "id": "37109398-3a8b-40f1-8b60-010358e74990",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314"
+    },
+    {
+      "id": "943a98fc-3199-48c7-8f00-086f8a6f7602",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "37109398-3a8b-40f1-8b60-010358e74990",
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314"
+    },
+    {
+      "id": "5bacc8d0-d91e-4480-befa-3ec840a031c5",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "37109398-3a8b-40f1-8b60-010358e74990",
+      "admission_id": "5ac9e31c-b60d-425d-afea-f87737fbc314"
+    },
+    {
+      "id": "ce1c1316-0b78-4b07-9c9a-487c2493b0ec",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886"
+    },
+    {
+      "id": "feb06db7-9b9d-48ef-b14f-aa1b42c3d972",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "ce1c1316-0b78-4b07-9c9a-487c2493b0ec",
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886"
+    },
+    {
+      "id": "f185288f-4be6-41bc-9789-9eb9d4305716",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "ce1c1316-0b78-4b07-9c9a-487c2493b0ec",
+      "admission_id": "9f63553f-b5fa-414f-99e2-ee4eb22f5886"
+    },
+    {
+      "id": "6c089ca8-999a-4f12-be0d-8672e470edca",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9"
+    },
+    {
+      "id": "2979b3ba-561d-4e0e-9688-5f6801a4805b",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "6c089ca8-999a-4f12-be0d-8672e470edca",
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9"
+    },
+    {
+      "id": "dd5092fb-e049-4d66-a622-4a124ebd65a9",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "6c089ca8-999a-4f12-be0d-8672e470edca",
+      "admission_id": "5ade9748-b6af-49cf-9076-8eff1d8897d9"
+    },
+    {
+      "id": "e73bcb3b-1c53-419a-88fb-612ee8b085a2",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5"
+    },
+    {
+      "id": "5be7804f-54ec-48fd-a2ed-a230537f1dc8",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "e73bcb3b-1c53-419a-88fb-612ee8b085a2",
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5"
+    },
+    {
+      "id": "40e9f4fa-3b67-4a5a-91f4-a3709f8207c8",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "e73bcb3b-1c53-419a-88fb-612ee8b085a2",
+      "admission_id": "ad36999a-0369-462c-8e22-8d3a1a51baf5"
+    },
+    {
+      "id": "26f7de48-5ccf-484d-8e6d-1225eed00c23",
+      "name": "Test fyzické zdatnosti",
+      "name_en": "Physical fitness test",
+      "min_score": 0.0,
+      "max_score": 50.0,
+      "min_required_score": 10.0,
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922"
+    },
+    {
+      "id": "6ee8bcac-4e0f-4929-87b7-b9e03be0755e",
+      "name": "Sedy-lehy",
+      "name_en": "Sit-ups",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 1,
+      "master_exam_type_id": "26f7de48-5ccf-484d-8e6d-1225eed00c23",
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922"
+    },
+    {
+      "id": "0b26d4b4-1bb8-436e-9255-262050c1b71d",
+      "name": "Dvanáctiminutový běh",
+      "name_en": "Twelve minute run",
+      "min_score": 0.0,
+      "max_score": 25.0,
+      "min_required_score": 5.0,
+      "duration": 12,
+      "master_exam_type_id": "26f7de48-5ccf-484d-8e6d-1225eed00c23",
+      "admission_id": "e212b0bd-f7df-4b7e-a308-c31396ace922"
+    }
+  ],
+  "exams": [
+    {
+        "id": "d21a1c6b-5e8f-4b6d-933f-918d39e5e1e5",
+        "name": "Test studijních předpokladů - řádný termín",
+        "name_en": "Study prerequisites test - proper term",
+        "exam_date": "2024-05-15T09:00:00",
+        "exam_type_id": "f2f93692-430f-46bb-8ef5-be3063e51fa8"
+    },
+    {
+        "id": "a15d2b5f-3e0f-4f9e-8f1e-9d3a2c2c8b3f",
+        "name": "Test z anglického jazyka - řádný termín",
+        "name_en": "English language - proper term",
+        "exam_date": "2024-05-20T10:00:00",
+        "exam_type_id": "ae23feb8-729c-4733-bdf4-1314a47a7180"
+    },
+    {
+        "id": "c3d8b2e6-4e6a-4d4b-931f-a4f9d8b3f1a4",
+        "name": "Sedy-lehy - řádný termín",
+        "name_en": "Sit-ups - proper term",
+        "exam_date": "2024-06-10T11:00:00",
+        "exam_type_id": "aedf3f83-7cbc-4296-ae20-afb5a6cfab99"
+    },
+    {
+        "id": "b4a7d2e5-9d2b-4e2a-821d-1e8d5a4b2f1c",
+        "name": "Dvanáctiminutový běh - řádný termín",
+        "name_en": "Twelve minute run - proper term",
+        "exam_date": "2024-06-15T14:00:00",
+        "exam_type_id": "883047cb-013e-4295-9e59-296dd5f093c1"
+    }
+  ],
+  "exam_results": [
+  {
+    "id": "158c09c9-9881-4b0d-915a-ba89d917ae18",
+    "score": 54,
+    "student_admission_id": "d2815b9c-75ee-4d2e-9c8a-ffc8df088135",
+    "exam_id": "d21a1c6b-5e8f-4b6d-933f-918d39e5e1e5"
+  },
+  {
+    "id": "1a1bc900-8b48-4a88-883c-1d9237aae24c",
+    "score": 46,
+    "student_admission_id": "d2815b9c-75ee-4d2e-9c8a-ffc8df088135",
+    "exam_id": "a15d2b5f-3e0f-4f9e-8f1e-9d3a2c2c8b3f"
+  },
+  {
+    "id": "9a23470e-4ba7-48ab-85ed-26f6dcc9fac5",
+    "score": 19,
+    "student_admission_id": "d2815b9c-75ee-4d2e-9c8a-ffc8df088135",
+    "exam_id": "c3d8b2e6-4e6a-4d4b-931f-a4f9d8b3f1a4"
+  },
+  {
+    "id": "835a5824-89b5-4821-b758-437366b06a4a",
+    "score": 19,
+    "student_admission_id": "d2815b9c-75ee-4d2e-9c8a-ffc8df088135",
+    "exam_id": "b4a7d2e5-9d2b-4e2a-821d-1e8d5a4b2f1c"
+  },
+  {
+    "id": "b00bcbfe-8622-4011-a725-b361245f0d08",
+    "score": 12,
+    "student_admission_id": "89b10735-ef94-49d4-965f-fbd475d65d1f",
+    "exam_id": "d21a1c6b-5e8f-4b6d-933f-918d39e5e1e5"
+  },
+  {
+    "id": "570904e9-5704-444a-a939-e8164cf2fe3d",
+    "score": 15,
+    "student_admission_id": "89b10735-ef94-49d4-965f-fbd475d65d1f",
+    "exam_id": "a15d2b5f-3e0f-4f9e-8f1e-9d3a2c2c8b3f"
+  },
+  {
+    "id": "dfa0d12a-4ef4-4df7-881c-bdf9cc9180db",
+    "score": 0,
+    "student_admission_id": "89b10735-ef94-49d4-965f-fbd475d65d1f",
+    "exam_id": "c3d8b2e6-4e6a-4d4b-931f-a4f9d8b3f1a4"
+  },
+  {
+    "id": "2481455a-3de2-439e-bdae-1aececf043d6",
+    "score": 0,
+    "student_admission_id": "89b10735-ef94-49d4-965f-fbd475d65d1f",
+    "exam_id": "b4a7d2e5-9d2b-4e2a-821d-1e8d5a4b2f1c"
+  }
+  ]
 }

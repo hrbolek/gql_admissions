@@ -4,16 +4,24 @@ import typing
 
 import strawberry.types
 
-AdDisciplineResultGQLModel = typing.Annotated["AdDisciplineResultGQLModel", strawberry.lazy(".AdDisciplineResultGQLModel")]
-AdmissionGQLModel = typing.Annotated["AdmissionGQLModel", strawberry.lazy(".AdmissionGQLModel")]
-PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentGQLModel")]
+from uoishelpers.resolvers import VectorResolver
+from uoishelpers.gqlpermissions import OnlyForAuthentized
 
-@strawberry.federation.type(keys=["id"], extend=True) # , description="An user in system")
+StudentAdmissionGQLModel = typing.Annotated["StudentAdmissionGQLModel", strawberry.lazy(".StudentAdmissionGQLModel")]
+
+@strawberry.federation.type(
+    keys=["id"], extend=True, description="""State"""
+)
 class StateGQLModel:
-    id: uuid.UUID = strawberry.field()
+    id: uuid.UUID = strawberry.federation.field(external=True)
 
-    @classmethod
-    async def resolve_reference(cls, info: strawberry.types.Info, **data):
-        result = cls(**data)
-        return result
-    
+    from .BaseGQLModel import resolve_reference
+
+    student_admissions: typing.List["StudentAdmissionGQLModel"] = strawberry.field(
+        description="""List of student admissions related to the admission""",
+        resolver=VectorResolver["StudentAdmissionGQLModel"](fkey_field_name="state_id", whereType=None),
+        permission_classes = [
+            OnlyForAuthentized,
+        ]
+    )
+

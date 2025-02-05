@@ -1,21 +1,29 @@
 import sqlalchemy
 
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from .BaseModel import BaseModel
+
+import logging
+
+# Set up logging to see the queries
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
+
+from .BaseModel import BaseModel, UUIDColumn, UUIDFKey
 from .AdmissionModel import AdmissionModel
-from .DisciplineTypeModel import DisciplineTypeModel
-from .DisciplineResulModel import DisciplineResulModel
-from .DisciplineModel import DisciplineModel
+from .ExamModel import ExamModel
+from .ExamResultModel import ExamResultModel
+from .ExamTypeModel import ExamTypeModel
+from .StudentAdmissionModel import StudentAdmissionModel
 from .PaymentInfoModel import PaymentInfoModel
 from .PaymentModel import PaymentModel
 
 async def startEngine(connectionstring, makeDrop=False, makeUp=True):
     """Provede nezbytne ukony a vrati asynchronni SessionMaker"""
-    print(f"Starting engine for {connectionstring}",flush=True)
     asyncEngine = create_async_engine(connectionstring)
 
     async with asyncEngine.begin() as conn:
@@ -36,9 +44,7 @@ async def startEngine(connectionstring, makeDrop=False, makeUp=True):
     )
     return async_sessionMaker
 
-
 import os
-
 
 def ComposeConnectionString():
     """Odvozuje connectionString z promennych prostredi (nebo z Docker Envs, coz je fakticky totez).
