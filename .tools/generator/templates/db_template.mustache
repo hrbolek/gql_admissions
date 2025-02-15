@@ -1,0 +1,18 @@
+import sqlalchemy
+
+from .BaseModel import BaseModel
+
+class {{typedef.__typename}}(BaseModel):
+    __tablename__ = "typedef.__typename"
+
+{{#fields}}
+    {{#is_object}}
+    {{type.__typename}}_id: Column(ForeignKey("type.__typename.id"), nullable=True, index=True)
+    {{/is_object}}
+{{/fields}}
+
+{{#fields}}
+    {{#is_basic}}
+    {{name}}: Column({{type.__typename}}, comment="")
+    {{/is_basic}}
+{{/fields}}
