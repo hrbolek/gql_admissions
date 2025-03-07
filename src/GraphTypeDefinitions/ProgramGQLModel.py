@@ -1,18 +1,15 @@
-import datetime
 import strawberry
 import uuid
-import typing
 
 import strawberry.types
 
 from uoishelpers.gqlpermissions import RBACObjectGQLModel
 
 # from .BaseGQLModel import _BaseGQLModel as BaseGQLModel
-from .BaseGQLModel import IDType, BaseGQLModel, BaseGQLModelEx
+from .BaseGQLModel import BaseGQLModel, BaseGQLModelEx
 
-@strawberry.federation.type(keys=["id"], extend=True) #, description="An user in system")
-class UserGQLModel(BaseGQLModel, BaseGQLModelEx):
-
+@strawberry.federation.type(keys=["id"], extend=True) #, description="study program (accreditation)")
+class ProgramGQLModel(BaseGQLModel, BaseGQLModelEx):
     from .BaseGQLModel import (
         id,
         lastchange,
@@ -24,4 +21,3 @@ class UserGQLModel(BaseGQLModel, BaseGQLModelEx):
         rbacobject_id,
         rbacobject
     )
-            

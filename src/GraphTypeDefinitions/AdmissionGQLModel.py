@@ -2,49 +2,58 @@ import strawberry
 import uuid
 import datetime
 import typing
+import dataclasses
 
 import strawberry.types
 
-from uoishelpers.resolvers import getLoadersFromInfo, getUserFromInfo
+from uoishelpers.gqlpermissions import (
+    OnlyForAuthentized,
+    SimpleInsertPermission, 
+    SimpleUpdatePermission, 
+    SimpleDeletePermission
+)    
+from uoishelpers.resolvers import (
+    getLoadersFromInfo, 
+    createInputs,
 
-from .BaseGQLModel import BaseGQLModel
+    InsertError, 
+    Insert, 
+    UpdateError, 
+    Update, 
+    DeleteError, 
+    Delete,
 
-AcProgramGQLModel = typing.Annotated["AcProgramGQLModel", strawberry.lazy(".AcProgramGQLModel")]
-AdDisciplineGQLModel = typing.Annotated["AdDisciplineGQLModel", strawberry.lazy(".AdDisciplineGQLModel")]
+    PageResolver,
+    VectorResolver,
+    ScalarResolver
+)
+
+from .BaseGQLModel import BaseGQLModel, IDType
+
+ProgramGQLModel = typing.Annotated["ProgramGQLModel", strawberry.lazy(".ProgramGQLModel")]
 PaymentInfoGQLModel = typing.Annotated["PaymentInfoGQLModel", strawberry.lazy(".PaymentInfoGQLModel")]
-AcProgramStudentGQLModel = typing.Annotated["AcProgramStudentGQLModel", strawberry.lazy(".AcProgramStudentGQLModel")]
 StateGQLModel = typing.Annotated["StateGQLModel", strawberry.lazy(".StateGQLModel")]
 
-@strawberry.type(description="one (in one year) admission linked to program")
+@createInputs
+@dataclasses.dataclass
+class AdmissionInputFilter:
+    id: IDType
+    program_id: IDType
+    state_id: IDType
+    payment_info_id: IDType
+
+
+
+@strawberry.federation.type(
+    keys=["id"],
+    description="one (in one year) admission linked to program"
+)
 class AdmissionGQLModel(BaseGQLModel):
-
-    @classmethod
-    def get_table_resolvers(cls):
-        return {
-            "id": lambda row: row.id, 
-            "state_id": lambda row: row.state_id,
-            "program_id": lambda row: row.program_id,
-            "payment_info_id": lambda row: row.payment_info_id,
-
-            "application_start_date": lambda row: row.application_start_date,
-            "application_last_date": lambda row: row.application_last_date,
-            "end_date": lambda row: row.end_date,
-            "condition_date": lambda row: row.condition_date,
-            "payment_date": lambda row: row.payment_date,
-            "condition_extended_date": lambda row: row.condition_extended_date,
-            "request_condition_extend_date": lambda row: row.request_condition_extend_date,
-            "request_extra_conditions_date": lambda row: row.request_extra_conditions_date,
-            "request_extra_date_date": lambda row: row.request_extra_date_date,
-            "exam_start_date": lambda row: row.exam_start_date,
-            "exam_last_date": lambda row: row.exam_last_date,
-            "student_entry_date": lambda row: row.student_entry_date,
-        }
-    
+   
     @classmethod
     def getloader(cls, info: strawberry.types.Info):
         return getLoadersFromInfo(info).AdmissionModel
 
-    id: uuid.UUID = strawberry.field()
     state_id: typing.Optional[uuid.UUID] = strawberry.field(description="stav přijímacího řízení", default=None)
     program_id: typing.Optional[uuid.UUID] = strawberry.field(description="Program, pro který je přijímací řízení vypsáno", default=None)
     payment_info_id: typing.Optional[uuid.UUID] = strawberry.field(description="platební podmínky", default=None)
@@ -62,22 +71,11 @@ class AdmissionGQLModel(BaseGQLModel):
     exam_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možný den přijímacích zkoušek", default=None)
     student_entry_date: typing.Optional[datetime.datetime] = strawberry.field(description="Den zápisu", default=None)
 
-    @strawberry.field(description="Program, ke kterému je přijímací řízení")
-    async def program(self, info: strawberry.types.Info) -> typing.Optional["AcProgramGQLModel"]:
-        from .AcProgramGQLModel import AcProgramGQLModel
-        result = await AcProgramGQLModel.resolve_reference(info=info, id=self.program_id)
-        return result
 
-    @strawberry.field(description="disciplíny")
-    async def disciplines(self, info: strawberry.types.Info) -> typing.List["AdDisciplineGQLModel"]:
-        from .AdDisciplineGQLModel import AdDisciplineGQLModel
-        loader = AdDisciplineGQLModel.getloader(info=info)
-        rows = await loader.filter_by(admission_id=self.id)
-        results = (AdDisciplineGQLModel.from_sqlalchemy(row) for row in rows)
-        return results
-        # raise NotImplementedError()
-        from .AdDisciplineGQLModel import AdDisciplineGQLModel
-        result = await AdDisciplineGQLModel.resolve_reference(info=info, id=self.program_id)
+    @strawberry.field(description="Program, ke kterému je přijímací řízení")
+    async def program(self, info: strawberry.types.Info) -> typing.Optional["ProgramGQLModel"]:
+        from .ProgramGQLModel import ProgramGQLModel
+        result = await ProgramGQLModel.resolve_reference(info=info, id=self.program_id)
         return result
 
     @strawberry.field(description="Pokyny k platbě")
@@ -86,20 +84,79 @@ class AdmissionGQLModel(BaseGQLModel):
         result = await PaymentInfoGQLModel.load_with_loader(info=info, id=self.payment_info_id)
         return result
 
-    @strawberry.field(description="přihlášky v přijímacím řízení")
-    async def applications(self, info: strawberry.types.Info) -> typing.List["AcProgramStudentGQLModel"]:
-        raise NotImplementedError()
-        from .PaymentInfoGQLModel import PaymentInfoGQLModel
-        result = await PaymentInfoGQLModel.resolve_reference(info=info, id=self.program_id)
-        return result
-
     @strawberry.field(description="Stav přijímacího řízení")
     async def state(self, info: strawberry.types.Info) -> typing.Optional["StateGQLModel"]:
         from .StateGQLModel import StateGQLModel
         result = await StateGQLModel.resolve_reference(info=info, id=self.state_id)
         return result
 
-@strawberry.field(description="")
-async def admission_by_id(self, info: strawberry.types.Info, id: uuid.UUID) -> typing.Optional[AdmissionGQLModel]:
-    result = await AdmissionGQLModel.load_with_loader(info=info, id=id)
-    return result
+@strawberry.interface(description="")
+class AdmissionQuery:
+    admission_by_id: typing.Optional[AdmissionGQLModel] = strawberry.field(
+        description="",
+        resolver=AdmissionGQLModel.load_with_loader
+    )
+
+    admission_page: typing.List[AdmissionGQLModel] = strawberry.field(
+        description="",
+        resolver=PageResolver[AdmissionGQLModel](whereType=AdmissionInputFilter)
+    )
+
+
+@strawberry.input(
+    description="parameter for create operation"
+)
+class AdmissionInsertGQLModel:
+    program_id: IDType = strawberry.field(
+        description="program the admission is linked with"
+    )
+    id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
+
+
+@strawberry.input(
+    description="parameter for update operation"
+)
+class AdmissionUpdateGQLModel:
+    id: IDType = strawberry.field(description="primary key client generated")
+    lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
+
+@strawberry.input(
+    description="parameter for delete operation"
+)
+class AdmissionDeleteGQLModel:
+    id: IDType = strawberry.field(description="primary key client generated")
+    lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
+
+
+@strawberry.interface(
+    description=""
+)
+class AdmissionMutation:
+
+    @strawberry.mutation(
+        description="create a new admission"
+    )
+    async def admission_insert(self, info: strawberry.types.Info, admission: AdmissionInsertGQLModel) -> typing.Union[AdmissionGQLModel, InsertError[AdmissionGQLModel]]:
+        result = await Insert[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
+        return result
+    
+    @strawberry.mutation(
+        description="updates existing admission",
+        permission_classes=[
+            OnlyForAuthentized
+        ]
+    )
+    async def admission_update(self, info: strawberry.types.Info, admission: AdmissionUpdateGQLModel) -> typing.Union[AdmissionGQLModel, UpdateError[AdmissionGQLModel]]:
+        result = await Update[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
+        return result
+
+    @strawberry.mutation(
+        description="delete existing admission",
+        permission_classes=[
+            OnlyForAuthentized
+        ]
+    )
+    async def admission_delete(self, info: strawberry.types.Info, admission: AdmissionDeleteGQLModel) -> typing.Optional[DeleteError[AdmissionGQLModel]]:
+        result = await Delete[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
+        return result
+

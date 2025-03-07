@@ -3,17 +3,22 @@ import uuid
 import typing
 
 import strawberry.types
+from uoishelpers.gqlpermissions import RBACObjectGQLModel
 
-AdDisciplineResultGQLModel = typing.Annotated["AdDisciplineResultGQLModel", strawberry.lazy(".AdDisciplineResultGQLModel")]
-AdmissionGQLModel = typing.Annotated["AdmissionGQLModel", strawberry.lazy(".AdmissionGQLModel")]
-PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentGQLModel")]
+# from .BaseGQLModel import _BaseGQLModel as BaseGQLModel
+from .BaseGQLModel import BaseGQLModel, BaseGQLModelEx
 
 @strawberry.federation.type(keys=["id"], extend=True) # , description="An user in system")
-class StateGQLModel:
-    id: uuid.UUID = strawberry.field()
-
-    @classmethod
-    async def resolve_reference(cls, info: strawberry.types.Info, **data):
-        result = cls(**data)
-        return result
+class StateGQLModel(BaseGQLModel, BaseGQLModelEx):
     
+    from .BaseGQLModel import (
+        id,
+        lastchange,
+        created,
+        createdby_id,
+        changedby_id,
+        createdby,
+        changedby,
+        rbacobject_id,
+        rbacobject
+    )

@@ -1,3 +1,4 @@
+import dataclasses
 import strawberry
 import uuid
 import datetime
@@ -6,35 +7,56 @@ import typing
 import strawberry.file_uploads
 import strawberry.types
 
-from uoishelpers.resolvers import getLoadersFromInfo, getUserFromInfo
 
-from .BaseGQLModel import BaseGQLModel
+from uoishelpers.gqlpermissions import (
+    OnlyForAuthentized,
+    SimpleInsertPermission, 
+    SimpleUpdatePermission, 
+    SimpleDeletePermission
+)    
+from uoishelpers.resolvers import (
+    getLoadersFromInfo, 
+    createInputs,
+
+    InsertError, 
+    Insert, 
+    UpdateError, 
+    Update, 
+    DeleteError, 
+    Delete,
+
+    PageResolver,
+    VectorResolver,
+    ScalarResolver
+)
+from .BaseGQLModel import BaseGQLModel, IDType
 
 AcProgramGQLModel = typing.Annotated["AcProgramGQLModel", strawberry.lazy(".AcProgramGQLModel")]
 AdmissionGQLModel = typing.Annotated["AdmissionGQLModel", strawberry.lazy(".AdmissionGQLModel")]
 PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentGQLModel")]
 
-@strawberry.type(description="one (in one year) admission linked to program")
-class PaymentInfoGQLModel(BaseGQLModel):
 
-    @classmethod
-    def get_table_resolvers(cls):
-        return {
-            "id": lambda row: row.id, 
-            "account_number": lambda row: row.account_number,
-            "specific_symbol": lambda row: row.specific_symbol,
-            "constant_symbol": lambda row: row.constant_symbol,
-            "IBAN": lambda row: row.IBAN,
-            "SWIFT": lambda row: row.SWIFT,
-            "amount": lambda row: row.amount,
-        }
+@createInputs
+@dataclasses.dataclass
+class PaymentInfoInputFilter:
+    id: IDType
+    account_number: str
+    specific_symbol: str
+    constant_symbol: str
+    IBAN: str
+    SWIFT: str
+    amount: float
+
+@strawberry.federation.type(
+    keys=["id"],
+    description="one (in one year) admission linked to program"
+)
+class PaymentInfoGQLModel(BaseGQLModel):
     
     @classmethod
     def getloader(cls, info: strawberry.types.Info):
-        return getLoadersFromInfo(info).PaymentInfoModel
-    
+        return getLoadersFromInfo(info).PaymentInfoModel   
 
-    id: uuid.UUID = strawberry.field()
     # admission_id: uuid.UUID = strawberry.field()
     account_number: typing.Optional[str] = strawberry.field(description="číslo účtu s kódem banky za lomítkem")
     specific_symbol: typing.Optional[str] = strawberry.field(description="specifický symbol")
@@ -60,6 +82,85 @@ class PaymentInfoGQLModel(BaseGQLModel):
         # from .AdmissionGQLModel import AdmissionGQLModel
         # result = await AdmissionGQLModel.resolve_reference(info=info, id=self.admission_id)
         # return result
-    
         
     pass
+
+
+
+@strawberry.interface(
+    description=""
+)
+class PaymentInfoQuery:
+    payment_info_by_id: typing.Optional["PaymentInfoGQLModel"] = strawberry.field(
+        description="returns payment_info by its id",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=PaymentInfoGQLModel.load_with_loader
+    )
+
+    payment_info_page: typing.List["PaymentInfoGQLModel"] = strawberry.field(
+        description="returns payment_infos defined by filter",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=PageResolver["PaymentInfoGQLModel"](whereType=PaymentInfoInputFilter)
+    )
+
+@strawberry.input(
+    description="parameter for create operation"
+)
+class PaymentInfoInsertGQLModel:
+    name: str = strawberry.field(
+        description="name of the payment_info"
+    )
+    id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
+
+
+@strawberry.input(
+    description="parameter for update operation"
+)
+class PaymentInfoUpdateGQLModel:
+    id: IDType = strawberry.field(description="primary key client generated")
+    lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
+
+@strawberry.input(
+    description="parameter for delete operation"
+)
+class PaymentInfoDeleteGQLModel:
+    id: IDType = strawberry.field(description="primary key client generated")
+    lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
+
+
+@strawberry.interface(
+    description=""
+)
+class PaymentInfoMutation:
+
+    @strawberry.mutation(
+        description="create a new payment_info"
+    )
+    async def payment_info_insert(self, info: strawberry.types.Info, payment_info: PaymentInfoInsertGQLModel) -> typing.Union[PaymentInfoGQLModel, InsertError[PaymentInfoGQLModel]]:
+        result = await Insert[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
+        return result
+    
+    @strawberry.mutation(
+        description="updates existing payment_info",
+        permission_classes=[
+            OnlyForAuthentized
+        ]
+    )
+    async def payment_info_update(self, info: strawberry.types.Info, payment_info: PaymentInfoUpdateGQLModel) -> typing.Union[PaymentInfoGQLModel, UpdateError[PaymentInfoGQLModel]]:
+        result = await Update[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
+        return result
+
+    @strawberry.mutation(
+        description="delete existing payment_info",
+        permission_classes=[
+            OnlyForAuthentized
+        ]
+    )
+    async def payment_info_delete(self, info: strawberry.types.Info, payment_info: PaymentInfoDeleteGQLModel) -> typing.Optional[DeleteError[PaymentInfoGQLModel]]:
+        result = await Delete[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
+        return result
+
