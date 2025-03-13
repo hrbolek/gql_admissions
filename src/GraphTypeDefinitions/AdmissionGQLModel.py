@@ -51,12 +51,15 @@ class AdmissionInputFilter:
 class AdmissionGQLModel(BaseGQLModel):
    
     @classmethod
-    def getloader(cls, info: strawberry.types.Info):
+    def getLoader(cls, info: strawberry.types.Info):
         return getLoadersFromInfo(info).AdmissionModel
 
-    state_id: typing.Optional[uuid.UUID] = strawberry.field(description="stav přijímacího řízení", default=None)
-    program_id: typing.Optional[uuid.UUID] = strawberry.field(description="Program, pro který je přijímací řízení vypsáno", default=None)
-    payment_info_id: typing.Optional[uuid.UUID] = strawberry.field(description="platební podmínky", default=None)
+    name: typing.Optional[str] = strawberry.field(description="name", default=None)
+    name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
+
+    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
+    program_id: typing.Optional[IDType] = strawberry.field(description="Program, pro který je přijímací řízení vypsáno", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
 
     application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
     application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
@@ -71,24 +74,42 @@ class AdmissionGQLModel(BaseGQLModel):
     exam_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možný den přijímacích zkoušek", default=None)
     student_entry_date: typing.Optional[datetime.datetime] = strawberry.field(description="Den zápisu", default=None)
 
+    program: typing.Optional["ProgramGQLModel"] = strawberry.field(
+        description="Program, ke kterému je přijímací řízení",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=ScalarResolver["ProgramGQLModel"](fkey_field_name="program_id")
+    )
+    # async def program(self, info: strawberry.types.Info) -> typing.Optional["ProgramGQLModel"]:
+    #     from .ProgramGQLModel import ProgramGQLModel
+    #     result = await ProgramGQLModel.resolve_reference(info=info, id=self.program_id)
+    #     return result
 
-    @strawberry.field(description="Program, ke kterému je přijímací řízení")
-    async def program(self, info: strawberry.types.Info) -> typing.Optional["ProgramGQLModel"]:
-        from .ProgramGQLModel import ProgramGQLModel
-        result = await ProgramGQLModel.resolve_reference(info=info, id=self.program_id)
-        return result
+    payment_info: typing.Optional["PaymentInfoGQLModel"] = strawberry.field(
+        description="Pokyny k platbě",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=ScalarResolver["PaymentInfoGQLModel"](fkey_field_name="payment_info_id")
+    )
 
-    @strawberry.field(description="Pokyny k platbě")
-    async def payment_info(self, info: strawberry.types.Info) -> typing.Optional["PaymentInfoGQLModel"]:
-        from .PaymentInfoGQLModel import PaymentInfoGQLModel
-        result = await PaymentInfoGQLModel.load_with_loader(info=info, id=self.payment_info_id)
-        return result
+    # async def payment_info(self, info: strawberry.types.Info) -> typing.Optional["PaymentInfoGQLModel"]:
+    #     from .PaymentInfoGQLModel import PaymentInfoGQLModel
+    #     result = await PaymentInfoGQLModel.load_with_loader(info=info, id=self.payment_info_id)
+    #     return result
 
-    @strawberry.field(description="Stav přijímacího řízení")
-    async def state(self, info: strawberry.types.Info) -> typing.Optional["StateGQLModel"]:
-        from .StateGQLModel import StateGQLModel
-        result = await StateGQLModel.resolve_reference(info=info, id=self.state_id)
-        return result
+    state: typing.Optional["StateGQLModel"] = strawberry.field(
+        description="Stav přijímacího řízení",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=ScalarResolver["StateGQLModel"](fkey_field_name="state_id")
+    )
+    # async def state(self, info: strawberry.types.Info) -> typing.Optional["StateGQLModel"]:
+    #     from .StateGQLModel import StateGQLModel
+    #     result = await StateGQLModel.resolve_reference(info=info, id=self.state_id)
+    #     return result
 
 @strawberry.interface(description="")
 class AdmissionQuery:

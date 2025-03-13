@@ -50,7 +50,7 @@ class PaymentInputFilter:
 class PaymentGQLModel(BaseGQLModel):
    
     @classmethod
-    def getloader(cls, info: strawberry.types.Info):
+    def getLoader(cls, info: strawberry.types.Info):
         return getLoadersFromInfo(info).PaymentModel
     
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)")

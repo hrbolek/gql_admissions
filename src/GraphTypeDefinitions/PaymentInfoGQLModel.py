@@ -54,7 +54,7 @@ class PaymentInfoInputFilter:
 class PaymentInfoGQLModel(BaseGQLModel):
     
     @classmethod
-    def getloader(cls, info: strawberry.types.Info):
+    def getLoader(cls, info: strawberry.types.Info):
         return getLoadersFromInfo(info).PaymentInfoModel   
 
     # admission_id: uuid.UUID = strawberry.field()
@@ -65,23 +65,45 @@ class PaymentInfoGQLModel(BaseGQLModel):
     SWIFT: typing.Optional[str] = strawberry.field(description="SWIFT bank code")
     amount: typing.Optional[float] = strawberry.field(description="Částka k zaplacení")
     
-    @strawberry.field(description="")
+    # admission: typing.Optional["AdmissionGQLModel"] = strawberry.field(
+    #     description="",
+    #     permission_classes=[
+    #         OnlyForAuthentized
+    #     ],
+    #     resolver=ScalarResolver["AdmissionGQLModel"](fkey_field_name="admission_id")
+    # )
+    @strawberry.field(
+        description="",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=ScalarResolver["AdmissionGQLModel"](fkey_field_name="admission_id")
+    )    
     async def admission(self, info: strawberry.types.Info) -> typing.Optional["AdmissionGQLModel"]:
         from .AdmissionGQLModel import AdmissionGQLModel
-        result = await AdmissionGQLModel.resolve_reference(info=info, id=self.admission_id)
+        loader = AdmissionGQLModel.getLoader(info=info)
+        rows = await loader.filter_by(payment_info_id=self.id)
+        row = next(rows, None)
+        result = AdmissionGQLModel.from_dataclass(row) if row else None
         return result
     
-    @strawberry.field(description="")
-    async def payments(self, info: strawberry.types.Info) -> typing.List["PaymentGQLModel"]:
-        from .PaymentGQLModel import PaymentGQLModel
-        loader = PaymentGQLModel.getloader(info=info)
-        rows = await loader.filter_by(payment_info_id=self.id)
-        results = (PaymentGQLModel.from_sqlalchemy(row) for row in rows)
-        return results
-        # raise NotImplementedError()
-        # from .AdmissionGQLModel import AdmissionGQLModel
-        # result = await AdmissionGQLModel.resolve_reference(info=info, id=self.admission_id)
-        # return result
+    payments: typing.List["PaymentGQLModel"] = strawberry.field(
+        description="",
+        permission_classes=[
+            OnlyForAuthentized
+        ],
+        resolver=VectorResolver["PaymentGQLModel"](fkey_field_name="payment_info_id", whereType=PaymentInfoInputFilter)
+    )
+    # async def payments(self, info: strawberry.types.Info) -> typing.List["PaymentGQLModel"]:
+    #     from .PaymentGQLModel import PaymentGQLModel
+    #     loader = PaymentGQLModel.getloader(info=info)
+    #     rows = await loader.filter_by(payment_info_id=self.id)
+    #     results = (PaymentGQLModel.from_sqlalchemy(row) for row in rows)
+    #     return results
+    #     # raise NotImplementedError()
+    #     # from .AdmissionGQLModel import AdmissionGQLModel
+    #     # result = await AdmissionGQLModel.resolve_reference(info=info, id=self.admission_id)
+    #     # return result
         
     pass
 
