@@ -1,0 +1,38 @@
+import strawberry
+
+@strawberry.federation.type(description="")
+class {{typedef.__typename}}:
+
+{{#fields}}
+    {{#is_basic}}
+    {{name}}: typing.Optional[{{type.__typename}}] = strawberry.field(description="", default=None)
+    {{/is_basic}}
+{{/fields}}
+
+{{#fields}}
+    {{#is_object}}
+    {{type.__typename}}_id: typing.Optional[IDType] = strawberry.field(description="", default=None)
+    {{/is_object}}
+{{/fields}}
+
+{{#fields}}
+    {{#is_object}}
+    @strawberry.field(description="")
+    async def {{name}}(self, info: strawberry.types.Info) -> typing.Optional[{{type.__typename}}]:
+        from .{{type.__typename}} import {{type.__typename}} as SCALAR
+        result = await SCALAR.load(info=info, id=self.{{type.__typename}}_id)
+        return result
+    {{/is_object}}
+{{/fields}}
+
+{{#fields}}
+    {{#is_list}}
+    @strawberry.field(description="")
+    async def {{name}}(self, info: strawberry.types.Info) -> typing.List[{{type.__typename}}]:
+        from .{{type.__typename}} import {{type.__typename}} as SCALAR
+        loader = SCALAR.getloader(info=info)
+        rows = await loader.filter_by({{type.__typename}}_id=self.id)
+        results = [SCALAR.fromsqlalchemy(row) for row in rows]
+        return results
+    {{/is_list}}
+{{/fields}}

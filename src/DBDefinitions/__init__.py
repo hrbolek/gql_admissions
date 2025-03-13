@@ -7,9 +7,9 @@ from sqlalchemy.ext.asyncio import create_async_engine
 
 from .BaseModel import BaseModel
 from .AdmissionModel import AdmissionModel
-from .DisciplineTypeModel import DisciplineTypeModel
-from .DisciplineResulModel import DisciplineResulModel
-from .DisciplineModel import DisciplineModel
+# from .DisciplineTypeModel import DisciplineTypeModel
+# from .DisciplineResulModel import DisciplineResulModel
+# from .DisciplineModel import DisciplineModel
 from .PaymentInfoModel import PaymentInfoModel
 from .PaymentModel import PaymentModel
 

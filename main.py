@@ -73,3 +73,8 @@ app.include_router(graphql_app, prefix="/gql")
 async def graphiql():
     realpath = os.path.realpath("./voyager.html")
     return realpath
+
+@app.get("/doc", response_class=FileResponse)
+async def graphiql():
+    realpath = os.path.realpath("./liveschema.html")
+    return realpath

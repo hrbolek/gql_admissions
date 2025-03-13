@@ -172,3 +172,66 @@ query
   }
 }
 ```
+
+
+
+```json
+{
+    "name": "UserGQLModel",
+    "fields": [
+        {
+            "name": "id",
+            "type": {
+                "kind": "SCALAR",
+                "name": "String"
+            }
+        },
+        {
+            "name": "firstname",
+            "type": {
+                "kind": "SCALAR",
+                "name": "Null"
+            }
+        },
+        {
+            "name": "type",
+            "type": {
+                "kind": "OBJECT",
+                "name": "UserTypeGQLModel"
+            }
+        },
+        {
+            "name": "memberships",
+            "type": {
+                "kind": "LIST",
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MembershipGQLModel"
+                }
+            }
+        }
+    ]
+}
+```
+
+```python
+class UserGQLModel:
+    id: typing.Optional[str] = strawberry.field(description="", default=None)
+    firstname: typing.Optional[str] = strawberry.field(description="", default=None)
+
+    @strawberry.field(description="")
+    async def type(self, info: strawberry.types.Info) -> typing.Optional["UserTypeGQLModel"]:
+        from .UserTypeGQLModel import UserTypeGQLModel as SCALAR
+        result = await UserTypeGQLModel.load(info=info, id=self.type_id)
+        return result
+
+    @strawberry.field(description="")
+    async def memberships(self, info: strawberry.types.Info) -> typing.List["MembershipGQLModel"]:
+        from .MembershipGQLModel import MembershipGQLModel as SCALAR
+        loader = MembershipGQLModel.getLoader(info=info)
+        row = await loader.load(self.MembershipGQLModel_id)
+        result = UserTypeGQLModel.fromSqlAlchemy(row)
+        return result
+
+    pass
+```

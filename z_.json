@@ -1,0 +1,388 @@
+{
+    "data": {
+        "__schema": {
+            "types": [
+                {
+                    "name": "UserGQLModel",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "fullname",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "email",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "created",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "firstname",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        },
+                        {
+                            "name": "lastchange",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "memberships",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "MembershipGQLModel"
+                                }
+                            }
+                        },
+                        {
+                            "name": "events",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "EventGQLModel"
+                                }
+                            }
+                        },
+                        {
+                            "name": "roles",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "RoleGQLModel"
+                                }
+                            }
+                        },
+                        {
+                            "name": "studies",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "Any"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "MembershipGQLModel",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "user",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "UserGQLModel"
+                            }
+                        },
+                        {
+                            "name": "group",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "GroupGQLModel"
+                            }
+                        },
+                        {
+                            "name": "startdate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        },
+                        {
+                            "name": "enddate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GroupGQLModel",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "EventGQLModel",
+                    "fields": [
+                        {
+                            "name": "startdate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "enddate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "description",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        },
+                        {
+                            "name": "duration",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Int"
+                            }
+                        },
+                        {
+                            "name": "nameEn",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "place",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        },
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "lastchange",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "created",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "users",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "UserGQLModel"
+                                }
+                            }
+                        },
+                        {
+                            "name": "groups",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "GroupGQLModel"
+                                }
+                            }
+                        },
+                        {
+                            "name": "presences",
+                            "type": {
+                                "kind": "LIST",
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "PresenceGQLModel"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PresenceGQLModel",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "presenceType",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "PresenceTypeGQLModel"
+                            }
+                        },
+                        {
+                            "name": "invitationType",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "InvitationTypeGQLModel"
+                            }
+                        },
+                        {
+                            "name": "event",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "EventGQLModel"
+                            }
+                        },
+                        {
+                            "name": "user",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "UserGQLModel"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PresenceTypeGQLModel",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "nameEn",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "InvitationTypeGQLModel",
+                    "fields": []
+                },
+                {
+                    "name": "RoleGQLModel",
+                    "fields": [
+                        {
+                            "name": "group",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "GroupGQLModel"
+                            }
+                        },
+                        {
+                            "name": "roletype",
+                            "type": {
+                                "kind": "OBJECT",
+                                "name": "RoleTypeGQLModel"
+                            }
+                        },
+                        {
+                            "name": "startdate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "enddate",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "Null"
+                            }
+                        },
+                        {
+                            "name": "id",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        },
+                        {
+                            "name": "lastchange",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "RoleTypeGQLModel",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "String"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,2709 @@
+{
+    "data": {
+      "me": {
+        "__typename": "UserGQLModel",
+        "id": "51d101a0-81f1-44ca-8366-6cf51432e8d6",
+        "fullname": "Zdeňka Šimečková",
+        "email": "Zdeňka.Šimečková@world.com",
+        "created": "2024-08-19T20:34:24.539770",
+        "firstname": null,
+        "lastchange": "2024-08-19T20:34:24.539770",
+        "name": "Zdeňka",
+        "memberships": [
+          {
+            "__typename": "MembershipGQLModel",
+            "id": "2ef47ed9-aacf-405d-b5fb-d62a836524bc",
+            "user": {
+              "__typename": "UserGQLModel"
+            },
+            "group": {
+              "__typename": "GroupGQLModel"
+            },
+            "startdate": null,
+            "enddate": null
+          },
+          {
+            "__typename": "MembershipGQLModel",
+            "id": "23ccfdf7-deef-4327-bdc1-dfe1b4d3fa4c",
+            "user": {
+              "__typename": "UserGQLModel"
+            },
+            "group": {
+              "__typename": "GroupGQLModel"
+            },
+            "startdate": null,
+            "enddate": null
+          },
+          {
+            "__typename": "MembershipGQLModel",
+            "id": "e1e7dc28-9d12-4de1-bef9-c252f676fa31",
+            "user": {
+              "__typename": "UserGQLModel"
+            },
+            "group": {
+              "__typename": "GroupGQLModel"
+            },
+            "startdate": null,
+            "enddate": null
+          }
+        ],
+        "events": [
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-04T08:00:00",
+            "enddate": "2024-03-04T09:30:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "2bf7a3db-4ae9-4115-ac3c-6b624de8a427",
+            "lastchange": "2024-09-08T15:27:14.389764",
+            "created": "2024-09-08T15:27:14.389764",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d62ca26f-5a94-4eab-94c5-2f4503e28dc6",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "4059b996-1fdc-405d-8196-92f63e484e1d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2bb4909c-9e71-4f88-81fa-6bd51cab5cdc",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d3549ba8-106e-485e-abc8-c3f4a7bcb083",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a25f6f9c-4880-4e4d-844f-55b76e6ff37b",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "660f287d-8863-4c40-9985-914d5b78cfa9",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d316d818-824a-42c8-b9cb-6b603113bf8f",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "363f7f74-77d6-484d-97e1-0ea33ccfc7e8",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a27f919d-e914-4178-b99f-731df1c2a222",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "c8c84152-6753-4188-99e9-5d8f24769557",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-04T11:40:00",
+            "enddate": "2024-03-04T13:10:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "012319f3-b4ab-4264-81d9-25114e30c530",
+            "lastchange": "2024-09-08T15:27:14.475637",
+            "created": "2024-09-08T15:27:14.475637",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "c2c29d97-4d47-4736-b1a9-7183c91d95fa",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2b67a9e5-9273-4ea3-9259-de311f594e5d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "8eb26424-7686-4529-aba2-f0e303c17464",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "0a9e0120-2fc9-4780-b8c1-4dea97aabb2f",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "ada80bc1-b311-4d75-b670-e7ffd92f9d3b",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d3d6fcc7-cd46-434e-9d4c-c29ab9763945",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "902aa703-de65-496b-8252-70c035b2867b",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "281a5510-ff04-4420-ab44-6164fc91c4cc",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "175d3868-f127-4f82-a553-9befc59a2940",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "dcb88318-7937-4367-97e0-d49b777939b4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-06T08:00:00",
+            "enddate": "2024-03-06T09:30:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "3a680e98-d1c9-4f47-af76-228b38ff4d79",
+            "lastchange": "2024-09-08T15:27:14.682352",
+            "created": "2024-09-08T15:27:14.682352",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "e4d7fbbf-eb61-43fd-b2ca-b82994432c0e",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2059aaa5-c63f-4b21-878a-913c2d2953a0",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "18750ca7-be52-4014-b225-f4f6446baf01",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2b2d5a39-9a16-438a-b691-26ec97d7870d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "c0d0bb66-ae57-4f5b-b720-91a9cceafb19",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "ae8d42b1-7f6d-4605-acc4-90c415183a37",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "22fba2d9-afe7-4081-8496-77f2d5d0506d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d5461e02-5989-476c-bce1-1aa6579b6cf4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "631a7857-23a2-4d7c-b6e8-466be0464a9b",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a04aedf8-a6f6-4dd0-ab0a-6fdc848c8dd2",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-07T08:00:00",
+            "enddate": "2024-03-07T09:30:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "c02d03bc-2d5a-4452-a219-53ebbe252a9e",
+            "lastchange": "2024-09-08T15:27:14.798031",
+            "created": "2024-09-08T15:27:14.798031",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "fa559be6-636b-43dc-8d36-dbd6b8dd6094",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "e98e95e5-c178-42a9-a511-e86fe2731904",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "9f04d9db-5735-49d8-9a0b-70713e211065",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "ed5230ca-940e-416a-9df4-ccea90510369",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "d09c7393-ade9-4d5b-b0bf-cf89221eadf6",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "46b44782-8674-41e6-8f92-1b08dfbe4d49",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "75d843e5-27a6-47cb-ac6d-7ae7ad0dc69f",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "79c86604-586d-4f58-8276-c32dd869ff9f",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a649379c-03aa-4eb6-a2bb-ae641b0820a0",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "6e0bac78-0e50-41ce-b838-cd682c4e5ed4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-07T09:50:00",
+            "enddate": "2024-03-07T11:20:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "5aa7b223-1729-454c-ba6c-1f3151b42590",
+            "lastchange": "2024-09-08T15:27:14.867375",
+            "created": "2024-09-08T15:27:14.867375",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "83feb716-1fd6-4bd2-88ad-c4c947ba7d18",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "ce4dc5b4-aafb-4860-a251-5307e95304ba",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "71765b35-1111-40f8-867b-e8e4e73bc0fb",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2b2b353e-b634-4467-b16e-ef00a52641dd",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "f33a5eb6-d304-4f36-8860-3b0fdfb46968",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "dfef91ba-9760-40ce-b156-0090cf7e64a4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "f6be519c-85ba-4a20-9911-4a689bbd7fc1",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "448e1e64-3345-4a23-9cf5-fb89f5ebd1ac",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "150d50de-5f77-494f-b889-8136749aeb1c",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "04f3dc5d-4194-425b-81bd-4e3822388049",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-07T11:40:00",
+            "enddate": "2024-03-07T13:10:00",
+            "name": "Téma 2",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "b5e8eeda-ce1b-4081-a451-fab9d78d8e31",
+            "lastchange": "2024-09-08T15:27:14.883109",
+            "created": "2024-09-08T15:27:14.883109",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a04d8d50-ca74-4865-8c02-bb47a277319e",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "24a47e0b-be46-49ab-9964-34c571596942",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2c0a3527-da91-4fbd-9780-2fc4b97c44cc",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "6cd53224-bb8d-4c0f-b10e-d311ae583ab7",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a3405ab8-534e-4ab3-acf2-5e5c05009091",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "095be40f-b710-40ac-9dca-255423538f1a",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "b5eafcfd-2a5b-473e-80f2-4816d6efe02d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "ce17d267-1473-47ef-9c07-84f0b9ebd908",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "9e733529-a85e-4956-baee-6a4f3ae41915",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "c7dba84f-f023-4665-93dc-a40050f72289",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-08T08:00:00",
+            "enddate": "2024-03-08T09:30:00",
+            "name": "Téma 2",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "6d0d19bd-1cec-403c-aba9-0a2de3521d9e",
+            "lastchange": "2024-09-08T15:27:14.936019",
+            "created": "2024-09-08T15:27:14.936019",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "8a836fb0-6b65-4e3b-9961-1920ba0413cd",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2647bafc-f0c8-4690-a85c-acc7071bd2bc",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "1a0c6541-aaed-46b0-84c6-8ddc285b86f1",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "2957553c-87af-4d72-9888-a0ba880ab3bf",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "1aa1f7da-6bca-4a25-b19f-5ac47ecdecb2",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "17d52ba9-d1a0-426a-976b-4f868a2db8d4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "33c1be79-85eb-40a1-832c-c2aa44143d1e",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "f9405f8f-1a5c-40df-a0b3-215c4bda5bf6",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "a1ffcc2e-cfd2-44b6-a84a-25ac971bd69b",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "7069d541-bdc3-4fa5-a577-0e103cbeca0e",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-08T11:40:00",
+            "enddate": "2024-03-08T13:10:00",
+            "name": "Téma 1",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "acbe81e4-ed93-49bb-b84e-3f342fd7ab1e",
+            "lastchange": "2024-09-08T15:27:15.052299",
+            "created": "2024-09-08T15:27:15.052299",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "98aef9f0-5ea6-418d-9241-78906abd6e4e",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "54f4a763-5aa9-4fe4-8741-dd1f5f16a44d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "4be856d9-8160-49e8-b681-e81497c22219",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "4b3752da-aeae-4318-b237-4572d75b6994",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "5f20562c-dc97-4424-88f5-8b874c4dad43",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "b98938c5-d80e-40f6-a748-ebca78f13884",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "fad07e4b-5fe2-4c40-9d48-03b952705ade",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "1d441894-8002-40ee-ad31-79dddd9fec12",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "e1291ced-56bc-4a42-a004-59bca3acb8c2",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "169d706e-91d4-4592-b278-1d0d460e56a4",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "EventGQLModel",
+            "startdate": "2024-03-08T14:30:00",
+            "enddate": "2024-03-08T16:00:00",
+            "name": "Téma 2",
+            "description": null,
+            "duration": 90,
+            "nameEn": "",
+            "place": null,
+            "id": "0bbf0395-8eb0-4310-a56e-a5d8f9bbf4ce",
+            "lastchange": "2024-09-08T15:27:15.063136",
+            "created": "2024-09-08T15:27:15.063136",
+            "users": [
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              },
+              {
+                "__typename": "UserGQLModel"
+              }
+            ],
+            "groups": [
+              {
+                "__typename": "GroupGQLModel"
+              }
+            ],
+            "presences": [
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "e2a21773-1170-4fc7-855f-a370754c30e9",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "60dce617-6e69-4a91-b19f-5e44bd105f03",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "8763ec00-f5ed-43cb-ae48-fe951c6a7f1a",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "7831ffd9-3391-47d0-8fc1-185a0edc0706",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "be988b13-8414-4c40-8252-55511d08dccf",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "994f37e6-5824-4591-b06b-3a565ddf431f",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "0a8bcf9c-511f-405c-8b7f-6929dae8b812",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663988a-a79c-11ed-b76e-0242ac110002",
+                  "name": "Neomluven",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "7e14ca68-6a54-4aa0-a382-11e9566aff96",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "466398c6-a79c-11ed-b76e-0242ac110002",
+                  "name": "Přítomen",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "5b6e2053-b24f-4848-90db-d231aba5c490",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              },
+              {
+                "__typename": "PresenceGQLModel",
+                "id": "89752a78-ddc2-4249-896c-c1119d07f91d",
+                "presenceType": {
+                  "__typename": "PresenceTypeGQLModel",
+                  "id": "4663984e-a79c-11ed-b76e-0242ac110002",
+                  "name": "Dovolená",
+                  "nameEn": ""
+                },
+                "invitationType": {
+                  "__typename": "InvitationTypeGQLModel"
+                },
+                "event": {
+                  "__typename": "EventGQLModel"
+                },
+                "user": {
+                  "__typename": "UserGQLModel"
+                }
+              }
+            ]
+          }
+        ],
+        "roles": [
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra teoretické matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "d1bf927a-92a5-4738-bee9-07a6d2a68c53",
+            "lastchange": "2024-08-19T20:34:24.539770"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra aplikované matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "51efface-150a-46a2-a064-e5957938adc8",
+            "lastchange": "2024-08-19T20:34:24.541764"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra praktické matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "a7c10018-4142-4617-9545-3114fa00a263",
+            "lastchange": "2024-08-19T20:34:24.542788"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra obranné matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "35cd7afa-1b0b-4369-a971-5e737734e5f0",
+            "lastchange": "2024-08-19T20:34:24.543763"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra převratné matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "d11cd5ad-66d5-4560-bf2e-3e8a27b0fdf2",
+            "lastchange": "2024-08-19T20:34:24.543763"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra klasické matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "7fe08925-9b9f-4144-b511-012a0efee31b",
+            "lastchange": "2024-08-19T20:34:24.544763"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Katedra královské matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "vedoucí katedry"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "89aee261-ea3d-4e0d-875e-639422eed66c",
+            "lastchange": "2024-08-19T20:34:24.545765"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Studijní program Vojenská matematika"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "garant"
+            },
+            "startdate": null,
+            "enddate": null,
+            "id": "39e87286-3368-4727-a52c-79dce2b5a6ae",
+            "lastchange": "2024-09-08T15:27:11.855854"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Studijní program Vojenská matematika"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "garant (zástupce)"
+            },
+            "startdate": null,
+            "enddate": null,
+            "id": "622a7dfc-6e58-4ea1-bc8a-f95ca04195c7",
+            "lastchange": "2024-09-08T15:27:11.855854"
+          },
+          {
+            "__typename": "RoleGQLModel",
+            "group": {
+              "__typename": "GroupGQLModel",
+              "name": "Fakulta vojenské matematiky"
+            },
+            "roletype": {
+              "__typename": "RoleTypeGQLModel",
+              "name": "děkan"
+            },
+            "startdate": "2019-06-15T00:00:00",
+            "enddate": null,
+            "id": "8fc984da-01b3-4bb8-bf08-453dc5632156",
+            "lastchange": "2024-08-19T20:34:24.545765"
+          }
+        ],
+        "studies": []
+      }
+    }
+  }

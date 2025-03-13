@@ -1,0 +1,116 @@
+query me {
+  me {
+    __typename
+    id
+    fullname
+    email
+    created
+    firstname
+    lastchange
+    name
+    memberships {
+      __typename
+      id
+      user {
+      __typename
+      }
+      group {
+        __typename
+      }
+      startdate
+      enddate
+    }
+    events {
+      __typename
+      startdate
+      enddate
+      name
+      description
+      duration
+      nameEn
+      place
+      id
+      lastchange
+      created
+      users {
+        __typename
+      }
+      groups {
+        __typename
+      }
+      presences {
+        __typename
+        id
+        presenceType {
+          __typename
+          id
+          name
+          nameEn
+        }
+        invitationType {
+          __typename
+        }
+        event {
+          __typename
+        }
+        user {
+          __typename
+        }
+        
+      }
+    }
+    roles {
+      __typename
+      group {
+        __typename
+        name
+      }
+      roletype {
+        __typename
+        name
+      }
+      startdate
+      enddate
+      id
+      lastchange
+    }
+    studies {
+      __typename
+      admissionPaid
+      created
+      id
+      lastchange
+      registerNumber
+      semester
+      student {
+        __typename
+        admissionDisciplineResults {
+          __typename
+          description
+          disciplineId
+          examPlanedDate
+          examinerId
+          id
+          passed
+          score
+          userId
+          user {
+            __typename
+            email
+          }
+          student {
+            __typename
+          }
+        }
+        admissions {
+          __typename
+          id
+          program {
+            __typename
+            id
+          }
+        }
+      }
+    }
+  }
+}
