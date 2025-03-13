@@ -32,7 +32,7 @@ schema = strawberry.federation.Schema(
     mutation=Mutation,
     extensions=[],
     types=(UserGQLModel, ProgramGQLModel, StateGQLModel, StudentGQLModel ),
-    enable_federation_2=True
+    # enable_federation_2=True
 )
 
 from uoishelpers.schema import WhoAmIExtension
