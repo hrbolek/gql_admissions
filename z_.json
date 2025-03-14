@@ -1,388 +1,4908 @@
 {
-    "data": {
-        "__schema": {
-            "types": [
-                {
-                    "name": "UserGQLModel",
-                    "fields": [
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "fullname",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "email",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "created",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "firstname",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        },
-                        {
-                            "name": "lastchange",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "name",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "memberships",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "MembershipGQLModel"
-                                }
-                            }
-                        },
-                        {
-                            "name": "events",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "EventGQLModel"
-                                }
-                            }
-                        },
-                        {
-                            "name": "roles",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "RoleGQLModel"
-                                }
-                            }
-                        },
-                        {
-                            "name": "studies",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "SCALAR",
-                                    "name": "Any"
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "MembershipGQLModel",
-                    "fields": [
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "user",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "UserGQLModel"
-                            }
-                        },
-                        {
-                            "name": "group",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "GroupGQLModel"
-                            }
-                        },
-                        {
-                            "name": "startdate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        },
-                        {
-                            "name": "enddate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "GroupGQLModel",
-                    "fields": [
-                        {
-                            "name": "name",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "EventGQLModel",
-                    "fields": [
-                        {
-                            "name": "startdate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "enddate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "name",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "description",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        },
-                        {
-                            "name": "duration",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Int"
-                            }
-                        },
-                        {
-                            "name": "nameEn",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "place",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        },
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "lastchange",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "created",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "users",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "UserGQLModel"
-                                }
-                            }
-                        },
-                        {
-                            "name": "groups",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "GroupGQLModel"
-                                }
-                            }
-                        },
-                        {
-                            "name": "presences",
-                            "type": {
-                                "kind": "LIST",
-                                "ofType": {
-                                    "kind": "OBJECT",
-                                    "name": "PresenceGQLModel"
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "PresenceGQLModel",
-                    "fields": [
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "presenceType",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "PresenceTypeGQLModel"
-                            }
-                        },
-                        {
-                            "name": "invitationType",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "InvitationTypeGQLModel"
-                            }
-                        },
-                        {
-                            "name": "event",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "EventGQLModel"
-                            }
-                        },
-                        {
-                            "name": "user",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "UserGQLModel"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "PresenceTypeGQLModel",
-                    "fields": [
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "name",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "nameEn",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "InvitationTypeGQLModel",
-                    "fields": []
-                },
-                {
-                    "name": "RoleGQLModel",
-                    "fields": [
-                        {
-                            "name": "group",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "GroupGQLModel"
-                            }
-                        },
-                        {
-                            "name": "roletype",
-                            "type": {
-                                "kind": "OBJECT",
-                                "name": "RoleTypeGQLModel"
-                            }
-                        },
-                        {
-                            "name": "startdate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "enddate",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "Null"
-                            }
-                        },
-                        {
-                            "name": "id",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        },
-                        {
-                            "name": "lastchange",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "RoleTypeGQLModel",
-                    "fields": [
-                        {
-                            "name": "name",
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "String"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    }
+	"data": {
+		"__schema": {
+			"queryType": {
+				"name": "Query"
+			},
+			"mutationType": {
+				"name": "Mutation"
+			},
+			"types": [
+				{
+					"name": "UserGQLModel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "BaseGQLModel",
+					"description": "Entity representing an interface",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "id",
+							"description": "primary key",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": "date & time of unit born",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": "who changed this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": "rbac ruling object",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": "rbac holds relations of user",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "UserGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "ProgramGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "StateGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "StudentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentInfoGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "AdmissionGQLModel",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "UUID",
+					"description": null,
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "DateTime",
+					"description": "Date with time (isoformat)",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "RBACObjectGQLModel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "ProgramGQLModel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "StateGQLModel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "StudentGQLModel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "payments",
+							"description": "Platby za přijímací řízení",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentGQLModel"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentGQLModel",
+					"description": "one (in one year) admission linked to program",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": "primary key",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": "date & time of unit born",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": "who changed this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": "rbac ruling object",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": "rbac holds relations of user",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "bankUniqueData",
+							"description": "unikátní identifikátor platby vystavený bankou (link do banky)",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "variableSymbol",
+							"description": "uvedený variabilní symbol",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "amount",
+							"description": "zaplacená částka",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "Int",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfoId",
+							"description": "Generální platební podmínky",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "studentId",
+							"description": "identifikovaná přihláška / student",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfo",
+							"description": "",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "student",
+							"description": "",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "StudentGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "String",
+					"description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "Int",
+					"description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoGQLModel",
+					"description": "one (in one year) admission linked to program",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": "primary key",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": "date & time of unit born",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": "who changed this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": "rbac ruling object",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": "rbac holds relations of user",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "accountNumber",
+							"description": "číslo účtu s kódem banky za lomítkem",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "specificSymbol",
+							"description": "specifický symbol",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "constantSymbol",
+							"description": "konstantní symbol",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "IBAN",
+							"description": "IBAN code",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "SWIFT",
+							"description": "SWIFT bank code",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "amount",
+							"description": "Částka k zaplacení",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						},
+						{
+							"name": "payments",
+							"description": "",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentGQLModel"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "admission",
+							"description": "",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "Float",
+					"description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoInputFilter",
+					"description": "Operators definition on PaymentInfoInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "account_number",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "specific_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "constant_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "IBAN",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "SWIFT",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "amount",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "PaymentInfoInputFilterAmount",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoInputFilterOr",
+					"description": "Or operator definition on PaymentInfoInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "account_number",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "specific_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "constant_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "IBAN",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "SWIFT",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "amount",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "PaymentInfoInputFilterAmount",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoInputFilterAnd",
+					"description": "And operator definition on PaymentInfoInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "account_number",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "specific_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "constant_symbol",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "IBAN",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "SWIFT",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "StrFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "amount",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "PaymentInfoInputFilterAmount",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "UuidFilter",
+					"description": "Integer filter methods, only one constrain allowed",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_eq",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_in",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "SCALAR",
+										"name": "UUID"
+									}
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "StrFilter",
+					"description": "Str filter methods, only one constrain allowed",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_eq",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_le",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_lt",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_ge",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_gt",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_like",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_ilike",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_startswith",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_endswith",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoInputFilterAmount",
+					"description": "Expression on attribute 'amount'. Only one constrain allowed.",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_eq",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_le",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_lt",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_ge",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						},
+						{
+							"name": "_gt",
+							"description": "operation for select.filter() method",
+							"type": {
+								"kind": "SCALAR",
+								"name": "Float",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionGQLModel",
+					"description": "one (in one year) admission linked to program",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "id",
+							"description": "primary key",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "created",
+							"description": "date & time of unit born",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdbyId",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedbyId",
+							"description": "who changed this entity",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobjectId",
+							"description": "rbac ruling object",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "createdby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "changedby",
+							"description": "who created this entity",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "UserGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "rbacobject",
+							"description": "rbac holds relations of user",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "RBACObjectGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "name",
+							"description": "name",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "nameEn",
+							"description": "name en",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "stateId",
+							"description": "stav přijímacího řízení",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "programId",
+							"description": "Program, pro který je přijímací řízení vypsáno",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfoId",
+							"description": "platební podmínky",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						},
+						{
+							"name": "applicationStartDate",
+							"description": "Od kdy lze podávat přihlášky",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "applicationLastDate",
+							"description": "Poslední možnost podání přihlášky",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "endDate",
+							"description": "Konec přijímacího řízení",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "conditionDate",
+							"description": "Do kdy lze doložit splnění podmínek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentDate",
+							"description": "Do kdy lze zaplatit poplatek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "conditionExtendedDate",
+							"description": "Prodloužená lhůta pro doložení splnění podmínek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "requestConditionExtendDate",
+							"description": "Lhůta do kdy lze požádat o proudloužení pro doložení splnění podmínek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "requestExtraConditionsDate",
+							"description": "Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "requestExtraDateDate",
+							"description": "Lhůta do kdy lze požádat o extra termín přijímacích zkoušek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "examStartDate",
+							"description": "První možný den přijímacích zkoušek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "examLastDate",
+							"description": "Poslední možný den přijímacích zkoušek",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "studentEntryDate",
+							"description": "Den zápisu",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "DateTime",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program",
+							"description": "Program, ke kterému je přijímací řízení",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "ProgramGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfo",
+							"description": "Pokyny k platbě",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "state",
+							"description": "Stav přijímacího řízení",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "StateGQLModel",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "_Any",
+					"description": null,
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "Query",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "_entities",
+							"description": null,
+							"args": [
+								{
+									"name": "representations",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "LIST",
+											"name": null,
+											"ofType": {
+												"kind": "NON_NULL",
+												"name": null,
+												"ofType": {
+													"kind": "SCALAR",
+													"name": "_Any"
+												}
+											}
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "UNION",
+										"name": "_Entity",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "_service",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "OBJECT",
+									"name": "_Service",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "admissionById",
+							"description": "",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "admissionPage",
+							"description": "",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "AdmissionGQLModel"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "paymentById",
+							"description": "returns payment by its id",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentPage",
+							"description": "returns payments defined by filter",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentGQLModel"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "paymentInfoById",
+							"description": "returns payment_info by its id",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfoPage",
+							"description": "returns payment_infos defined by filter",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentInfoGQLModel"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionQuery",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "admissionById",
+							"description": "",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "admissionPage",
+							"description": "",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "AdmissionGQLModel"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Query",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "AdmissionInputFilter",
+					"description": "Operators definition on AdmissionInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "state_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "payment_info_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionInputFilterOr",
+					"description": "Or operator definition on AdmissionInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "state_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "payment_info_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionInputFilterAnd",
+					"description": "And operator definition on AdmissionInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "AdmissionInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "state_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "payment_info_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentQuery",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "paymentById",
+							"description": "returns payment by its id",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentPage",
+							"description": "returns payments defined by filter",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentGQLModel"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Query",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "PaymentInputFilter",
+					"description": "Operators definition on PaymentInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "user_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInputFilterOr",
+					"description": "Or operator definition on PaymentInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_and",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilterAnd"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "user_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInputFilterAnd",
+					"description": "And operator definition on PaymentInputFilter",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "_or",
+							"description": "Filter method",
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInputFilterOr"
+									}
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "user_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						},
+						{
+							"name": "program_id",
+							"description": "Filter method",
+							"type": {
+								"kind": "INPUT_OBJECT",
+								"name": "UuidFilter",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoQuery",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "paymentInfoById",
+							"description": "returns payment_info by its id",
+							"args": [
+								{
+									"name": "id",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "SCALAR",
+											"name": "UUID",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfoPage",
+							"description": "returns payment_infos defined by filter",
+							"args": [
+								{
+									"name": "skip",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "limit",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Int",
+										"ofType": null
+									}
+								},
+								{
+									"name": "orderby",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "String",
+										"ofType": null
+									}
+								},
+								{
+									"name": "where",
+									"description": null,
+									"type": {
+										"kind": "INPUT_OBJECT",
+										"name": "PaymentInfoInputFilter",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "PaymentInfoGQLModel"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Query",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "_Entity",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "AdmissionGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentInfoGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "ProgramGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "RBACObjectGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "StateGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "StudentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "UserGQLModel",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "_Service",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "sdl",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "Mutation",
+					"description": "",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "admissionInsert",
+							"description": "create a new admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "AdmissionGQLModelInsertErrorAdmissiongqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "admissionUpdate",
+							"description": "updates existing admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "AdmissionGQLModelAdmissionGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "admissionDelete",
+							"description": "delete existing admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModelDeleteError",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInsert",
+							"description": "create a new payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentGQLModelInsertErrorPaymentgqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentUpdate",
+							"description": "updates existing payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentGQLModelPaymentGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentDelete",
+							"description": "delete existing payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModelDeleteError",
+								"ofType": null
+							}
+						},
+						{
+							"name": "paymentInfoInsert",
+							"description": "create a new payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentInfoGQLModelInsertErrorPaymentinfogqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentInfoUpdate",
+							"description": "updates existing payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentInfoGQLModelPaymentInfoGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentInfoDelete",
+							"description": "delete existing payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModelDeleteError",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionMutation",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "admissionInsert",
+							"description": "create a new admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "AdmissionGQLModelInsertErrorAdmissiongqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "admissionUpdate",
+							"description": "updates existing admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "AdmissionGQLModelAdmissionGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "admissionDelete",
+							"description": "delete existing admission",
+							"args": [
+								{
+									"name": "admission",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "AdmissionDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModelDeleteError",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Mutation",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "AdmissionGQLModelInsertErrorAdmissiongqlmodel",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "AdmissionGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "InsertErrorAdmissiongqlmodel",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "InsertErrorAdmissiongqlmodel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "Boolean",
+					"description": "The `Boolean` scalar type represents `true` or `false`.",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "JSON",
+					"description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](https://ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf).",
+					"kind": "SCALAR",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionInsertGQLModel",
+					"description": "parameter for create operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "programId",
+							"description": "program the admission is linked with",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionGQLModelAdmissionGQLModelUpdateError",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "AdmissionGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "AdmissionGQLModelUpdateError",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "AdmissionGQLModelUpdateError",
+					"description": "Error object returned as an result of Update operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionUpdateGQLModel",
+					"description": "parameter for update operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionGQLModelDeleteError",
+					"description": "Error object returned as an result of Delete operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "AdmissionGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "AdmissionDeleteGQLModel",
+					"description": "parameter for delete operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentMutation",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "paymentInsert",
+							"description": "create a new payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentGQLModelInsertErrorPaymentgqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentUpdate",
+							"description": "updates existing payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentGQLModelPaymentGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentDelete",
+							"description": "delete existing payment",
+							"args": [
+								{
+									"name": "payment",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModelDeleteError",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Mutation",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "PaymentGQLModelInsertErrorPaymentgqlmodel",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "PaymentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "InsertErrorPaymentgqlmodel",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "InsertErrorPaymentgqlmodel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInsertGQLModel",
+					"description": "parameter for create operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "name",
+							"description": "name of the payment",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentGQLModelPaymentGQLModelUpdateError",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "PaymentGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentGQLModelUpdateError",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "PaymentGQLModelUpdateError",
+					"description": "Error object returned as an result of Update operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentUpdateGQLModel",
+					"description": "parameter for update operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentGQLModelDeleteError",
+					"description": "Error object returned as an result of Delete operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentDeleteGQLModel",
+					"description": "parameter for delete operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoMutation",
+					"description": "",
+					"kind": "INTERFACE",
+					"fields": [
+						{
+							"name": "paymentInfoInsert",
+							"description": "create a new payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoInsertGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentInfoGQLModelInsertErrorPaymentinfogqlmodel",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentInfoUpdate",
+							"description": "updates existing payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoUpdateGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "UNION",
+									"name": "PaymentInfoGQLModelPaymentInfoGQLModelUpdateError",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "paymentInfoDelete",
+							"description": "delete existing payment_info",
+							"args": [
+								{
+									"name": "paymentInfo",
+									"description": null,
+									"type": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "INPUT_OBJECT",
+											"name": "PaymentInfoDeleteGQLModel",
+											"ofType": null
+										}
+									}
+								}
+							],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModelDeleteError",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "Mutation",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "PaymentInfoGQLModelInsertErrorPaymentinfogqlmodel",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "PaymentInfoGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "InsertErrorPaymentinfogqlmodel",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "InsertErrorPaymentinfogqlmodel",
+					"description": null,
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoInsertGQLModel",
+					"description": "parameter for create operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "name",
+							"description": "name of the payment_info",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "SCALAR",
+								"name": "UUID",
+								"ofType": null
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoGQLModelPaymentInfoGQLModelUpdateError",
+					"description": null,
+					"kind": "UNION",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": [
+						{
+							"name": "PaymentInfoGQLModel",
+							"kind": "OBJECT"
+						},
+						{
+							"name": "PaymentInfoGQLModelUpdateError",
+							"kind": "OBJECT"
+						}
+					]
+				},
+				{
+					"name": "PaymentInfoGQLModelUpdateError",
+					"description": "Error object returned as an result of Update operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoUpdateGQLModel",
+					"description": "parameter for update operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoGQLModelDeleteError",
+					"description": "Error object returned as an result of Delete operation",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "Entity",
+							"description": "Entity to be updated",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "PaymentInfoGQLModel",
+								"ofType": null
+							}
+						},
+						{
+							"name": "msg",
+							"description": "reason of fail",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "failed",
+							"description": "always True, available when error",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "input",
+							"description": "original data",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "JSON",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "PaymentInfoDeleteGQLModel",
+					"description": "parameter for delete operation",
+					"kind": "INPUT_OBJECT",
+					"fields": null,
+					"inputFields": [
+						{
+							"name": "id",
+							"description": "primary key client generated",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "UUID",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "lastchange",
+							"description": "timestamp for concurrent update",
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "DateTime",
+									"ofType": null
+								}
+							}
+						}
+					],
+					"possibleTypes": null
+				},
+				{
+					"name": "__Schema",
+					"description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "types",
+							"description": "A list of all types supported by this server.",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "__Type"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "queryType",
+							"description": "The type that query operations will be rooted at.",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "OBJECT",
+									"name": "__Type",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "mutationType",
+							"description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "__Type",
+								"ofType": null
+							}
+						},
+						{
+							"name": "subscriptionType",
+							"description": "If this server support subscription, the type that subscription operations will be rooted at.",
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "__Type",
+								"ofType": null
+							}
+						},
+						{
+							"name": "directives",
+							"description": "A list of all directives supported by this server.",
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "__Directive"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__Type",
+					"description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "kind",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "ENUM",
+									"name": "__TypeKind",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "name",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "specifiedByURL",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "fields",
+							"description": null,
+							"args": [
+								{
+									"name": "includeDeprecated",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Boolean",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "OBJECT",
+										"name": "__Field",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "interfaces",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "OBJECT",
+										"name": "__Type",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "possibleTypes",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "OBJECT",
+										"name": "__Type",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "enumValues",
+							"description": null,
+							"args": [
+								{
+									"name": "includeDeprecated",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Boolean",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "OBJECT",
+										"name": "__EnumValue",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "inputFields",
+							"description": null,
+							"args": [
+								{
+									"name": "includeDeprecated",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Boolean",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "LIST",
+								"name": null,
+								"ofType": {
+									"kind": "NON_NULL",
+									"name": null,
+									"ofType": {
+										"kind": "OBJECT",
+										"name": "__InputValue",
+										"ofType": null
+									}
+								}
+							}
+						},
+						{
+							"name": "ofType",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "OBJECT",
+								"name": "__Type",
+								"ofType": null
+							}
+						},
+						{
+							"name": "isOneOf",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "Boolean",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__TypeKind",
+					"description": "An enum describing what kind of type a given `__Type` is.",
+					"kind": "ENUM",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__Field",
+					"description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "name",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "args",
+							"description": null,
+							"args": [
+								{
+									"name": "includeDeprecated",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Boolean",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "__InputValue"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "type",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "OBJECT",
+									"name": "__Type",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "isDeprecated",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "deprecationReason",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__InputValue",
+					"description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "name",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "type",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "OBJECT",
+									"name": "__Type",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "defaultValue",
+							"description": "A GraphQL-formatted string representing the default value for this input value.",
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "isDeprecated",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "deprecationReason",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__EnumValue",
+					"description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "name",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "isDeprecated",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "deprecationReason",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__Directive",
+					"description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+					"kind": "OBJECT",
+					"fields": [
+						{
+							"name": "name",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "String",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "description",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "SCALAR",
+								"name": "String",
+								"ofType": null
+							}
+						},
+						{
+							"name": "isRepeatable",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "SCALAR",
+									"name": "Boolean",
+									"ofType": null
+								}
+							}
+						},
+						{
+							"name": "locations",
+							"description": null,
+							"args": [],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "ENUM",
+											"name": "__DirectiveLocation"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "args",
+							"description": null,
+							"args": [
+								{
+									"name": "includeDeprecated",
+									"description": null,
+									"type": {
+										"kind": "SCALAR",
+										"name": "Boolean",
+										"ofType": null
+									}
+								}
+							],
+							"type": {
+								"kind": "NON_NULL",
+								"name": null,
+								"ofType": {
+									"kind": "LIST",
+									"name": null,
+									"ofType": {
+										"kind": "NON_NULL",
+										"name": null,
+										"ofType": {
+											"kind": "OBJECT",
+											"name": "__InputValue"
+										}
+									}
+								}
+							}
+						}
+					],
+					"inputFields": null,
+					"possibleTypes": null
+				},
+				{
+					"name": "__DirectiveLocation",
+					"description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+					"kind": "ENUM",
+					"fields": null,
+					"inputFields": null,
+					"possibleTypes": null
+				}
+			]
+		}
+	}
 }

@@ -78,3 +78,8 @@ async def graphiql():
 async def graphiql():
     realpath = os.path.realpath("./liveschema.html")
     return realpath
+
+@app.get("/test", response_class=FileResponse)
+async def graphiql():
+    realpath = os.path.realpath("./tests.html")
+    return realpath

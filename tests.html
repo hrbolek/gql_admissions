@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GraphQL Page Field Tester</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+    <h2>GraphQL Page Field Tester</h2>
+    <button class="btn btn-primary mb-3" onclick="runTests()">Run Tests</button>
+    <div id="results"></div>
+</div>
+
+<script>
+const GRAPHQL_ENDPOINT = '/gql';
+
+const introspectionQuery = `
+query IntrospectionQuery {
+  __schema {
+    queryType { name }
+    mutationType { name }
+    types {
+      name
+      description
+      kind
+      fields {
+        name
+        description
+        args {
+          name
+          description
+          type {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+                ofType {
+                  kind
+                  name
+                }
+              }
+            }
+          }
+        }
+        type {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+              }
+            }
+          }
+        }
+      }
+      inputFields {
+        name
+        description
+        type {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+            }
+          }
+        }
+      }
+      possibleTypes {
+        name
+        kind
+      }
+    }
+  }
+}
+`;
+
+async function fetchGraphQL(query) {
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query})
+    });
+    return response.json();
+}
+
+function buildSelection(fieldType) {
+    if (fieldType.kind === 'SCALAR') return '';
+    if (fieldType.kind === 'OBJECT') return '{ __typename id }';
+    if (fieldType.kind === 'LIST') return buildSelection(fieldType.ofType);
+    if (fieldType.kind === 'NON_NULL') return buildSelection(fieldType.ofType);
+    return '';
+}
+
+async function runTests() {
+    const introspection = await fetchGraphQL(introspectionQuery);
+    const data = introspection?.data || {}
+    // console.log(data)
+    const schema = data.__schema || {};
+    // console.log(schema)
+
+    const queryType = schema.types.find(t => t.name === schema.queryType.name);
+    console.log(queryType)
+    const fields = queryType.fields.filter(f => f.name.endsWith('Page'));
+    console.log(fields)
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    for (const field of fields) {
+        console.log(field)
+        let introspectionType = field.type.kind === 'NON_NULL' ? field.type.ofType : field.type;
+        console.log(introspectionType)
+        introspectionType = introspectionType.kind === 'LIST' ? introspectionType.ofType : introspectionType;
+        console.log(introspectionType)
+        introspectionType = introspectionType.kind === 'NON_NULL' ? introspectionType.ofType : introspectionType;
+        console.log(introspectionType)
+        const typeDetails = schema.types.find(t => t.name === introspectionType.name);
+        console.log(typeDetails)
+
+        if (!typeDetails || !typeDetails.fields) {
+            resultsDiv.innerHTML += `<div class="alert alert-warning">No fields found for type: ${introspectionType.name}</div>`;
+            continue;
+        }
+
+        const innerFields = typeDetails.fields;
+        let selectionParts = [];
+
+        innerFields.forEach(innerField => {
+            if (!['__typename', 'id'].includes(innerField.name)) {
+                const selection = buildSelection(innerField.type);
+                selectionParts.push(selection ? `${innerField.name} ${selection}` : innerField.name);
+            }
+        });
+
+        const query = `{
+          ${field.name} {
+            __typename
+            id
+            ${selectionParts.join('\n')}
+          }
+        }`;
+
+        const result = await fetchGraphQL(query);
+        resultsDiv.innerHTML += `<div class="card mb-3">
+            <div class="card-header"><strong>${field.name}</strong></div>
+            <div class="card-body">
+                <pre>${query}</pre>
+            </div>
+            <div class="card-footer">
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            </div>
+        </div>`;
+    }
+}
+</script>
+</body>
+</html>
