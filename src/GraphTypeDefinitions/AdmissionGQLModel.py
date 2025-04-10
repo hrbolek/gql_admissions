@@ -32,6 +32,7 @@ from .BaseGQLModel import BaseGQLModel, IDType
 
 ProgramGQLModel = typing.Annotated["ProgramGQLModel", strawberry.lazy(".ProgramGQLModel")]
 PaymentInfoGQLModel = typing.Annotated["PaymentInfoGQLModel", strawberry.lazy(".PaymentInfoGQLModel")]
+PaymentInfoInputFilter = typing.Annotated["PaymentInfoInputFilter", strawberry.lazy(".PaymentInfoGQLModel")]
 StateGQLModel = typing.Annotated["StateGQLModel", strawberry.lazy(".StateGQLModel")]
 
 @createInputs
@@ -41,6 +42,23 @@ class AdmissionInputFilter:
     program_id: IDType
     state_id: IDType
     payment_info_id: IDType
+
+    name: str
+    name_en: str
+    application_start_date: datetime.datetime
+    application_last_date: datetime.datetime    
+    end_date: datetime.datetime
+    condition_date: datetime.datetime
+    payment_date: datetime.datetime
+    condition_extended_date: datetime.datetime
+    request_condition_extend_date: datetime.datetime
+    request_extra_conditions_date: datetime.datetime
+    request_extra_date_date: datetime.datetime
+    exam_start_date: datetime.datetime
+    exam_last_date: datetime.datetime
+    student_entry_date: datetime.datetime
+
+    payment_info: PaymentInfoInputFilter
 
 
 

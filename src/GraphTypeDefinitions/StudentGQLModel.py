@@ -12,7 +12,7 @@ PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentG
 from .BaseGQLModel import BaseGQLModel, BaseGQLModelEx
 
 @strawberry.federation.type(keys=["id"], extend=True) #, description="An user in system")
-class StudentGQLModel(BaseGQLModel, BaseGQLModelEx):
+class StudentGQLModel(BaseGQLModelEx, BaseGQLModel):
     
     from .BaseGQLModel import (
         id,

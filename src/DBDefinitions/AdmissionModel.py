@@ -29,6 +29,7 @@ class AdmissionModel(BaseModel):
     exam_last_date: Mapped[datetime.datetime] = mapped_column(nullable=True, default=None, comment="Poslední možný den přijímacích zkoušek")
     student_entry_date: Mapped[datetime.datetime] = mapped_column(nullable=True, default=None, comment="Den zápisu")
 
-    discipline = relationship("PaymentInfoModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
+    # discipline = relationship("PaymentInfoModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
+    payment_info = relationship("PaymentInfoModel", viewonly=True, uselist=False, lazy="joined") # https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
 
     pass

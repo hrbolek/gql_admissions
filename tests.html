@@ -98,32 +98,48 @@ async function fetchGraphQL(query) {
     return response.json();
 }
 
-function buildSelection(fieldType) {
-    if (fieldType.kind === 'SCALAR') return '';
-    if (fieldType.kind === 'OBJECT') return '{ __typename id }';
-    if (fieldType.kind === 'LIST') return buildSelection(fieldType.ofType);
-    if (fieldType.kind === 'NON_NULL') return buildSelection(fieldType.ofType);
+function buildSelection(schema, fieldType, master) {
+    const kind = fieldType?.kind
+    if (kind) {
+        if (fieldType.kind === 'SCALAR') return '';
+        if (fieldType.kind === 'OBJECT') return '{ __typename id }';
+        if (fieldType.kind === 'LIST') return buildSelection(schema, fieldType.ofType, fieldType);
+        if (fieldType.kind === 'NON_NULL') return buildSelection(schema, fieldType.ofType, fieldType);
+        if (fieldType.kind === 'UNION') {
+            const typeDetails = schema.types.find(t => t.name === fieldType.name);
+            const possibleTypes = typeDetails.possibleTypes
+            console.log(fieldType)    
+            console.log(typeDetails)    
+            return '{ __typename }'
+            // return buildSelection(schema, typeDetails, fieldType)
+        };
+    }
+    console.log(master)    
+    console.log(fieldType)    
     return '';
 }
 
 async function runTests() {
     const introspection = await fetchGraphQL(introspectionQuery);
-    const queryType = introspection.data.__schema.types.find(t => t.name === introspection.data.__schema.queryType.name);
+    const data = introspection.data
+    const schema = data.__schema
+
+    const queryType = schema.types.find(t => t.name === schema.queryType.name);
     const fields = queryType.fields.filter(f => f.name.endsWith('Page'));
 
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';
 
-    fields.forEach(async (field, index) => {
+    for (const [index, field] of fields.entries()) {
         let introspectionType = field.type.kind === 'NON_NULL' ? field.type.ofType : field.type;
         introspectionType = introspectionType.kind === 'LIST' ? introspectionType.ofType : introspectionType;
         introspectionType = introspectionType.kind === 'NON_NULL' ? introspectionType.ofType : introspectionType;
 
-        const typeDetails = introspection.data.__schema.types.find(t => t.name === introspectionType.name);
+        const typeDetails = schema.types.find(t => t.name === introspectionType.name);
 
         if (!typeDetails || !typeDetails.fields) {
             resultsDiv.innerHTML += `<div class="alert alert-warning">No fields found for type: ${introspectionType.name}</div>`;
-            return;
+            continue;
         }
 
         const innerFields = typeDetails.fields;
@@ -131,37 +147,66 @@ async function runTests() {
 
         innerFields.forEach(innerField => {
             if (!['__typename', 'id'].includes(innerField.name)) {
-                const selection = buildSelection(innerField.type);
+                const selection = buildSelection(schema, innerField.type);
                 selectionParts.push(selection ? `${innerField.name} ${selection}` : innerField.name);
             }
         });
 
-        const query = `{
-          ${field.name} {
-            __typename
-            id
-            ${selectionParts.join('\n')}
-          }
-        }`;
+        for (let i = 1; i <= selectionParts.length; i++) {
+            const partialSelection = selectionParts.slice(0, i).join('\n                ');
+            const query = `{
+              ${field.name} {
+                __typename
+                id
+                ${partialSelection}
+              }
+            }`;
 
-        const result = await fetchGraphQL(query);
-        const isError = result.errors;
+            const result = await fetchGraphQL(query);
+            const isError = result.errors;
 
-        document.getElementById('results').innerHTML += `
-        <div class="card mb-3">
-          <div class="card-header bg-${isError ? 'danger' : 'success'} text-white">
-            <strong>${field.name}</strong>
-            <button class="btn btn-sm btn-light float-end" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
-              ${isError ? 'Hide' : 'Show'}
-            </button>
-          </div>
-          <div id="collapse${index}" class="collapse ${isError ? 'show' : ''}">
-            <div class="card-body">
-              <pre>${JSON.stringify(result, null, 2)}</pre>
-            </div>
-          </div>
-        </div>`;
-    });
+            if (isError) {
+                resultsDiv.innerHTML += `
+                <div class="card mb-3">
+                  <div class="card-header bg-danger text-white">
+                    <strong>${field.name} - Error on field: ${selectionParts[i-1]}</strong>
+                    <button class="btn btn-sm btn-light float-end" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+                      Hide
+                    </button>
+                  </div>
+                  <div id="collapse${index}" class="collapse show">
+                    <div class="card-body">
+                      <pre>${query}</pre>
+                    </div>
+                    <div class="card-footer">
+                      <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                  </div>
+                </div>`;
+                break;
+            }
+
+            if (i === selectionParts.length) {
+                resultsDiv.innerHTML += `
+                <div class="card mb-3">
+                  <div class="card-header bg-success text-white">
+                    <strong>${field.name}</strong>
+                    <button class="btn btn-sm btn-light float-end" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+                      Show
+                    </button>
+                  </div>
+                  <div id="collapse${index}" class="collapse">
+                    <div class="card-body">
+                      <pre>${query}</pre>
+                    </div>
+                    <div class="card-footer">
+                      <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                  </div>
+                </div>`;
+            }
+        }
+    }
 }
 </script>
 </body>
