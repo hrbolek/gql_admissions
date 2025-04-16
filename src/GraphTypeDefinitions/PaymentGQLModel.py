@@ -42,6 +42,13 @@ class PaymentInputFilter:
     id: IDType
     user_id: IDType
     program_id: IDType
+    bank_unique_data: str
+    variable_symbol: str
+    amount: int
+    payment_info_id: IDType
+    student_id: IDType
+    lastchange: datetime.datetime
+    created: datetime.datetime
 
 @strawberry.federation.type(
     keys=["id"],
@@ -105,6 +112,12 @@ class PaymentInsertGQLModel:
         description="name of the payment"
     )
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
+    student_id: typing.Optional[IDType] = strawberry.field(description="student id", default=None)
+    program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
+    bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
+    variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
+    amount: typing.Optional[int] = strawberry.field(description="zaplacená částka", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
 
 
 @strawberry.input(
@@ -113,7 +126,13 @@ class PaymentInsertGQLModel:
 class PaymentUpdateGQLModel:
     id: IDType = strawberry.field(description="primary key client generated")
     lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
-
+    student_id: typing.Optional[IDType] = strawberry.field(description="student id", default=None)
+    program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
+    bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
+    variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
+    amount: typing.Optional[int] = strawberry.field(description="zaplacená částka", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
+    
 @strawberry.input(
     description="parameter for delete operation"
 )

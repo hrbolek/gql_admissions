@@ -150,7 +150,23 @@ class AdmissionInsertGQLModel:
         description="program the admission is linked with"
     )
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
-
+    name: typing.Optional[str] = strawberry.field(description="name", default=None)
+    name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
+    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
+    application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
+    application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
+    end_date: typing.Optional[datetime.datetime] = strawberry.field(description="Konec přijímacího řízení", default=None)
+    condition_date: typing.Optional[datetime.datetime] = strawberry.field(description="Do kdy lze doložit splnění podmínek", default=None)
+    payment_date: typing.Optional[datetime.datetime] = strawberry.field(description="Do kdy lze zaplatit poplatek", default=None)
+    condition_extended_date: typing.Optional[datetime.datetime] = strawberry.field(description="Prodloužená lhůta pro doložení splnění podmínek", default=None)
+    request_condition_extend_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o prodloužení pro doložení splnění podmínek", default=None)
+    request_extra_conditions_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení", default=None)
+    request_extra_date_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o extra termín přijímacích zkoušek", default=None)
+    exam_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="První možný den přijímacích zkoušek", default=None)
+    exam_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možný den přijímacích zkoušek", default=None)
+    student_entry_date: typing.Optional[datetime.datetime] = strawberry.field(description="Den zápisu", default=None)
+    
 
 @strawberry.input(
     description="parameter for update operation"
@@ -158,7 +174,23 @@ class AdmissionInsertGQLModel:
 class AdmissionUpdateGQLModel:
     id: IDType = strawberry.field(description="primary key client generated")
     lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
-
+    name: typing.Optional[str] = strawberry.field(description="name", default=None)
+    name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
+    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
+    application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
+    application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
+    end_date: typing.Optional[datetime.datetime] = strawberry.field(description="Konec přijímacího řízení", default=None)
+    condition_date: typing.Optional[datetime.datetime] = strawberry.field(description="Do kdy lze doložit splnění podmínek", default=None)
+    payment_date: typing.Optional[datetime.datetime] = strawberry.field(description="Do kdy lze zaplatit poplatek", default=None)
+    condition_extended_date: typing.Optional[datetime.datetime] = strawberry.field(description="Prodloužená lhůta pro doložení splnění podmínek", default=None)
+    request_condition_extend_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o prodloužení pro doložení splnění podmínek", default=None)
+    request_extra_conditions_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení", default=None)
+    request_extra_date_date: typing.Optional[datetime.datetime] = strawberry.field(description="Lhůta do kdy lze požádat o extra termín přijímacích zkoušek", default=None)
+    exam_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="První možný den přijímacích zkoušek", default=None)
+    exam_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možný den přijímacích zkoušek", default=None)
+    student_entry_date: typing.Optional[datetime.datetime] = strawberry.field(description="Den zápisu", default=None)
+    
 @strawberry.input(
     description="parameter for delete operation"
 )

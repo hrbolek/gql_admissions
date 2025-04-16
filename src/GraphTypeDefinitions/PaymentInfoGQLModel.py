@@ -137,6 +137,13 @@ class PaymentInfoInsertGQLModel:
         description="name of the payment_info"
     )
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
+    account_number: typing.Optional[str] = strawberry.field(description="číslo účtu s kódem banky za lomítkem", default=None)
+    specific_symbol: typing.Optional[str] = strawberry.field(description="specifický symbol", default=None)
+    constant_symbol: typing.Optional[str] = strawberry.field(description="konstantní symbol", default=None)
+    IBAN: typing.Optional[str] = strawberry.field(description="IBAN code", default=None)
+    SWIFT: typing.Optional[str] = strawberry.field(description="SWIFT bank code", default=None)
+    amount: typing.Optional[float] = strawberry.field(description="Částka k zaplacení", default=None)
+    
 
 
 @strawberry.input(
