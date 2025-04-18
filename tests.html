@@ -10,6 +10,7 @@
 <div class="container py-4">
     <h2>GraphQL Page Field Tester</h2>
     <button class="btn btn-primary mb-3" onclick="runTests()">Run Tests</button>
+    <button class="btn btn-secondary mb-3" onclick="runCRUDTests()">Run CRUD Sequence Tests</button>    
     <div id="results" class="accordion"></div>
 </div>
 
@@ -89,20 +90,218 @@ query IntrospectionQuery {
   }
 }`;
 
-async function fetchGraphQL(query) {
+async function fetchGraphQL(query, variables={}) {
     const response = await fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({query})
+        body: JSON.stringify({query, variables})
     });
     return response.json();
+}
+
+// Map of single-ID query return types
+function getReadScalarValue(schema) {
+    const map = {};
+    const qType = schema.types.find(t => t.name === schema.queryType.name);
+    qType?.fields.forEach(f => {
+        if (f.args.length === 1 && f.args[0].name === 'id' && f.args[0].type.kind === 'NON_NULL') {
+            const rt = f.type;
+            if (rt.kind === 'OBJECT') map[rt.name] = f.name;
+        }
+    });
+    return map;
+}
+
+
+// Map of nonNull list of nonNull object queries
+function getReadVectorValue(schema) {
+    const map = {};
+    const qType = schema.types.find(t => t.name === schema.queryType.name);
+    qType?.fields.forEach(f => {
+        if (f.type.kind === 'NON_NULL') {
+            const listT = f.type.ofType;
+            if (listT?.kind === 'LIST') {
+                const mem = listT.ofType;
+                if (mem?.kind === 'NON_NULL') {
+                    const base = mem.ofType;
+                    if (base?.kind === 'OBJECT') map[base.name] = f.name;
+                }
+            }
+        }
+    });
+    return map;
+}
+
+// Insert mutations: single input object without lastchange
+function getInsertMutations(schema) {
+    const map = {};
+    const mType = schema.types.find(t => t.name === schema.mutationType.name);
+    mType?.fields.forEach(f => {
+        if (f.args.length === 1 && f.args[0].type.kind === 'NON_NULL') {
+            let arg = unwrapType(f.args[0].type);
+            if (arg.kind === 'INPUT_OBJECT') {
+                const def = schema.types.find(t => t.name === arg.name);
+                const names = def.inputFields.map(i => i.name);
+                if (!names.includes('lastchange')) {
+                    const ret = unwrapType(f.type);
+                    if (ret.kind === 'UNION') {
+                        const unionDef = schema.types.find(t => t.name === ret.name);
+                        unionDef?.possibleTypes.forEach(pt => {
+                            if (pt.kind === 'OBJECT' && !pt.name.includes('Error')) {
+                                map[pt.name] = f.name;
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    });
+    return map;
+}
+
+// Update mutations: input object >2 fields including required id & lastchange
+function getUpdateMutations(schema) {
+    const map = {};
+    const mType = schema.types.find(t => t.name === schema.mutationType.name);
+    mType?.fields.forEach(f => {
+        if (f.args.length === 1 && f.args[0].type.kind === 'NON_NULL') {
+            let arg = unwrapType(f.args[0].type);
+            if (arg.kind === 'INPUT_OBJECT') {
+                const def = schema.types.find(t => t.name === arg.name);
+                if (def.inputFields.length > 2) {
+                    const req = def.inputFields.filter(i => i.type.kind === 'NON_NULL').map(i => i.name);
+                    if (req.includes('id') && req.includes('lastchange')) {
+                      const ret = unwrapType(f.type);
+                      if (ret.kind === 'UNION') {
+                          const unionDef = schema.types.find(t => t.name === ret.name);
+                          unionDef?.possibleTypes.forEach(pt => {
+                              if (pt.kind === 'OBJECT' && !pt.name.includes('Error')) {
+                                  map[pt.name] = f.name;
+                              }
+                          });
+                      }
+                    }                    
+                }
+            }
+        }
+    });
+    return map;
+}
+
+// Delete mutations: single input object with exactly 'id' and 'lastchange'
+function getDeleteMutations(schema) {
+    const map = {};
+    const mType = schema.types.find(t => t.name === schema.mutationType.name);
+    mType?.fields.forEach(f => {
+        // exactly one required argument
+        if (f.args.length === 1 && f.args[0].type.kind === 'NON_NULL') {
+            let argType = unwrapType(f.args[0].type);
+            if (argType.kind === 'INPUT_OBJECT') {
+                const inputDef = schema.types.find(t => t.name === argType.name);
+                if (inputDef?.inputFields) {
+                    const req = inputDef.inputFields
+                        .filter(ifd => ifd.type.kind === 'NON_NULL')
+                        .map(ifd => ifd.name);
+                    // must have id and lastchange
+                    if (req.includes('id') && req.includes('lastchange')) {
+                        // unwrap optional return object
+                        let ret = f.type;
+                        if (ret.kind === 'NON_NULL') ret = ret.ofType;
+                        if (ret.kind === 'OBJECT') {
+                            const retDef = schema.types.find(t => t.name === ret.name);
+                            if (retDef?.fields.some(fl => fl.name === 'Entity')) {
+                                // find the Entity field type
+                                const entityField = retDef.fields.find(fl => fl.name === 'Entity');
+                                const entityType = unwrapType(entityField.type).name;
+                                map[entityType] = f.name;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    return map;
+}
+
+// Combine read/readp with insert, delete, update, complex
+function getCRUDs(schema) {
+    const single = getReadScalarValue(schema);
+    const listmap = getReadVectorValue(schema);
+    const inserts = getInsertMutations(schema);
+    const deletes = getDeleteMutations(schema);
+    const updates = getUpdateMutations(schema);
+    const result = {};
+
+    Object.keys(single).forEach(type => {
+        if (type in listmap) {
+            result[type] = {
+                read: single[type],
+                readp: listmap[type]
+            };
+            if (type in inserts) result[type].insert = inserts[type];
+            if (type in updates) result[type].update = updates[type];
+            if (type in deletes) result[type].delete = deletes[type];
+        }
+    });
+
+    return result;
+}
+
+/**
+ * Unwraps NON_NULL and LIST wrappers to get the base type
+ */
+ function unwrapType(type) {
+    console.log(type)
+    let t = type;
+    while (t.kind === 'NON_NULL' || t.kind === 'LIST') {
+        t = t.ofType;
+    }
+    return t;
+}
+
+/**
+ * Builds a selection set by iterating over fields of the given object type.
+ * Includes only fields that have no args or only optional args.
+ * For fields returning OBJECT or LIST of OBJECT, it nests them with { __typename id }.
+ * @param {object} schema - The introspection __schema object
+ * @param {object} fieldType - The GraphQL type reference of the parent field
+ * @returns {string} - A selection set string, e.g. "{ title description author { __typename id } }" or empty
+ */
+ function buildSelectionOptional(schema, fieldType, master) {
+    const baseType = unwrapType(fieldType);
+    // Only object types have nested selections
+    if (baseType.kind !== 'OBJECT') return '';
+    const typeDef = schema.types.find(t => t.name === baseType.name);
+    if (!typeDef || !typeDef.fields) return '';
+
+    const parts = [];
+    // Iterate fields of the object type
+    for (const f of typeDef.fields) {
+        // Skip introspection meta-fields
+        if (f.name.startsWith('__')) continue;
+        // Only include fields without args or with only optional args
+        const args = f.args || [];
+        const allOptional = args.every(arg => arg.type.kind !== 'NON_NULL');
+        if (args.length > 0 && !allOptional) continue;
+
+        // Determine return type
+        const returnBase = unwrapType(f.type);
+        if (returnBase.kind === 'OBJECT') {
+            parts.push(`${f.name} { __typename id }`);
+        } else {
+            parts.push(f.name);
+        }
+    }
+
+    return parts.length > 0 ? `{ ${parts.join('\n  ')} }` : '';
 }
 
 function buildSelection(schema, fieldType, master) {
     const kind = fieldType?.kind
     if (kind) {
         if (fieldType.kind === 'SCALAR') return '';
-        if (fieldType.kind === 'OBJECT') return '{ __typename id }';
+        if (fieldType.kind === 'OBJECT') return buildSelectionOptional(schema, fieldType, fieldType);
         if (fieldType.kind === 'LIST') return buildSelection(schema, fieldType.ofType, fieldType);
         if (fieldType.kind === 'NON_NULL') return buildSelection(schema, fieldType.ofType, fieldType);
         if (fieldType.kind === 'UNION') {
@@ -117,6 +316,145 @@ function buildSelection(schema, fieldType, master) {
     console.log(master)    
     console.log(fieldType)    
     return '';
+}
+
+function printType(typeRef) {
+    if (!typeRef) return '';
+    if (typeRef.kind === 'NON_NULL') return `${printType(typeRef.ofType)}!`;
+    if (typeRef.kind === 'LIST') return `[${printType(typeRef.ofType)}]`;
+    return typeRef.name;
+}
+
+/**
+ * Builds parameter definitions string for a given input object type.
+ * Outputs a GraphQL variable signature: e.g. ($field1: Type1!, $field2: Type2)
+ * @param {object} schema - introspection schema
+ * @param {string} inputTypeName - name of the INPUT_OBJECT type
+ * @returns {string} - parameter definitions string
+ */
+ function buildInputTypeParams(schema, inputTypeName) {
+    const inputDef = schema.types.find(t => t.name === inputTypeName && t.kind === 'INPUT_OBJECT');
+    if (!inputDef || !inputDef.inputFields) return '';
+    const params = inputDef.inputFields.map(field => {
+        const rawType = field.type;
+        let typeStr;
+        // Determine if field is required
+        if (rawType.kind === 'NON_NULL') {
+            // Required: unwrap NON_NULL for base type
+            typeStr = `${printType(rawType.ofType)}!`;
+        } else {
+            // Optional: allow null by default
+            typeStr = `${printType(rawType)}`;
+        }
+        return `$${field.name}: ${typeStr}`;
+    });
+    return params.length ? `(\n   ${params.join(',\n   ')}\n)` : '';
+}
+
+
+/**
+ * Builds expanded mutation with individual fields as parameters based on input type.
+ * @param {object} schema - introspection schema
+ * @param {string} mutationName - name of the mutation field
+ * @returns {string} - complete GraphQL mutation string
+ */
+ function buildExpandedMutation(schema, mutationName) {
+    const mType = schema.types.find(t => t.name === schema.mutationType.name);
+    const f = mType.fields.find(fd => fd.name === mutationName);
+    if (!f || f.args.length !== 1) return '';
+    const arg = f.args[0];
+    const inputTypeName = unwrapType(arg.type).name;
+    const paramDefs = buildInputTypeParams(schema, inputTypeName);
+    const inputDef = schema.types.find(t => t.name === inputTypeName);
+    const callArgs = inputDef.inputFields.map(field => `${field.name}: $${field.name}`).join(',\n   ');
+    // Prepare selection set
+    let retType = unwrapType(f.type);
+    let selection = '';
+    if (retType.kind === 'UNION') {
+        const unionDef = schema.types.find(t => t.name === retType.name);
+        const parts = unionDef.possibleTypes
+            .filter(pt => pt.kind === 'OBJECT' && !pt.name.includes('Error'))
+            .map(pt => `\n   ... on ${pt.name} ${buildSelection(schema, {kind:'OBJECT', name:pt.name})}`);
+        selection = ` {\n   __typename ${parts.join('\n   ')} }`;
+    } else if (retType.kind === 'OBJECT') {
+        selection = buildSelection(schema, retType);
+    }
+    return `mutation ${paramDefs} {
+  ${mutationName}(${arg.name}: {\n   ${callArgs}\n})${selection}
+}`;
+}
+
+async function runCRUDTests() {
+    const schema = (await fetchGraphQL(introspectionQuery)).data.__schema;
+    const cruds = getCRUDs(schema);
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    for (const [type, ops] of Object.entries(cruds)) {
+        const typeDef = schema.types.find(t => t.name === type);
+        console.log(typeDef)
+        const selectionSet = buildSelection(schema, typeDef, typeDef)
+        const vecQ = `query ${type}ReadPage{${ops.readp} ${selectionSet}}`;
+        const singleQ = `query ${type}Read(\$id: UUID!) {${ops.read}(id: \$id) ${selectionSet}}`;
+        const insertQ = buildExpandedMutation(schema, ops.insert);
+        const updateQ = buildExpandedMutation(schema, ops.update);
+        const deleteQ = buildExpandedMutation(schema, ops.delete);
+        
+        // A) read vector
+        const vecR = await fetchGraphQL(vecQ);
+        if (vecR.errors) {
+            results.innerHTML += `<div class=\"alert alert-danger\">Error reading ${type}: ${JSON.stringify(vecR.errors, null, 2)}</div>`;
+            continue;
+        } else {
+            results.innerHTML += `<div class=\"alert alert-success\">Read ${type} vector: <pre>${JSON.stringify(vecR.data[ops.readp], null, 2)}</pre></div>`;
+        }
+        const item = vecR.data[ops.readp][0];
+        // B) read single
+        const singleR = await fetchGraphQL(singleQ, {id: item.id});
+        if (singleR.errors) {
+            results.innerHTML += `<div class=\"alert alert-danger\">Error reading ${type}: ${JSON.stringify(singleR.errors, null, 2)}</div>`;
+            continue;
+        } else {
+            results.innerHTML += `<div class=\"alert alert-success\">Read ${type} single: <pre>${JSON.stringify(singleR.data[ops.read], null, 2)}</pre></div>`;
+        }
+        const base = singleR.data[ops.read];
+        // C) insert
+        const insInput = Object.fromEntries(
+            Object.entries(base)
+                .filter(([k, v]) => k !== 'id' && v != null)
+        );
+        results.innerHTML += `<div class=\"alert alert-success\">Insert <pre>${insertQ}</pre> <hr />input: <pre>${JSON.stringify(insInput, null, 2)}</pre></div>`;
+        const insertOut = await fetchGraphQL(insertQ, insInput);
+        if (insertOut.errors) {
+            results.innerHTML += `<div class=\"alert alert-danger\">Error insert ${type}: ${JSON.stringify(insertOut.errors, null, 2)}</div>`;
+            continue;
+        } else {
+            results.innerHTML += `<div class=\"alert alert-success\">Insert ${type}: <pre>${JSON.stringify(insertOut.data[ops.insert], null, 2)}</pre></div>`;
+        }
+        // D) Update
+        const updateInput = {...insertOut.data[ops.insert]};
+        results.innerHTML += `<div class=\"alert alert-success\">Update <pre>${updateQ}</pre> <hr />input: <pre>${JSON.stringify(updateInput, null, 2)}</pre></div>`;
+        const updateOut = await fetchGraphQL(updateQ, updateInput);
+        if (updateOut.errors) {
+            results.innerHTML += `<div class=\"alert alert-danger\">Error Update ${type}: <pre>${JSON.stringify(updateOut.errors, null, 2)}</pre></div>`;
+            continue;
+        } else {
+            results.innerHTML += `<div class=\"alert alert-success\">Update ${type}: <pre>${JSON.stringify(updateOut.data[ops.update], null, 2)}</pre></div>`;
+        }
+        // E) Delete
+        const deleteInput = {...updateOut.data[ops.update]};
+        results.innerHTML += `<div class=\"alert alert-success\">Delete <pre>${deleteQ}</pre> <hr />input: <pre>${JSON.stringify(insInput, null, 2)}</pre></div>`;
+        const deleteOut = await fetchGraphQL(deleteQ, deleteInput);
+        if (deleteOut.errors) {
+            results.innerHTML += `<div class=\"alert alert-danger\">Error delete ${type}: <pre>${JSON.stringify(deleteOut.errors, null, 2)}</pre></div>`;
+            continue;
+        } else {
+            results.innerHTML += `<div class=\"alert alert-success\">Delete ${type} succeded</div>`;
+        }
+
+        results.innerHTML += `<div class=\"card mb-2\"><div class=\"card-header\">${type}</div><div class=\"card-body\"><pre>
+ReadVec: ${vecQ}\nReadOne: ${singleQ}\n\n</pre></div></div>`;
+    }
 }
 
 async function runTests() {
@@ -208,6 +546,15 @@ async function runTests() {
         }
     }
 }
+
+// Automatically display CRUDs on page load
+async function displayCRUDs() {
+    const schema = (await fetchGraphQL(introspectionQuery)).data.__schema;
+    const cruds = getCRUDs(schema);
+    document.getElementById('results').innerHTML = `<pre>${JSON.stringify(cruds, null, 2)}</pre>`;
+}
+window.addEventListener('DOMContentLoaded', displayCRUDs);
+
 </script>
 </body>
 </html>
