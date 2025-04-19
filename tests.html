@@ -5,16 +5,24 @@
     <title>GraphQL Page Field Tester</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>  
+  
+    <script src="https://unpkg.com/@babel/standalone@7.27.0/babel.min.js"></script>
+    <script src="https://unpkg.com/htm@2.2.1" crossorigin></script>
 </head>
 <body>
 <div class="container py-4">
     <h2>GraphQL Page Field Tester</h2>
     <button class="btn btn-primary mb-3" onclick="runTests()">Run Tests</button>
     <button class="btn btn-secondary mb-3" onclick="runCRUDTests()">Run CRUD Sequence Tests</button>    
+    <button class="btn btn-secondary mb-3" onclick="displayCRUDTable()">display CRUD Table</button>    
     <div id="results" class="accordion"></div>
+    <div id="root"></div>
 </div>
 
-<script>
+<script type="text/babel">
 const GRAPHQL_ENDPOINT = '/gql';
 
 const introspectionQuery = `
@@ -252,7 +260,6 @@ function getCRUDs(schema) {
  * Unwraps NON_NULL and LIST wrappers to get the base type
  */
  function unwrapType(type) {
-    console.log(type)
     let t = type;
     while (t.kind === 'NON_NULL' || t.kind === 'LIST') {
         t = t.ofType;
@@ -297,6 +304,26 @@ function getCRUDs(schema) {
     return parts.length > 0 ? `{ ${parts.join('\n  ')} }` : '';
 }
 
+function buildSelection_(schema, fieldType, master) {
+    const kind = fieldType?.kind
+    if (kind) {
+        if (fieldType.kind === 'SCALAR') return '';
+        if (fieldType.kind === 'OBJECT') return buildSelectionOptional(schema, fieldType, fieldType);
+        if (fieldType.kind === 'LIST') return buildSelection(schema, fieldType.ofType, fieldType);
+        if (fieldType.kind === 'NON_NULL') return buildSelection(schema, fieldType.ofType, fieldType);
+        if (fieldType.kind === 'UNION') {
+            const typeDetails = schema.types.find(t => t.name === fieldType.name);
+            const possibleTypes = typeDetails.possibleTypes
+            console.log(fieldType)    
+            console.log(typeDetails)    
+            return '{ __typename }'
+            // return buildSelection(schema, typeDetails, fieldType)
+        };
+    }
+    return '';
+}
+
+
 function buildSelection(schema, fieldType, master) {
     const kind = fieldType?.kind
     if (kind) {
@@ -313,8 +340,7 @@ function buildSelection(schema, fieldType, master) {
             // return buildSelection(schema, typeDetails, fieldType)
         };
     }
-    console.log(master)    
-    console.log(fieldType)    
+    console.log('Unknown type:', fieldType);
     return '';
 }
 
@@ -457,6 +483,154 @@ ReadVec: ${vecQ}\nReadOne: ${singleQ}\n\n</pre></div></div>`;
     }
 }
 
+async function displayCRUDTable2(){
+    const schema=(await fetchGraphQL(introspectionQuery)).data.__schema;
+    const crudMap=getCRUDs(schema);
+    const container=document.getElementById('results'); container.innerHTML='';
+    const table=document.createElement('table'); table.className='table table-bordered';
+    const thead=document.createElement('thead');
+    thead.innerHTML=`<tr><th>Type</th><th>ReadP</th><th>Read</th><th>Insert</th><th>Update</th><th>Delete</th></tr>`;
+    table.appendChild(thead);
+    const tbody=document.createElement('tbody');
+    Object.entries(crudMap).forEach(([type, ops]) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${type}</td>`;
+        ['readp', 'read', 'insert', 'update', 'delete'].forEach(op => {
+            const cell = document.createElement('td');
+            const opName = ops[op];
+            if (opName) {
+                const btnQuery = document.createElement('button');
+                btnQuery.className = 'btn btn-sm btn-outline-primary me-1';
+                btnQuery.textContent = 'Query';
+                btnQuery.onclick = () => alert(`// GraphQL ${op} for ${type}: ${opName}`);
+                const btnParams = document.createElement('button');
+                btnParams.className = 'btn btn-sm btn-outline-secondary me-1';
+                btnParams.textContent = 'Params';
+                btnParams.onclick = () => alert(`// Params for ${op} on ${type}`);
+                const btnResult = document.createElement('button');
+                btnResult.className = 'btn btn-sm btn-outline-success';
+                btnResult.textContent = 'Result';
+                btnResult.onclick = () => alert(JSON.stringify(lastResults[`${op}_${type}`] || {}, null, 2));
+                cell.append(btnQuery, btnParams, btnResult);
+            } else {
+                cell.className = 'table-warning';
+                cell.textContent = '—';
+            }
+            tr.appendChild(cell);
+        });
+        tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    container.appendChild(table);
+}
+
+const prepareQuery = (schema, type, optype, opname) => {
+    const typeDef = schema.types.find(t => t.name === type);
+    const selectionSet = buildSelection(schema, typeDef, typeDef)
+
+    // const selectionSet = buildSelection(schema, typeDef, typeDef)
+    // const vecQ = `query ${type}ReadPage{${ops.readp} ${selectionSet}}`;
+    // const singleQ = `query ${type}Read(\$id: UUID!) {${ops.read}(id: \$id) ${selectionSet}}`;
+
+
+    if (optype === 'readp') {
+        const vecQ = `query ${type}ReadPage{${opname} ${selectionSet}}`;
+        return vecQ;
+    }
+    if (optype === 'read') {
+        const singleQ = `query ${type}Read(\$id: UUID!) {${opname}(id: \$id) ${selectionSet}}`;
+        return singleQ;
+    }
+    if (optype === 'insert') {
+        const insertQ = buildExpandedMutation(schema, opname);
+        return insertQ;
+    }
+    if (optype === 'update') {
+        const updateQ = buildExpandedMutation(schema, opname);
+        return updateQ;
+    }
+    if (optype === 'delete') {
+        const deleteQ = buildExpandedMutation(schema, opname);
+        return deleteQ;
+    }
+    return null;
+}
+
+async function displayCRUDTable() {
+    const { data } = await fetchGraphQL(introspectionQuery);
+    const schema = data.__schema;
+    const crudMap = getCRUDs(schema);
+    const container = document.getElementById('results'); container.innerHTML='';
+    const table = document.createElement('table'); table.className='table table-bordered';
+    // header
+    const thead=document.createElement('thead');
+    thead.innerHTML=`<tr><th>Type</th><th>ReadP</th><th>Read</th><th>Insert</th><th>Update</th><th>Delete</th></tr>`;
+    table.appendChild(thead);
+    const tbody=document.createElement('tbody');
+    for(const [type,ops] of Object.entries(crudMap)){
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td>${type}</td>`;
+        // sequential tests
+        // A) ReadP
+        let vec=[];
+        if(ops.readp){
+            const qr=`{ ${ops.readp}(limit:1){ id lastchange } }`;
+            const res=await fetchGraphQL(qr);
+            vec=res.data[ops.readp];
+        }
+        // B) Read
+        let one={};
+        if(ops.read && vec.length){
+            const qr=`{ ${ops.read}(id: \"${vec[0].id}\"){ id lastchange } }`;
+            const res=await fetchGraphQL(qr);
+            one=res.data[ops.read];
+        }
+        // C) Insert
+        let created={};
+        if(ops.insert && one.id){
+            const base=Object.fromEntries(Object.entries(one).filter(([k,v])=>k!=='id'&&v!=null));
+            const ip=JSON.stringify(base);
+            const q=`mutation{ ${ops.insert}(input:${ip}){ __typename ...on ${type}{ id lastchange } }}`;
+            const res=await fetchGraphQL(q);
+            created=res.data[ops.insert];
+        }
+        // D) Update
+        let updated={};
+        if(ops.update && created.id){
+            const ip=JSON.stringify({id:created.id,lastchange:created.lastchange});
+            const q=`mutation{ ${ops.update}(input:${ip}){ __typename ...on ${type}{ id lastchange } }}`;
+            const res=await fetchGraphQL(q);
+            updated=res.data[ops.update];
+        }
+        // E) Delete
+        let deleted={};
+        if(ops.delete && updated.id){
+            const ip=JSON.stringify({id:updated.id,lastchange:updated.lastchange});
+            const q=`mutation{ ${ops.delete}(input:${ip}){ id } }`;
+            const res=await fetchGraphQL(q);
+            deleted=res.data[ops.delete];
+        }
+        // fill cells
+        ['readp','read','insert','update','delete'].forEach(op=>{
+            const cell=document.createElement('td');
+            let val;
+            switch(op){
+                case 'readp': val=vec.length?JSON.stringify(vec):'—';break;
+                case 'read': val=one.id?JSON.stringify(one):'—';break;
+                case 'insert': val=created.id?JSON.stringify(created):'—';break;
+                case 'update': val=updated.id?JSON.stringify(updated):'—';break;
+                case 'delete': val=deleted.id?JSON.stringify(deleted):'—';break;
+            }
+            if(val==='—') cell.className='table-warning';
+            cell.textContent=val;
+            tr.appendChild(cell);
+        });
+        tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    container.appendChild(table);
+}
+
 async function runTests() {
     const introspection = await fetchGraphQL(introspectionQuery);
     const data = introspection.data
@@ -555,6 +729,305 @@ async function displayCRUDs() {
 }
 window.addEventListener('DOMContentLoaded', displayCRUDs);
 
+  const { useState, useEffect } = React;
+
+  const Accordion = ({ title, children }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div className="accordion mb-2">
+            <div className="accordion-item">
+                <h2 className="accordion-header">
+                    <button className={`accordion-button ${!open ? 'collapsed' : ''}`} type="button" onClick={() => setOpen(!open)}>
+                        {open ? `Hide` : `Show`}
+                    </button>
+                </h2>
+                <div className={`accordion-collapse collapse ${open ? 'show' : ''}`}>
+                    <div className="accordion-body">
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+  };
+
+
+
+  const HandleError = ({error}) => {
+    return (<div className="alert alert-danger">{JSON.stringify(error)}</div>);
+  }
+
+  const HandleLoading = ({loading}) => {
+    return (<div>Loading...</div>);
+  }
+
+  const HandleQuery = ({ query }) => (
+    <Accordion title="Query">
+        <pre>{query}</pre>
+    </Accordion>
+  );
+
+  const HandleVariables = ({variables}) => {
+    return (<Accordion title="Variables">
+      <pre>{JSON.stringify(variables, null, 2)}</pre>
+    </Accordion>
+    );
+  }
+
+  const HandleResult = ({result}) => {
+    return (<Accordion title="Result">
+      <pre>{JSON.stringify(result, null, 2)}</pre>
+    </Accordion>);
+  }
+
+  const DeleteRow = ({schema, type, crudMapItem, variables}) => {
+    const { delete: _delete } = crudMapItem;
+    const [query, setQuery] = useState(null);
+    const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const query = prepareQuery(schema, type, 'delete', _delete);
+      setQuery(query);
+      fetchGraphQL(query, variables).then((response) => {
+        if (response.errors) {
+          setLoading(false);
+
+          setError(response.errors);
+          return;
+        }
+        const data = response.data[crudMapItem.delete];
+        setLoading(false);
+        setResult(data);
+      });
+    }, [type, crudMapItem, variables]);
+    return (<>
+      <tr>
+        <td></td>
+        <td>{_delete}</td>
+        <td>
+          {loading && <HandleLoading loading={loading} />}
+          {error && <HandleError error={error} />}
+          {query && <HandleQuery query={query} />}
+        </td>
+        <td><HandleVariables variables={variables} /></td>
+        <td><HandleResult result={result} /></td>
+      </tr>
+    </>);
+  }
+
+  const UpdateRow = ({schema, type, crudMapItem, variables}) => {
+    const { update } = crudMapItem;
+    const [query, setQuery] = useState(null);
+    const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const query = prepareQuery(schema, type, 'update', update);
+      setQuery(query);
+      fetchGraphQL(query, variables).then((response) => {
+        if (response.errors) {
+          setLoading(false);
+
+          setError(response.errors);
+          return;
+        }
+        const data = response.data[crudMapItem.update];
+        setLoading(false);
+        setResult(data);
+      });
+    }, [type, crudMapItem, variables]);
+    return (<>
+      <tr>
+        <td></td>
+        <td>{update}</td>
+        <td>
+          {loading && <HandleLoading loading={loading} />}
+          {error && <HandleError error={error} />}
+          {query && <HandleQuery query={query} />}
+        </td>
+        <td><HandleVariables variables={variables} /></td>
+        <td><HandleResult result={result} /></td>
+      </tr>
+      {result && <DeleteRow schema={schema} type="delete" crudMapItem={crudMapItem} variables={result} />}
+    </>);
+  }
+
+  const InsertRow = ({schema, type, crudMapItem, variables}) => {
+    const { insert } = crudMapItem;
+    const [query, setQuery] = useState(null);
+    const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const query = prepareQuery(schema, type, 'insert', insert);
+      setQuery(query);
+      const vaiables_ = Object.fromEntries(
+        Object.entries(variables)
+          .filter(([k, v]) => k !== 'id' && v != null)
+      );
+      fetchGraphQL(query, vaiables_).then((response) => {
+        if (response.errors) {
+          setLoading(false);
+
+          setError(response.errors);
+          return;
+        }
+        const data = response.data[crudMapItem.insert];
+        setLoading(false);
+        setResult(data);
+      });
+    }, [type, crudMapItem, variables]);
+    return (<>
+      <tr>
+        <td></td>
+        <td>{insert}</td>
+        <td>
+          {loading && <HandleLoading loading={loading} />}
+          {error && <HandleError error={error} />}
+          {query && <HandleQuery query={query} />}
+        </td>
+        <td><HandleVariables variables={variables} /></td>
+        <td><HandleResult result={result} /></td>
+      </tr>
+      {result && <UpdateRow schema={schema} type="update" crudMapItem={crudMapItem} variables={result} />}
+    </>);
+  }
+
+  const ReadRow = ({ schema, type, crudMapItem, variables}) => {
+    const { read } = crudMapItem;
+    const [query, setQuery] = useState(null);
+    const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const query = prepareQuery(schema, type, 'read', read);
+      setQuery(query);
+      fetchGraphQL(query, variables).then((response) => {
+        console.log(variables)
+        console.log(response)
+        setLoading(false);
+        if (response.errors) {
+          setError(response.errors);
+          return;
+        }
+        const data = response.data[crudMapItem.read];
+        setResult(data);
+      });
+    }, [type, crudMapItem, variables]);
+    return (<>
+      <tr>
+        <td></td>
+        <td>{read}</td>
+        <td>
+          {loading && <HandleLoading loading={loading} />}
+          {error && <HandleError error={error} />}
+          {query && <HandleQuery query={query} />}
+        </td>
+        <td><HandleVariables variables={variables} /></td>
+        <td><HandleResult result={result} /></td>
+      </tr>
+      {result && <InsertRow schema={schema} type="insert" crudMapItem={crudMapItem} variables={result} />}
+    </>);
+  };
+
+  const ReadPRow = ({ schema, type, crudMapItem }) => {
+    const { readp } = crudMapItem;
+    const [query, setQuery] = useState(null);
+    const [result, setResult] = useState(null);
+    const [variables, setVariables] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const query = prepareQuery(schema, type, 'readp', readp);
+      setQuery(query);
+      fetchGraphQL(query).then((response) => {
+        if (response.errors) {
+          setLoading(false);
+          setError(response.errors);
+          return;
+        }
+        setLoading(false);
+        const data = response.data[crudMapItem.readp];
+        setResult(data);
+        // Assuming the first item in the data array is the one you want to use as variables
+        const row = data[0]
+        setVariables(row);
+      });
+    }, [type, crudMapItem]);
+    return (<>
+      <tr>
+        <td>{type}</td>
+        <td>{readp}</td>
+        <td>
+          {loading && <HandleLoading loading={loading} />}
+          {error && <HandleError error={error} />}
+          {query && <HandleQuery query={query} />}
+        </td>
+        <td></td>
+        <td><HandleResult result={result} /></td>
+      </tr>
+      {variables && <ReadRow schema={schema} type={type} crudMapItem={crudMapItem} variables={variables} />}
+    </>);
+    return <pre>{JSON.stringify(variables, null, 2)}</pre>;
+  };
+
+  const CRUDMap = ({ schema, crudMap }) => {
+    return (
+        <table className="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Operation</th>
+                    <th>Query</th>
+                    <th>Variables</th>
+                    <th>Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Object.entries(crudMap).map(([type, ops]) => (
+                    <ReadPRow key={type} schema={schema} type={type} crudMapItem={ops} />
+                ))}
+            </tbody>
+        </table>
+    );
+  };
+
+  const App = () => {
+    const [schema, setSchema] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [crudMap, setCRUDMap] = useState({});
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchSchema = async () => {
+            const response = await fetchGraphQL(introspectionQuery);
+            if (response.errors) {
+                setError(response.errors[0].message);
+                setLoading(false);
+                return;
+            }
+            const schema = response.data.__schema;
+            setSchema(schema);
+            const crudMap = getCRUDs(schema);
+            setCRUDMap(crudMap);
+            setLoading(false);
+        };
+        fetchSchema();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    return (
+        <div>
+            <h2>GraphQL Schema</h2>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <CRUDMap schema={schema} crudMap={crudMap} />
+        </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 </body>
 </html>
