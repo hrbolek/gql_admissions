@@ -45,11 +45,16 @@
     "admission_payments": [
         {
             "id": "c3af1c6d-78f2-4d9c-b963-82f1fba09abf",
+            "bad_id": "0",
+            "another_bad_id": "",
+            "none_date": null,
+            "outer_id": "0",
             "payment_info_id": "2dd560b8-7c4c-41a5-aaeb-75f9f8e30409",
             "bank_unique_data": "",
             "variable_symbol": "",
             "student_id": "5d36bb38-b29d-44e8-893d-b5e5a3b2591f",
-            "amount": 400
+            "amount": 400,
+            "payment_date": "2025-04-05T23:59:59"
         }
     ],
     "admission_discipline_results": [

@@ -304,26 +304,6 @@ function getCRUDs(schema) {
     return parts.length > 0 ? `{ ${parts.join('\n  ')} }` : '';
 }
 
-function buildSelection_(schema, fieldType, master) {
-    const kind = fieldType?.kind
-    if (kind) {
-        if (fieldType.kind === 'SCALAR') return '';
-        if (fieldType.kind === 'OBJECT') return buildSelectionOptional(schema, fieldType, fieldType);
-        if (fieldType.kind === 'LIST') return buildSelection(schema, fieldType.ofType, fieldType);
-        if (fieldType.kind === 'NON_NULL') return buildSelection(schema, fieldType.ofType, fieldType);
-        if (fieldType.kind === 'UNION') {
-            const typeDetails = schema.types.find(t => t.name === fieldType.name);
-            const possibleTypes = typeDetails.possibleTypes
-            console.log(fieldType)    
-            console.log(typeDetails)    
-            return '{ __typename }'
-            // return buildSelection(schema, typeDetails, fieldType)
-        };
-    }
-    return '';
-}
-
-
 function buildSelection(schema, fieldType, master) {
     const kind = fieldType?.kind
     if (kind) {
@@ -408,6 +388,16 @@ function printType(typeRef) {
     return `mutation ${paramDefs} {
   ${mutationName}(${arg.name}: {\n   ${callArgs}\n})${selection}
 }`;
+}
+
+const buildQueryPage = (schema, typeDef, typeName) => {
+    const selectionSet = buildSelection(schema, typeDef, typeDef);
+    return `query ${typeName}ReadPage { ${typeName} ${selectionSet} }`;
+}
+
+const buildQueryScalar = (schema, typeDef, typeName) => {
+    const selectionSet = buildSelection(schema, typeDef, typeDef);
+    return `query ${typeName}Read(\$id: UUID!) { ${typeName}(id: \$id) ${selectionSet} }`;
 }
 
 async function runCRUDTests() {

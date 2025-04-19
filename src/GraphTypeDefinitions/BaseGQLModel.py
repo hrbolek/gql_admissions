@@ -9,10 +9,10 @@ from uoishelpers.gqlpermissions import OnlyForAuthentized, RBACObjectGQLModel
 IDType = uuid.UUID
 UserGQLModel = typing.Annotated["UserGQLModel", strawberry.lazy(".UserGQLModel")]
 
-@classmethod
-async def resolve_reference(cls, info: strawberry.types.Info, id: IDType, **otherData):
-    _id = IDType(id) if isinstance(id, str) else id
-    return None if id is None else cls(id=_id, **otherData)
+# @classmethod
+# async def resolve_reference(cls, info: strawberry.types.Info, id: IDType, **otherData):
+#     _id = IDType(id) if isinstance(id, str) else id
+#     return None if id is None else cls(id=_id, **otherData)
 
 
 @strawberry.interface(
@@ -21,9 +21,9 @@ async def resolve_reference(cls, info: strawberry.types.Info, id: IDType, **othe
 )
 class BaseGQLModel:
     
-    @classmethod
-    def getLoader(cls, info: strawberry.types.Info):
-        raise NotImplementedError()
+    # @classmethod
+    # def getLoader(cls, info: strawberry.types.Info):
+    #     raise NotImplementedError()
     
     @classmethod
     def from_dataclass(cls, db_row):
@@ -45,9 +45,9 @@ class BaseGQLModel:
     def resolve_reference(cls, info: strawberry.types.Info, id: uuid.UUID, **otherdata):
         return cls.load_with_loader(info=info, id=id)
        
-    id: typing.Optional[IDType] = strawberry.field(
+    id: IDType = strawberry.field(
         description="primary key", 
-        default=None,
+        # default=None,
         permission_classes=[OnlyForAuthentized]
         )
     lastchange: typing.Optional[datetime.datetime] = strawberry.field(
@@ -107,12 +107,12 @@ class BaseGQLModelEx:
         result = cls(**data)
         return result
     
-    @classmethod
-    async def load_with_loader(cls, info: strawberry.types.Info, id: uuid.UUID):
-        if id is None: return None
+    # @classmethod
+    # async def load_with_loader(cls, info: strawberry.types.Info, id: uuid.UUID):
+    #     if id is None: return None
 
-        _id = IDType(id) if isinstance(id, str) else id
-        return cls(id=_id) if _id else None
+    #     _id = IDType(id) if isinstance(id, str) else id
+    #     return cls(id=_id) if _id else None
     
     id: uuid.UUID = strawberry.field()
     # lastchange: typing.Optional[datetime.datetime] = strawberry.federation.field(shareable=True)

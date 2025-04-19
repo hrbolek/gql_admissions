@@ -53,7 +53,7 @@ def get_demodata(filename="./systemdata.json"):
     return readJsonFile(filename)
 
 async def initDB(asyncSessionMaker, filename="./systemdata.json"):
-
+    dbModels = []
     DEMODATA = os.environ.get("DEMODATA", None) in ["True", "true"]    
     if DEMODATA:
         dbModels = [
@@ -64,8 +64,7 @@ async def initDB(asyncSessionMaker, filename="./systemdata.json"):
             # DisciplineModel,
             # DisciplineResulModel,
         ]
-    else:
-        dbModels = []
+        
 
     jsonData = get_demodata(filename=filename)
     await ImportModels(asyncSessionMaker, dbModels, jsonData)

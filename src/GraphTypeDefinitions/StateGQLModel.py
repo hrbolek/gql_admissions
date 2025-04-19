@@ -26,7 +26,7 @@ class StateGQLModel(BaseGQLModelEx, BaseGQLModel):
     #     rbacobject
     # )
 
-    id: uuid.UUID = strawberry.field()
+    # id: uuid.UUID = strawberry.field()
     lastchange: typing.Optional[datetime.datetime] = strawberry.federation.field(external=True, default=None)
     created: typing.Optional[datetime.datetime] = strawberry.federation.field(external=True, default=None)
     createdby_id: typing.Optional[IDType] = strawberry.federation.field(external=True, default=None)

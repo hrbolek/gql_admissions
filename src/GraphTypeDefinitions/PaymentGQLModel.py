@@ -44,7 +44,7 @@ class PaymentInputFilter:
     program_id: IDType
     bank_unique_data: str
     variable_symbol: str
-    amount: int
+    amount: float
     payment_info_id: IDType
     student_id: IDType
     lastchange: datetime.datetime
@@ -62,7 +62,7 @@ class PaymentGQLModel(BaseGQLModel):
     
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)")
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol")
-    amount: typing.Optional[int] = strawberry.field(description="zaplacená částka")
+    amount: typing.Optional[float] = strawberry.field(description="zaplacená částka")
     
     payment_info_id: typing.Optional[uuid.UUID] = strawberry.field(description="Generální platební podmínky")
     student_id: typing.Optional[uuid.UUID] = strawberry.field(description="identifikovaná přihláška / student")
@@ -108,15 +108,12 @@ class PaymentQuery:
     description="parameter for create operation"
 )
 class PaymentInsertGQLModel:
-    name: str = strawberry.field(
-        description="name of the payment"
-    )
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
     student_id: typing.Optional[IDType] = strawberry.field(description="student id", default=None)
     program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
-    amount: typing.Optional[int] = strawberry.field(description="zaplacená částka", default=None)
+    amount: typing.Optional[float] = strawberry.field(description="zaplacená částka", default=None)
     payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
 
 
@@ -130,9 +127,9 @@ class PaymentUpdateGQLModel:
     program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
-    amount: typing.Optional[int] = strawberry.field(description="zaplacená částka", default=None)
+    amount: typing.Optional[float] = strawberry.field(description="zaplacená částka", default=None)
     payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
-    
+
 @strawberry.input(
     description="parameter for delete operation"
 )
