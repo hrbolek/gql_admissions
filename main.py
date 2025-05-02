@@ -83,3 +83,9 @@ async def graphiql():
 async def graphiql():
     realpath = os.path.realpath("./tests.html")
     return realpath
+
+
+if __name__ == "__main__":
+    with open("schema.0.graphql", "w", encoding="utf-8") as f:
+        f.write(schema.as_str())
+    # print(schema.as_str())

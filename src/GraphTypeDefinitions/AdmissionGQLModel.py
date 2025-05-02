@@ -132,12 +132,12 @@ class AdmissionGQLModel(BaseGQLModel):
 @strawberry.interface(description="")
 class AdmissionQuery:
     admission_by_id: typing.Optional[AdmissionGQLModel] = strawberry.field(
-        description="",
+        description="Přijímací řízení pro specifické ID",
         resolver=AdmissionGQLModel.load_with_loader
     )
 
     admission_page: typing.List[AdmissionGQLModel] = strawberry.field(
-        description="",
+        description="Seznam přijímacích řízení",
         resolver=PageResolver[AdmissionGQLModel](whereType=AdmissionInputFilter)
     )
 
@@ -207,7 +207,11 @@ class AdmissionMutation:
     @strawberry.mutation(
         description="create a new admission"
     )
-    async def admission_insert(self, info: strawberry.types.Info, admission: AdmissionInsertGQLModel) -> typing.Union[AdmissionGQLModel, InsertError[AdmissionGQLModel]]:
+    async def admission_insert(self, info: strawberry.types.Info, 
+        admission: typing.Annotated[AdmissionInsertGQLModel, strawberry.argument(
+            description="Vstupní data pro vytvoření přijímací řízení"
+        )]
+    ) -> typing.Union[AdmissionGQLModel, InsertError[AdmissionGQLModel]]:
         result = await Insert[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
         return result
     
@@ -217,7 +221,11 @@ class AdmissionMutation:
             OnlyForAuthentized
         ]
     )
-    async def admission_update(self, info: strawberry.types.Info, admission: AdmissionUpdateGQLModel) -> typing.Union[AdmissionGQLModel, UpdateError[AdmissionGQLModel]]:
+    async def admission_update(self, info: strawberry.types.Info, 
+        admission: typing.Annotated[AdmissionUpdateGQLModel, strawberry.argument(
+            description="Vstupní data pro úpravu přijímací řízení"
+        )]
+    ) -> typing.Union[AdmissionGQLModel, UpdateError[AdmissionGQLModel]]:
         result = await Update[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
         return result
 
@@ -227,7 +235,11 @@ class AdmissionMutation:
             OnlyForAuthentized
         ]
     )
-    async def admission_delete(self, info: strawberry.types.Info, admission: AdmissionDeleteGQLModel) -> typing.Optional[DeleteError[AdmissionGQLModel]]:
+    async def admission_delete(self, info: strawberry.types.Info, 
+        admission: typing.Annotated[AdmissionDeleteGQLModel, strawberry.argument(
+            description="Vstupní data pro smazání přijímací řízení"
+        )]
+    ) -> typing.Optional[DeleteError[AdmissionGQLModel]]:
         result = await Delete[AdmissionGQLModel].DoItSafeWay(info=info, entity=admission)
         return result
 

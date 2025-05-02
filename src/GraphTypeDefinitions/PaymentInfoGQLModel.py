@@ -73,7 +73,7 @@ class PaymentInfoGQLModel(BaseGQLModel):
     #     resolver=ScalarResolver["AdmissionGQLModel"](fkey_field_name="admission_id")
     # )
     @strawberry.field(
-        description="",
+        description="Přijímací řízení, kte kterému se tyto platební podmínky vztahují",
         permission_classes=[
             OnlyForAuthentized
         ],
@@ -88,7 +88,7 @@ class PaymentInfoGQLModel(BaseGQLModel):
         return result
     
     payments: typing.List["PaymentGQLModel"] = strawberry.field(
-        description="",
+        description="Všechny platby, které proběhly nebo byly uznány jako splnění těchto platebních podmínek",
         permission_classes=[
             OnlyForAuthentized
         ],
@@ -172,7 +172,9 @@ class PaymentInfoMutation:
     @strawberry.mutation(
         description="create a new payment_info"
     )
-    async def payment_info_insert(self, info: strawberry.types.Info, payment_info: PaymentInfoInsertGQLModel) -> typing.Union[PaymentInfoGQLModel, InsertError[PaymentInfoGQLModel]]:
+    async def payment_info_insert(self, info: strawberry.types.Info, 
+        payment_info: typing.Annotated[PaymentInfoInsertGQLModel, strawberry.argument(description="popis platebních podmínek pro vytvoření nových")]
+    ) -> typing.Union[PaymentInfoGQLModel, InsertError[PaymentInfoGQLModel]]:
         result = await Insert[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
         return result
     
@@ -182,7 +184,9 @@ class PaymentInfoMutation:
             OnlyForAuthentized
         ]
     )
-    async def payment_info_update(self, info: strawberry.types.Info, payment_info: PaymentInfoUpdateGQLModel) -> typing.Union[PaymentInfoGQLModel, UpdateError[PaymentInfoGQLModel]]:
+    async def payment_info_update(self, info: strawberry.types.Info, 
+        payment_info: typing.Annotated[PaymentInfoUpdateGQLModel, strawberry.argument(description="popis platebních podmínek pro změnu existujících")]
+    ) -> typing.Union[PaymentInfoGQLModel, UpdateError[PaymentInfoGQLModel]]:
         result = await Update[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
         return result
 
@@ -192,7 +196,9 @@ class PaymentInfoMutation:
             OnlyForAuthentized
         ]
     )
-    async def payment_info_delete(self, info: strawberry.types.Info, payment_info: PaymentInfoDeleteGQLModel) -> typing.Optional[DeleteError[PaymentInfoGQLModel]]:
+    async def payment_info_delete(self, info: strawberry.types.Info, 
+        payment_info: typing.Annotated[PaymentInfoDeleteGQLModel, strawberry.argument(description="popis platebních podmínek, které mají být odstraněny")]
+    ) -> typing.Optional[DeleteError[PaymentInfoGQLModel]]:
         result = await Delete[PaymentInfoGQLModel].DoItSafeWay(info=info, entity=payment_info)
         return result
 

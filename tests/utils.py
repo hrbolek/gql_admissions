@@ -633,8 +633,6 @@ def createResolveTest(schema, types: typing.Dict[str, typing.List[uuid.UUID]]):
     test_result.__name__ = "test_entities"
     return test_result
 
-
-
 def build_entities_query(schema: dict) -> str:
     """
     Builds a federated _entities query selecting all types from the _Entity union.
@@ -689,3 +687,7 @@ def build_entities_query(schema: dict) -> str:
         "  }\n"
         "}"
     )
+
+
+def createTestsSdl(sdl):
+    pass

@@ -32,7 +32,9 @@ class BaseGQLModel:
         return instance
 
     @classmethod
-    async def load_with_loader(cls, info: strawberry.types.Info, id: uuid.UUID):
+    async def load_with_loader(cls, info: strawberry.types.Info, 
+        id: typing.Annotated[uuid.UUID, strawberry.argument(description="primary key")]
+    ):
         if id is None: return None
 
         _id = IDType(id) if isinstance(id, str) else id
@@ -147,3 +149,22 @@ rbacobject: typing.Optional["RBACObjectGQLModel"] = strawberry.federation.field(
 # createdby = strawberry.federation.field(shareable=True, graphql_type=typing.Optional["UserGQLModel"])
 # changedby = strawberry.federation.field(shareable=True, graphql_type=typing.Optional["UserGQLModel"])
 # rbacobject = strawberry.federation.field(shareable=True, graphql_type=typing.Optional["RBACObjectGQLModel"])
+
+
+import strawberry
+
+from strawberry.federation.schema_directive import schema_directive, Location
+@schema_directive(
+    repeatable=True,
+    compose=True,
+    description="Description for foreign keys",
+    locations=[Location.INPUT_FIELD_DEFINITION],
+    
+)
+class Relation:
+    """
+    @relation(to: Typ, field: 'id')
+    říká, že pole inputu je cizí klíč na zadaný typ.
+    """
+    to: str
+    field: str = "id"

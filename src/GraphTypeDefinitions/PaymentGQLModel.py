@@ -28,7 +28,7 @@ from uoishelpers.resolvers import (
     VectorResolver,
     ScalarResolver
 )
-from .BaseGQLModel import BaseGQLModel, IDType
+from .BaseGQLModel import BaseGQLModel, IDType, Relation
 
 ProgramGQLModel = typing.Annotated["ProgramGQLModel", strawberry.lazy(".ProgramGQLModel")]
 AdmissionGQLModel = typing.Annotated["AdmissionGQLModel", strawberry.lazy(".AdmissionGQLModel")]
@@ -68,7 +68,7 @@ class PaymentGQLModel(BaseGQLModel):
     student_id: typing.Optional[uuid.UUID] = strawberry.field(description="identifikovaná přihláška / student")
 
     payment_info: typing.Optional["PaymentInfoGQLModel"] = strawberry.field(
-        description="",
+        description="Informace o platebních podmínkách",
         permission_classes=[
             OnlyForAuthentized
         ],
@@ -77,7 +77,7 @@ class PaymentGQLModel(BaseGQLModel):
 
     # from .StudentGQLModel import StudentGQLModel
     student: typing.Optional["StudentGQLModel"] = strawberry.field(
-        description="",
+        description="Student, který měl platbu provést nebo platbu provedl",
         permission_classes=[
             OnlyForAuthentized
         ],
@@ -109,12 +109,30 @@ class PaymentQuery:
 )
 class PaymentInsertGQLModel:
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
-    student_id: typing.Optional[IDType] = strawberry.field(description="student id", default=None)
-    program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
+    student_id: typing.Optional[IDType] = strawberry.field(
+        description="student id", 
+        default=None, 
+        directives=[
+            Relation(to="StudentGQLModel")
+        ]
+    )
+    program_id: typing.Optional[IDType] = strawberry.field(
+        description="program id", 
+        default=None,
+        directives=[
+            Relation(to="ProgramGQLModel")
+        ]
+    )
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
     amount: typing.Optional[float] = strawberry.field(description="zaplacená částka", default=None)
-    payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(
+        description="Generální platební podmínky", 
+        default=None,
+        directives=[
+            Relation(to="PaymentInfoGQLModel")
+        ]
+    )
 
 
 @strawberry.input(
@@ -146,7 +164,9 @@ class PaymentMutation:
     @strawberry.mutation(
         description="create a new payment"
     )
-    async def payment_insert(self, info: strawberry.types.Info, payment: PaymentInsertGQLModel) -> typing.Union[PaymentGQLModel, InsertError[PaymentGQLModel]]:
+    async def payment_insert(self, info: strawberry.types.Info, 
+        payment: typing.Annotated[PaymentInsertGQLModel, strawberry.argument(description="definice pro uložení nové platby")]
+    ) -> typing.Union[PaymentGQLModel, InsertError[PaymentGQLModel]]:
         result = await Insert[PaymentGQLModel].DoItSafeWay(info=info, entity=payment)
         return result
     
@@ -156,7 +176,9 @@ class PaymentMutation:
             OnlyForAuthentized
         ]
     )
-    async def payment_update(self, info: strawberry.types.Info, payment: PaymentUpdateGQLModel) -> typing.Union[PaymentGQLModel, UpdateError[PaymentGQLModel]]:
+    async def payment_update(self, info: strawberry.types.Info, 
+        payment: typing.Annotated[PaymentUpdateGQLModel, strawberry.argument(description="definice pro změnu platby")]
+    ) -> typing.Union[PaymentGQLModel, UpdateError[PaymentGQLModel]]:
         result = await Update[PaymentGQLModel].DoItSafeWay(info=info, entity=payment)
         return result
 
@@ -166,7 +188,9 @@ class PaymentMutation:
             OnlyForAuthentized
         ]
     )
-    async def payment_delete(self, info: strawberry.types.Info, payment: PaymentDeleteGQLModel) -> typing.Optional[DeleteError[PaymentGQLModel]]:
+    async def payment_delete(self, info: strawberry.types.Info, 
+        payment: typing.Annotated[PaymentDeleteGQLModel, strawberry.argument(description="definice pro odstranění platby")]
+    ) -> typing.Optional[DeleteError[PaymentGQLModel]]:
         result = await Delete[PaymentGQLModel].DoItSafeWay(info=info, entity=payment)
         return result
 

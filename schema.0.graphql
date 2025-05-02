@@ -1,0 +1,1262 @@
+"""Description for foreign keys"""
+directive @relation(to: String!, field: String! = "id") repeatable on INPUT_FIELD_DEFINITION
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"""parameter for delete operation"""
+input AdmissionDeleteGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+}
+
+"""one (in one year) admission linked to program"""
+type AdmissionGQLModel implements BaseGQLModel @key(fields: "id") {
+  """primary key"""
+  id: UUID!
+
+  """timestamp"""
+  lastchange: DateTime
+
+  """date & time of unit born"""
+  created: DateTime
+
+  """who created this entity"""
+  createdbyId: UUID
+
+  """who changed this entity"""
+  changedbyId: UUID
+
+  """rbac ruling object"""
+  rbacobjectId: UUID
+
+  """who created this entity"""
+  createdby: UserGQLModel
+
+  """who created this entity"""
+  changedby: UserGQLModel
+
+  """rbac holds relations of user"""
+  rbacobject: RBACObjectGQLModel
+
+  """name"""
+  name: String
+
+  """name en"""
+  nameEn: String
+
+  """stav přijímacího řízení"""
+  stateId: UUID
+
+  """Program, pro který je přijímací řízení vypsáno"""
+  programId: UUID
+
+  """platební podmínky"""
+  paymentInfoId: UUID
+
+  """Od kdy lze podávat přihlášky"""
+  applicationStartDate: DateTime
+
+  """Poslední možnost podání přihlášky"""
+  applicationLastDate: DateTime
+
+  """Konec přijímacího řízení"""
+  endDate: DateTime
+
+  """Do kdy lze doložit splnění podmínek"""
+  conditionDate: DateTime
+
+  """Do kdy lze zaplatit poplatek"""
+  paymentDate: DateTime
+
+  """Prodloužená lhůta pro doložení splnění podmínek"""
+  conditionExtendedDate: DateTime
+
+  """Lhůta do kdy lze požádat o proudloužení pro doložení splnění podmínek"""
+  requestConditionExtendDate: DateTime
+
+  """Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení"""
+  requestExtraConditionsDate: DateTime
+
+  """Lhůta do kdy lze požádat o extra termín přijímacích zkoušek"""
+  requestExtraDateDate: DateTime
+
+  """První možný den přijímacích zkoušek"""
+  examStartDate: DateTime
+
+  """Poslední možný den přijímacích zkoušek"""
+  examLastDate: DateTime
+
+  """Den zápisu"""
+  studentEntryDate: DateTime
+
+  """Program, ke kterému je přijímací řízení"""
+  program: ProgramGQLModel
+
+  """Pokyny k platbě"""
+  paymentInfo: PaymentInfoGQLModel
+
+  """Stav přijímacího řízení"""
+  state: StateGQLModel
+}
+
+union AdmissionGQLModelAdmissionGQLModelUpdateError = AdmissionGQLModel | AdmissionGQLModelUpdateError
+
+"""Error object returned as an result of Delete operation"""
+type AdmissionGQLModelDeleteError {
+  """Entity to be updated"""
+  Entity: AdmissionGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+union AdmissionGQLModelInsertError = AdmissionGQLModel | InsertError
+
+"""Error object returned as an result of Update operation"""
+type AdmissionGQLModelUpdateError {
+  """Entity to be updated"""
+  Entity: AdmissionGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+"""Operators definition on AdmissionInputFilter"""
+input AdmissionInputFilter {
+  """Filter method"""
+  _or: [AdmissionInputFilterOr!] = null
+
+  """Filter method"""
+  _and: [AdmissionInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  state_id: UuidFilter = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  name: StrFilter = null
+
+  """Filter method"""
+  name_en: StrFilter = null
+
+  """Filter method"""
+  application_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  application_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  end_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_extended_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_condition_extend_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_conditions_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_date_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  student_entry_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_info: PaymentInfoInputFilter = null
+}
+
+"""And operator definition on AdmissionInputFilter"""
+input AdmissionInputFilterAnd {
+  """Filter method"""
+  _or: [AdmissionInputFilterOr!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  state_id: UuidFilter = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  name: StrFilter = null
+
+  """Filter method"""
+  name_en: StrFilter = null
+
+  """Filter method"""
+  application_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  application_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  end_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_extended_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_condition_extend_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_conditions_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_date_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  student_entry_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_info: PaymentInfoInputFilter = null
+}
+
+"""Or operator definition on AdmissionInputFilter"""
+input AdmissionInputFilterOr {
+  """Filter method"""
+  _and: [AdmissionInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  state_id: UuidFilter = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  name: StrFilter = null
+
+  """Filter method"""
+  name_en: StrFilter = null
+
+  """Filter method"""
+  application_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  application_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  end_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_date: DatetimeFilter = null
+
+  """Filter method"""
+  condition_extended_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_condition_extend_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_conditions_date: DatetimeFilter = null
+
+  """Filter method"""
+  request_extra_date_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_start_date: DatetimeFilter = null
+
+  """Filter method"""
+  exam_last_date: DatetimeFilter = null
+
+  """Filter method"""
+  student_entry_date: DatetimeFilter = null
+
+  """Filter method"""
+  payment_info: PaymentInfoInputFilter = null
+}
+
+"""parameter for create operation"""
+input AdmissionInsertGQLModel {
+  """program the admission is linked with"""
+  programId: UUID!
+
+  """primary key client generated"""
+  id: UUID = null
+
+  """name"""
+  name: String = null
+
+  """name en"""
+  nameEn: String = null
+
+  """stav přijímacího řízení"""
+  stateId: UUID = null
+
+  """platební podmínky"""
+  paymentInfoId: UUID = null
+
+  """Od kdy lze podávat přihlášky"""
+  applicationStartDate: DateTime = null
+
+  """Poslední možnost podání přihlášky"""
+  applicationLastDate: DateTime = null
+
+  """Konec přijímacího řízení"""
+  endDate: DateTime = null
+
+  """Do kdy lze doložit splnění podmínek"""
+  conditionDate: DateTime = null
+
+  """Do kdy lze zaplatit poplatek"""
+  paymentDate: DateTime = null
+
+  """Prodloužená lhůta pro doložení splnění podmínek"""
+  conditionExtendedDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o prodloužení pro doložení splnění podmínek"""
+  requestConditionExtendDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení"""
+  requestExtraConditionsDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o extra termín přijímacích zkoušek"""
+  requestExtraDateDate: DateTime = null
+
+  """První možný den přijímacích zkoušek"""
+  examStartDate: DateTime = null
+
+  """Poslední možný den přijímacích zkoušek"""
+  examLastDate: DateTime = null
+
+  """Den zápisu"""
+  studentEntryDate: DateTime = null
+}
+
+""""""
+interface AdmissionMutation {
+  """create a new admission"""
+  admissionInsert(admission: AdmissionInsertGQLModel!): AdmissionGQLModelInsertError!
+
+  """updates existing admission"""
+  admissionUpdate(admission: AdmissionUpdateGQLModel!): AdmissionGQLModelAdmissionGQLModelUpdateError!
+
+  """delete existing admission"""
+  admissionDelete(admission: AdmissionDeleteGQLModel!): AdmissionGQLModelDeleteError
+}
+
+""""""
+interface AdmissionQuery {
+  """"""
+  admissionById(id: UUID!): AdmissionGQLModel
+
+  """"""
+  admissionPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: AdmissionInputFilter = null): [AdmissionGQLModel!]!
+}
+
+"""parameter for update operation"""
+input AdmissionUpdateGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+
+  """name"""
+  name: String = null
+
+  """name en"""
+  nameEn: String = null
+
+  """stav přijímacího řízení"""
+  stateId: UUID = null
+
+  """platební podmínky"""
+  paymentInfoId: UUID = null
+
+  """Od kdy lze podávat přihlášky"""
+  applicationStartDate: DateTime = null
+
+  """Poslední možnost podání přihlášky"""
+  applicationLastDate: DateTime = null
+
+  """Konec přijímacího řízení"""
+  endDate: DateTime = null
+
+  """Do kdy lze doložit splnění podmínek"""
+  conditionDate: DateTime = null
+
+  """Do kdy lze zaplatit poplatek"""
+  paymentDate: DateTime = null
+
+  """Prodloužená lhůta pro doložení splnění podmínek"""
+  conditionExtendedDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o prodloužení pro doložení splnění podmínek"""
+  requestConditionExtendDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o specifické podmínky přijímacího řízení"""
+  requestExtraConditionsDate: DateTime = null
+
+  """Lhůta do kdy lze požádat o extra termín přijímacích zkoušek"""
+  requestExtraDateDate: DateTime = null
+
+  """První možný den přijímacích zkoušek"""
+  examStartDate: DateTime = null
+
+  """Poslední možný den přijímacích zkoušek"""
+  examLastDate: DateTime = null
+
+  """Den zápisu"""
+  studentEntryDate: DateTime = null
+}
+
+"""Entity representing an interface"""
+interface BaseGQLModel {
+  """primary key"""
+  id: UUID!
+
+  """timestamp"""
+  lastchange: DateTime
+
+  """date & time of unit born"""
+  created: DateTime
+
+  """who created this entity"""
+  createdbyId: UUID
+
+  """who changed this entity"""
+  changedbyId: UUID
+
+  """rbac ruling object"""
+  rbacobjectId: UUID
+
+  """who created this entity"""
+  createdby: UserGQLModel
+
+  """who created this entity"""
+  changedby: UserGQLModel
+
+  """rbac holds relations of user"""
+  rbacobject: RBACObjectGQLModel
+}
+
+"""Date with time (isoformat)"""
+scalar DateTime
+
+"""Datetime filter methods, only one constrain allowed"""
+input DatetimeFilter {
+  """operation for select.filter() method"""
+  _eq: DateTime = null
+
+  """operation for select.filter() method"""
+  _le: DateTime = null
+
+  """operation for select.filter() method"""
+  _lt: DateTime = null
+
+  """operation for select.filter() method"""
+  _ge: DateTime = null
+
+  """operation for select.filter() method"""
+  _gt: DateTime = null
+}
+
+"""Error object returned as an result of Insert operation"""
+type InsertError {
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](https://ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf).
+"""
+scalar JSON @specifiedBy(url: "https://ecma-international.org/wp-content/uploads/ECMA-404_2nd_edition_december_2017.pdf")
+
+""""""
+type Mutation implements AdmissionMutation & PaymentMutation & PaymentInfoMutation {
+  """create a new admission"""
+  admissionInsert(admission: AdmissionInsertGQLModel!): AdmissionGQLModelInsertError!
+
+  """updates existing admission"""
+  admissionUpdate(admission: AdmissionUpdateGQLModel!): AdmissionGQLModelAdmissionGQLModelUpdateError!
+
+  """delete existing admission"""
+  admissionDelete(admission: AdmissionDeleteGQLModel!): AdmissionGQLModelDeleteError
+
+  """create a new payment"""
+  paymentInsert(payment: PaymentInsertGQLModel!): PaymentGQLModelInsertError!
+
+  """updates existing payment"""
+  paymentUpdate(payment: PaymentUpdateGQLModel!): PaymentGQLModelPaymentGQLModelUpdateError!
+
+  """delete existing payment"""
+  paymentDelete(payment: PaymentDeleteGQLModel!): PaymentGQLModelDeleteError
+
+  """create a new payment_info"""
+  paymentInfoInsert(paymentInfo: PaymentInfoInsertGQLModel!): PaymentInfoGQLModelInsertError!
+
+  """updates existing payment_info"""
+  paymentInfoUpdate(paymentInfo: PaymentInfoUpdateGQLModel!): PaymentInfoGQLModelPaymentInfoGQLModelUpdateError!
+
+  """delete existing payment_info"""
+  paymentInfoDelete(paymentInfo: PaymentInfoDeleteGQLModel!): PaymentInfoGQLModelDeleteError
+}
+
+"""parameter for delete operation"""
+input PaymentDeleteGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+}
+
+"""one (in one year) admission linked to program"""
+type PaymentGQLModel implements BaseGQLModel @key(fields: "id") {
+  """primary key"""
+  id: UUID!
+
+  """timestamp"""
+  lastchange: DateTime
+
+  """date & time of unit born"""
+  created: DateTime
+
+  """who created this entity"""
+  createdbyId: UUID
+
+  """who changed this entity"""
+  changedbyId: UUID
+
+  """rbac ruling object"""
+  rbacobjectId: UUID
+
+  """who created this entity"""
+  createdby: UserGQLModel
+
+  """who created this entity"""
+  changedby: UserGQLModel
+
+  """rbac holds relations of user"""
+  rbacobject: RBACObjectGQLModel
+
+  """unikátní identifikátor platby vystavený bankou (link do banky)"""
+  bankUniqueData: String
+
+  """uvedený variabilní symbol"""
+  variableSymbol: String
+
+  """zaplacená částka"""
+  amount: Float
+
+  """Generální platební podmínky"""
+  paymentInfoId: UUID
+
+  """identifikovaná přihláška / student"""
+  studentId: UUID
+
+  """"""
+  paymentInfo: PaymentInfoGQLModel
+
+  """"""
+  student: StudentGQLModel
+}
+
+"""Error object returned as an result of Delete operation"""
+type PaymentGQLModelDeleteError {
+  """Entity to be updated"""
+  Entity: PaymentGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+union PaymentGQLModelInsertError = PaymentGQLModel | InsertError
+
+union PaymentGQLModelPaymentGQLModelUpdateError = PaymentGQLModel | PaymentGQLModelUpdateError
+
+"""Error object returned as an result of Update operation"""
+type PaymentGQLModelUpdateError {
+  """Entity to be updated"""
+  Entity: PaymentGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+"""parameter for delete operation"""
+input PaymentInfoDeleteGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+}
+
+"""one (in one year) admission linked to program"""
+type PaymentInfoGQLModel implements BaseGQLModel @key(fields: "id") {
+  """primary key"""
+  id: UUID!
+
+  """timestamp"""
+  lastchange: DateTime
+
+  """date & time of unit born"""
+  created: DateTime
+
+  """who created this entity"""
+  createdbyId: UUID
+
+  """who changed this entity"""
+  changedbyId: UUID
+
+  """rbac ruling object"""
+  rbacobjectId: UUID
+
+  """who created this entity"""
+  createdby: UserGQLModel
+
+  """who created this entity"""
+  changedby: UserGQLModel
+
+  """rbac holds relations of user"""
+  rbacobject: RBACObjectGQLModel
+
+  """číslo účtu s kódem banky za lomítkem"""
+  accountNumber: String
+
+  """specifický symbol"""
+  specificSymbol: String
+
+  """konstantní symbol"""
+  constantSymbol: String
+
+  """IBAN code"""
+  IBAN: String
+
+  """SWIFT bank code"""
+  SWIFT: String
+
+  """Částka k zaplacení"""
+  amount: Float
+
+  """"""
+  payments(skip: Int = 0, limit: Int = 10, orderby: String = null, where: PaymentInfoInputFilter = null): [PaymentGQLModel!]!
+
+  """"""
+  admission: AdmissionGQLModel
+}
+
+"""Error object returned as an result of Delete operation"""
+type PaymentInfoGQLModelDeleteError {
+  """Entity to be updated"""
+  Entity: PaymentInfoGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+union PaymentInfoGQLModelInsertError = PaymentInfoGQLModel | InsertError
+
+union PaymentInfoGQLModelPaymentInfoGQLModelUpdateError = PaymentInfoGQLModel | PaymentInfoGQLModelUpdateError
+
+"""Error object returned as an result of Update operation"""
+type PaymentInfoGQLModelUpdateError {
+  """Entity to be updated"""
+  Entity: PaymentInfoGQLModel
+
+  """reason of fail"""
+  msg: String!
+
+  """always True, available when error"""
+  failed: Boolean!
+
+  """original data"""
+  input: JSON
+}
+
+"""Operators definition on PaymentInfoInputFilter"""
+input PaymentInfoInputFilter {
+  """Filter method"""
+  _or: [PaymentInfoInputFilterOr!] = null
+
+  """Filter method"""
+  _and: [PaymentInfoInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  account_number: StrFilter = null
+
+  """Filter method"""
+  specific_symbol: StrFilter = null
+
+  """Filter method"""
+  constant_symbol: StrFilter = null
+
+  """Filter method"""
+  IBAN: StrFilter = null
+
+  """Filter method"""
+  SWIFT: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInfoInputFilterAmount = null
+}
+
+"""Expression on attribute 'amount'. Only one constrain allowed."""
+input PaymentInfoInputFilterAmount {
+  """operation for select.filter() method"""
+  _eq: Float = null
+
+  """operation for select.filter() method"""
+  _le: Float = null
+
+  """operation for select.filter() method"""
+  _lt: Float = null
+
+  """operation for select.filter() method"""
+  _ge: Float = null
+
+  """operation for select.filter() method"""
+  _gt: Float = null
+}
+
+"""And operator definition on PaymentInfoInputFilter"""
+input PaymentInfoInputFilterAnd {
+  """Filter method"""
+  _or: [PaymentInfoInputFilterOr!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  account_number: StrFilter = null
+
+  """Filter method"""
+  specific_symbol: StrFilter = null
+
+  """Filter method"""
+  constant_symbol: StrFilter = null
+
+  """Filter method"""
+  IBAN: StrFilter = null
+
+  """Filter method"""
+  SWIFT: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInfoInputFilterAmount = null
+}
+
+"""Or operator definition on PaymentInfoInputFilter"""
+input PaymentInfoInputFilterOr {
+  """Filter method"""
+  _and: [PaymentInfoInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  account_number: StrFilter = null
+
+  """Filter method"""
+  specific_symbol: StrFilter = null
+
+  """Filter method"""
+  constant_symbol: StrFilter = null
+
+  """Filter method"""
+  IBAN: StrFilter = null
+
+  """Filter method"""
+  SWIFT: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInfoInputFilterAmount = null
+}
+
+"""parameter for create operation"""
+input PaymentInfoInsertGQLModel {
+  """primary key client generated"""
+  id: UUID = null
+
+  """číslo účtu s kódem banky za lomítkem"""
+  accountNumber: String = null
+
+  """specifický symbol"""
+  specificSymbol: String = null
+
+  """konstantní symbol"""
+  constantSymbol: String = null
+
+  """IBAN code"""
+  IBAN: String = null
+
+  """SWIFT bank code"""
+  SWIFT: String = null
+
+  """Částka k zaplacení"""
+  amount: Float = null
+}
+
+""""""
+interface PaymentInfoMutation {
+  """create a new payment_info"""
+  paymentInfoInsert(paymentInfo: PaymentInfoInsertGQLModel!): PaymentInfoGQLModelInsertError!
+
+  """updates existing payment_info"""
+  paymentInfoUpdate(paymentInfo: PaymentInfoUpdateGQLModel!): PaymentInfoGQLModelPaymentInfoGQLModelUpdateError!
+
+  """delete existing payment_info"""
+  paymentInfoDelete(paymentInfo: PaymentInfoDeleteGQLModel!): PaymentInfoGQLModelDeleteError
+}
+
+""""""
+interface PaymentInfoQuery {
+  """returns payment_info by its id"""
+  paymentInfoById(id: UUID!): PaymentInfoGQLModel
+
+  """returns payment_infos defined by filter"""
+  paymentInfoPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: PaymentInfoInputFilter = null): [PaymentInfoGQLModel!]!
+}
+
+"""parameter for update operation"""
+input PaymentInfoUpdateGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+
+  """číslo účtu s kódem banky za lomítkem"""
+  accountNumber: String = null
+
+  """specifický symbol"""
+  specificSymbol: String = null
+
+  """konstantní symbol"""
+  constantSymbol: String = null
+
+  """IBAN code"""
+  IBAN: String = null
+
+  """SWIFT bank code"""
+  SWIFT: String = null
+
+  """Částka k zaplacení"""
+  amount: Float = null
+}
+
+"""Operators definition on PaymentInputFilter"""
+input PaymentInputFilter {
+  """Filter method"""
+  _or: [PaymentInputFilterOr!] = null
+
+  """Filter method"""
+  _and: [PaymentInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  user_id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  bank_unique_data: StrFilter = null
+
+  """Filter method"""
+  variable_symbol: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInputFilterAmount = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  student_id: UuidFilter = null
+
+  """Filter method"""
+  lastchange: DatetimeFilter = null
+
+  """Filter method"""
+  created: DatetimeFilter = null
+}
+
+"""Expression on attribute 'amount'. Only one constrain allowed."""
+input PaymentInputFilterAmount {
+  """operation for select.filter() method"""
+  _eq: Float = null
+
+  """operation for select.filter() method"""
+  _le: Float = null
+
+  """operation for select.filter() method"""
+  _lt: Float = null
+
+  """operation for select.filter() method"""
+  _ge: Float = null
+
+  """operation for select.filter() method"""
+  _gt: Float = null
+}
+
+"""And operator definition on PaymentInputFilter"""
+input PaymentInputFilterAnd {
+  """Filter method"""
+  _or: [PaymentInputFilterOr!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  user_id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  bank_unique_data: StrFilter = null
+
+  """Filter method"""
+  variable_symbol: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInputFilterAmount = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  student_id: UuidFilter = null
+
+  """Filter method"""
+  lastchange: DatetimeFilter = null
+
+  """Filter method"""
+  created: DatetimeFilter = null
+}
+
+"""Or operator definition on PaymentInputFilter"""
+input PaymentInputFilterOr {
+  """Filter method"""
+  _and: [PaymentInputFilterAnd!] = null
+
+  """Filter method"""
+  id: UuidFilter = null
+
+  """Filter method"""
+  user_id: UuidFilter = null
+
+  """Filter method"""
+  program_id: UuidFilter = null
+
+  """Filter method"""
+  bank_unique_data: StrFilter = null
+
+  """Filter method"""
+  variable_symbol: StrFilter = null
+
+  """Filter method"""
+  amount: PaymentInputFilterAmount = null
+
+  """Filter method"""
+  payment_info_id: UuidFilter = null
+
+  """Filter method"""
+  student_id: UuidFilter = null
+
+  """Filter method"""
+  lastchange: DatetimeFilter = null
+
+  """Filter method"""
+  created: DatetimeFilter = null
+}
+
+"""parameter for create operation"""
+input PaymentInsertGQLModel {
+  """primary key client generated"""
+  id: UUID = null
+
+  """student id"""
+  studentId: UUID = null @relation(to: "StudentGQLModel", field: "id")
+
+  """program id"""
+  programId: UUID = null @relation(to: "ProgramGQLModel", field: "id")
+
+  """unikátní identifikátor platby vystavený bankou (link do banky)"""
+  bankUniqueData: String = null
+
+  """uvedený variabilní symbol"""
+  variableSymbol: String = null
+
+  """zaplacená částka"""
+  amount: Float = null
+
+  """Generální platební podmínky"""
+  paymentInfoId: UUID = null @relation(to: "PaymentInfoGQLModel", field: "id")
+}
+
+""""""
+interface PaymentMutation {
+  """create a new payment"""
+  paymentInsert(payment: PaymentInsertGQLModel!): PaymentGQLModelInsertError!
+
+  """updates existing payment"""
+  paymentUpdate(payment: PaymentUpdateGQLModel!): PaymentGQLModelPaymentGQLModelUpdateError!
+
+  """delete existing payment"""
+  paymentDelete(payment: PaymentDeleteGQLModel!): PaymentGQLModelDeleteError
+}
+
+""""""
+interface PaymentQuery {
+  """returns payment by its id"""
+  paymentById(id: UUID!): PaymentGQLModel
+
+  """returns payments defined by filter"""
+  paymentPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: PaymentInputFilter = null): [PaymentGQLModel!]!
+}
+
+"""parameter for update operation"""
+input PaymentUpdateGQLModel {
+  """primary key client generated"""
+  id: UUID!
+
+  """timestamp for concurrent update"""
+  lastchange: DateTime!
+
+  """student id"""
+  studentId: UUID = null
+
+  """program id"""
+  programId: UUID = null
+
+  """unikátní identifikátor platby vystavený bankou (link do banky)"""
+  bankUniqueData: String = null
+
+  """uvedený variabilní symbol"""
+  variableSymbol: String = null
+
+  """zaplacená částka"""
+  amount: Float = null
+
+  """Generální platební podmínky"""
+  paymentInfoId: UUID = null
+}
+
+extend type ProgramGQLModel implements BaseGQLModel @key(fields: "id") {
+  id: UUID! @external
+  lastchange: DateTime @external
+  created: DateTime @external
+  createdbyId: UUID @external
+  changedbyId: UUID @external
+  rbacobjectId: UUID @external
+  createdby: UserGQLModel @external
+  changedby: UserGQLModel @external
+  rbacobject: RBACObjectGQLModel @external
+}
+
+type Query implements AdmissionQuery & PaymentQuery & PaymentInfoQuery {
+  _entities(representations: [_Any!]!): [_Entity]!
+  _service: _Service!
+
+  """"""
+  admissionById(id: UUID!): AdmissionGQLModel
+
+  """"""
+  admissionPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: AdmissionInputFilter = null): [AdmissionGQLModel!]!
+
+  """returns payment by its id"""
+  paymentById(id: UUID!): PaymentGQLModel
+
+  """returns payments defined by filter"""
+  paymentPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: PaymentInputFilter = null): [PaymentGQLModel!]!
+
+  """returns payment_info by its id"""
+  paymentInfoById(id: UUID!): PaymentInfoGQLModel
+
+  """returns payment_infos defined by filter"""
+  paymentInfoPage(skip: Int = 0, limit: Int = 10, orderby: String = null, where: PaymentInfoInputFilter = null): [PaymentInfoGQLModel!]!
+}
+
+extend type RBACObjectGQLModel @key(fields: "id") {
+  id: UUID! @external
+}
+
+extend type StateGQLModel implements BaseGQLModel @key(fields: "id") {
+  """primary key"""
+  id: UUID!
+  lastchange: DateTime @external
+  created: DateTime @external
+  createdbyId: UUID @external
+  changedbyId: UUID @external
+  rbacobjectId: UUID @external
+  createdby: UserGQLModel @external
+  changedby: UserGQLModel @external
+  rbacobject: RBACObjectGQLModel @external
+}
+
+"""Str filter methods, only one constrain allowed"""
+input StrFilter {
+  """operation for select.filter() method"""
+  _eq: String = null
+
+  """operation for select.filter() method"""
+  _le: String = null
+
+  """operation for select.filter() method"""
+  _lt: String = null
+
+  """operation for select.filter() method"""
+  _ge: String = null
+
+  """operation for select.filter() method"""
+  _gt: String = null
+
+  """operation for select.filter() method"""
+  _like: String = null
+
+  """operation for select.filter() method"""
+  _ilike: String = null
+
+  """operation for select.filter() method"""
+  _startswith: String = null
+
+  """operation for select.filter() method"""
+  _endswith: String = null
+}
+
+extend type StudentGQLModel @key(fields: "id") {
+  id: UUID! @external
+  lastchange: DateTime @external
+  created: DateTime @external
+  createdbyId: UUID @external
+  changedbyId: UUID @external
+  createdby: UserGQLModel @external
+  changedby: UserGQLModel @external
+  rbacobjectId: UUID @external
+  rbacobject: RBACObjectGQLModel @external
+
+  """Platby za přijímací řízení"""
+  payments: PaymentGQLModel
+
+  """Platby za přijímací řízení"""
+  myId: UUID
+}
+
+scalar UUID
+
+extend type UserGQLModel @key(fields: "id") {
+  id: UUID! @external
+  lastchange: DateTime @external
+  created: DateTime @external
+  createdbyId: UUID @external
+  changedbyId: UUID @external
+  createdby: UserGQLModel @external
+  changedby: UserGQLModel @external
+  rbacobjectId: UUID @external
+  rbacobject: RBACObjectGQLModel @external
+}
+
+"""Integer filter methods, only one constrain allowed"""
+input UuidFilter {
+  """operation for select.filter() method"""
+  _eq: UUID = null
+
+  """operation for select.filter() method"""
+  _in: [UUID!] = null
+}
+
+scalar _Any
+
+union _Entity = AdmissionGQLModel | PaymentGQLModel | PaymentInfoGQLModel | ProgramGQLModel | RBACObjectGQLModel | StateGQLModel | StudentGQLModel | UserGQLModel
+
+type _Service {
+  sdl: String!
+}

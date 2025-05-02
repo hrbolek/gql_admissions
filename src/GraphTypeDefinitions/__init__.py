@@ -25,13 +25,15 @@ from .UserGQLModel import UserGQLModel
 from .ProgramGQLModel import ProgramGQLModel
 from .StateGQLModel import StateGQLModel
 from .StudentGQLModel import StudentGQLModel
-from .UserGQLModel import UserGQLModel
+
+from .BaseGQLModel import Relation
 
 schema = strawberry.federation.Schema(
     query=Query, 
     mutation=Mutation,
     extensions=[],
     types=(UserGQLModel, ProgramGQLModel, StateGQLModel, StudentGQLModel ),
+    schema_directives=[Relation]
     # enable_federation_2=True
 )
 
