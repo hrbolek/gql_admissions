@@ -11,7 +11,7 @@ from uoishelpers.gqlpermissions import RBACObjectGQLModel
 from .BaseGQLModel import IDType, BaseGQLModel, BaseGQLModelEx
 
 @strawberry.federation.type(keys=["id"], extend=True) #, description="An user in system")
-class UserGQLModel(BaseGQLModel, BaseGQLModelEx):
+class UserGQLModel(BaseGQLModelEx):
 
     from .BaseGQLModel import (
         id,

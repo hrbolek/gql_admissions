@@ -9,10 +9,10 @@ from uoishelpers.gqlpermissions import RBACObjectGQLModel
 PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentGQLModel")]
 
 # from .BaseGQLModel import _BaseGQLModel as BaseGQLModel
-from .BaseGQLModel import BaseGQLModel, BaseGQLModelEx
+from .BaseGQLModel import BaseGQLModel, BaseGQLModelEx, IDType
 
 @strawberry.federation.type(keys=["id"], extend=True) #, description="An user in system")
-class StudentGQLModel(BaseGQLModelEx, BaseGQLModel):
+class StudentGQLModel(BaseGQLModelEx):
     
     from .BaseGQLModel import (
         id,
@@ -34,3 +34,8 @@ class StudentGQLModel(BaseGQLModelEx, BaseGQLModel):
         rows = await loader.filter_by(student_id=self.id)
         row = next(rows, None)
         return PaymentGQLModel.from_dataclass(row) if row else None
+    
+    @strawberry.field(description="Platby za přijímací řízení")
+    async def my_id(self, info: strawberry.types.Info) -> typing.Optional[IDType]:
+        return self.id
+    

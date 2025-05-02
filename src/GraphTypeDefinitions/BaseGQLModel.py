@@ -104,6 +104,9 @@ class BaseGQLModelEx:
 
     @classmethod
     async def resolve_reference(cls, info: strawberry.types.Info, **data):
+        id = data.get("id", None)
+        id = IDType(id) if isinstance(id, str) else id
+        data["id"] = id
         result = cls(**data)
         return result
     
