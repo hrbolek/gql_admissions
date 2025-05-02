@@ -27,7 +27,7 @@ class StudentGQLModel(BaseGQLModelEx, BaseGQLModel):
     )    
                
     @strawberry.field(description="Platby za přijímací řízení")
-    async def payments(self, info: strawberry.types.Info) -> typing.Optiona[PaymentGQLModel]:
+    async def payments(self, info: strawberry.types.Info) -> typing.Optional[PaymentGQLModel]:
         from .AdmissionGQLModel import AdmissionGQLModel
         from .PaymentGQLModel import PaymentGQLModel
         loader = PaymentGQLModel.getLoader(info)
