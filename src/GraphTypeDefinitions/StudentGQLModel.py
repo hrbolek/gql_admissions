@@ -27,15 +27,10 @@ class StudentGQLModel(BaseGQLModelEx, BaseGQLModel):
     )    
                
     @strawberry.field(description="Platby za přijímací řízení")
-    async def payments(self, info: strawberry.types.Info) -> typing.List[PaymentGQLModel]:
+    async def payments(self, info: strawberry.types.Info) -> typing.Optiona[PaymentGQLModel]:
         from .AdmissionGQLModel import AdmissionGQLModel
         from .PaymentGQLModel import PaymentGQLModel
-        return []
-    
-        raise NotImplementedError()
-        loader = AdDisciplineResultGQLModel.getloader(info=info)
-        rows = await loader.filter_by(user_id=self.id)
-        results = (AdmissionGQLModel.from_sqlalchemy(row.discipline.admission) for row in rows)
-        return results
-                
-            
+        loader = PaymentGQLModel.getLoader(info)
+        rows = await loader.filter_by(student_id=self.id)
+        row = next(rows, None)
+        return PaymentGQLModel.from_dataclass(row) if row else None
