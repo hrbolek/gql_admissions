@@ -36,17 +36,28 @@ PaymentInfoGQLModel = typing.Annotated["PaymentInfoGQLModel", strawberry.lazy(".
 StudentGQLModel = typing.Annotated["StudentGQLModel", strawberry.lazy(".StudentGQLModel")]
 
 
-@createInputs
-@dataclasses.dataclass
+@createInputs(v2=True)
 class PaymentInputFilter:
     id: IDType
-    user_id: IDType
-    program_id: IDType
+    user_id: IDType = strawberry.field(
+        description="item for filtering by user id",
+        directives=[Relation(to="UserGQLModel")]
+    )
+    program_id: IDType = strawberry.field(
+        description="item for filtering by program id",
+        directives=[Relation(to="ProgramGQLModel")]
+    )
     bank_unique_data: str
     variable_symbol: str
     amount: float
-    payment_info_id: IDType
-    student_id: IDType
+    payment_info_id: IDType = strawberry.field(
+        description="item for filtering by payment info id",
+        directives=[Relation(to="PaymentInfoGQLModel")]
+    )
+    student_id: IDType = strawberry.field(
+        description="item for filtering by student id",
+        directives=[Relation(to="StudentGQLModel")]
+    )
     lastchange: datetime.datetime
     created: datetime.datetime
 
@@ -64,8 +75,14 @@ class PaymentGQLModel(BaseGQLModel):
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol")
     amount: typing.Optional[float] = strawberry.field(description="zaplacená částka")
     
-    payment_info_id: typing.Optional[uuid.UUID] = strawberry.field(description="Generální platební podmínky")
-    student_id: typing.Optional[uuid.UUID] = strawberry.field(description="identifikovaná přihláška / student")
+    payment_info_id: typing.Optional[uuid.UUID] = strawberry.field(
+        description="Generální platební podmínky",
+        directives=[Relation(to="PaymentInfoGQLModel")]
+    )
+    student_id: typing.Optional[uuid.UUID] = strawberry.field(
+        description="identifikovaná přihláška / student",
+        directives=[Relation(to="StudentGQLModel")]
+    )
 
     payment_info: typing.Optional["PaymentInfoGQLModel"] = strawberry.field(
         description="Informace o platebních podmínkách",
@@ -141,12 +158,30 @@ class PaymentInsertGQLModel:
 class PaymentUpdateGQLModel:
     id: IDType = strawberry.field(description="primary key client generated")
     lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
-    student_id: typing.Optional[IDType] = strawberry.field(description="student id", default=None)
-    program_id: typing.Optional[IDType] = strawberry.field(description="program id", default=None)
+    student_id: typing.Optional[IDType] = strawberry.field(
+        description="student id", 
+        default=None,
+        directives=[
+            Relation(to="StudentGQLModel")
+        ]
+    )
+    program_id: typing.Optional[IDType] = strawberry.field(
+        description="program id", 
+        default=None,
+        directives=[
+            Relation(to="ProgramGQLModel")
+        ]
+    )
     bank_unique_data: typing.Optional[str] = strawberry.field(description="unikátní identifikátor platby vystavený bankou (link do banky)", default=None)
     variable_symbol: typing.Optional[str] = strawberry.field(description="uvedený variabilní symbol", default=None)
     amount: typing.Optional[float] = strawberry.field(description="zaplacená částka", default=None)
-    payment_info_id: typing.Optional[IDType] = strawberry.field(description="Generální platební podmínky", default=None)
+    payment_info_id: typing.Optional[IDType] = strawberry.field(
+        description="Generální platební podmínky", 
+        default=None,
+        directives=[
+            Relation(to="PaymentInfoGQLModel")
+        ]
+    )
 
 @strawberry.input(
     description="parameter for delete operation"

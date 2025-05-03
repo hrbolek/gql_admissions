@@ -12,8 +12,10 @@ from graphql.language import (
     DocumentNode,
     ObjectTypeDefinitionNode,
     FieldDefinitionNode,
+    DirectiveNode,
     StringValueNode,
     TypeNode,
+    ArgumentNode,
     InputObjectTypeDefinitionNode,
     ScalarTypeDefinitionNode,
     UnionTypeDefinitionNode,
@@ -796,6 +798,7 @@ async def test_insert(sdl_doc, ops, executor):
     created = data.get(operation)
     assert created is not None, "Insert mutation returned None"
     assert "Error" not in created.get("__typename", ""), f"{operation} returned error: {created}"
+    assert created.get("createdbyId", None) is not None, f"{operation} handles create createdby by wrong way"
 
     return created
 
@@ -820,8 +823,9 @@ async def test_update(sdl_doc, ops, executor):
     data = result.get("data")
     assert data is not None, "Empty response, check resolver for update"
     updated = data.get(operation)
-    assert updated is not None, "Update mutation returned None"
+    assert updated is not None, f"Update mutation returned None\n{operation}"
     assert "Error" not in updated.get("__typename", ""), f"{operation} returned error: {updated}"
+    assert updated.get("changedbyId", None) is not None, f"{operation} handles changedby by wrong way"
 
     return updated
 
@@ -929,9 +933,13 @@ def createTests(schema):
     async def T3():
         return await test_validate_root_descriptions(sdl_doc)
     
+    @pytest.mark.asyncio
+    async def T4():
+        return await test_validate_relation_directives(sdl_doc)
     result["test_input_description"] = T1
     result["test_object_description"] = T2
     result["test_root_description"] = T3
+    result["test_validate_relation_directives"] = T4
     return result
         
 async def createResolveTest(sdl_doc: DocumentNode, types: dict):
@@ -1066,3 +1074,51 @@ async def test_validate_root_descriptions(sdl_doc: DocumentNode) -> None:
                         errors.append(f"Argument '{typename}.{fname}({arg.name.value})' is missing a description")
     if errors:
         raise ValueError("Missing descriptions in SDL root types:\n" + "\n".join(errors))
+    
+async def test_validate_relation_directives(sdl_doc: DocumentNode) -> None:
+    """
+    Ensure that every field in INPUT_OBJECTs and OBJECTs whose name ends with 'id' or 'Id'
+    has a @relation(to: "<TypeName>GQLModel") directive, and that the 'to' argument is
+    a string value ending with 'GQLModel'. Raises ValueError listing all violations.
+    """
+    errors = []
+
+    for defn in sdl_doc.definitions:
+        if isinstance(defn, (InputObjectTypeDefinitionNode, ObjectTypeDefinitionNode)):
+            type_name = defn.name.value
+            if type_name in ["Query", "Mutation"]:
+                continue
+            for field in defn.fields or []:  # FieldDefinitionNode
+                field_name = field.name.value
+                if field_name.lower().endswith("id") and field_name != "id":
+                    # find @relation directives
+                    rel_dirs = [
+                        d for d in (field.directives or [])
+                        if isinstance(d, DirectiveNode) and d.name.value == "relation"
+                    ]
+                    if not rel_dirs:
+                        errors.append(f"{type_name}.{field_name}: missing @relation directive")
+                        continue
+
+                    # there may be multiple, but we check each
+                    for d in rel_dirs:
+                        # find 'to' argument
+                        to_arg = next(
+                            (a for a in (d.arguments or []) if isinstance(a, ArgumentNode) and a.name.value == "to"),
+                            None
+                        )
+                        if not to_arg or not isinstance(to_arg.value, StringValueNode):
+                            errors.append(
+                                f"{type_name}.{field_name}: @relation directive missing string 'to' argument"
+                            )
+                            continue
+                        to_val = to_arg.value.value
+                        if not to_val.endswith("GQLModel"):
+                            errors.append(
+                                f"{type_name}.{field_name}: @relation to='{to_val}' must end with 'GQLModel'"
+                            )
+
+    if errors:
+        raise ValueError(
+            "Relation directive validation errors:\n  " + "\n  ".join(errors)
+        )

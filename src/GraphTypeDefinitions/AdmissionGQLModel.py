@@ -28,20 +28,29 @@ from uoishelpers.resolvers import (
     ScalarResolver
 )
 
-from .BaseGQLModel import BaseGQLModel, IDType
+from .BaseGQLModel import BaseGQLModel, IDType, Relation
 
 ProgramGQLModel = typing.Annotated["ProgramGQLModel", strawberry.lazy(".ProgramGQLModel")]
 PaymentInfoGQLModel = typing.Annotated["PaymentInfoGQLModel", strawberry.lazy(".PaymentInfoGQLModel")]
 PaymentInfoInputFilter = typing.Annotated["PaymentInfoInputFilter", strawberry.lazy(".PaymentInfoGQLModel")]
 StateGQLModel = typing.Annotated["StateGQLModel", strawberry.lazy(".StateGQLModel")]
 
-@createInputs
-@dataclasses.dataclass
+@createInputs(v2=True)
+# @dataclasses.dataclass
 class AdmissionInputFilter:
     id: IDType
-    program_id: IDType
-    state_id: IDType
-    payment_info_id: IDType
+    program_id: IDType = strawberry.field(
+        description="Filter for program id", 
+        directives=[Relation(to="ProgramGQLModel")]
+    )
+    state_id: IDType = strawberry.field(
+        description="Filter for state id", 
+        directives=[Relation(to="StateGQLModel")]
+    )
+    payment_info_id: IDType = strawberry.field(
+        description="Filter for paymentInfo id", 
+        directives=[Relation(to="PaymentInfoGQLModel")]
+    )
 
     name: str
     name_en: str
@@ -75,9 +84,21 @@ class AdmissionGQLModel(BaseGQLModel):
     name: typing.Optional[str] = strawberry.field(description="name", default=None)
     name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
 
-    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
-    program_id: typing.Optional[IDType] = strawberry.field(description="Program, pro který je přijímací řízení vypsáno", default=None)
-    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
+    state_id: typing.Optional[IDType] = strawberry.field(
+        description="stav přijímacího řízení", 
+        default=None,
+        directives=[Relation(to="StateGQLModel")]
+    )
+    program_id: typing.Optional[IDType] = strawberry.field(
+        description="Program, pro který je přijímací řízení vypsáno", 
+        default=None,
+        directives=[Relation(to="ProgramGQLModel")]
+    )
+    payment_info_id: typing.Optional[IDType] = strawberry.field(
+        description="platební podmínky", 
+        default=None,
+        directives=[Relation(to="PaymentInfoGQLModel")]
+    )
 
     application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
     application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
@@ -147,13 +168,26 @@ class AdmissionQuery:
 )
 class AdmissionInsertGQLModel:
     program_id: IDType = strawberry.field(
-        description="program the admission is linked with"
+        description="program the admission is linked with",
+        directives=[Relation(to="ProgramGQLModel")]
     )
     id: typing.Optional[IDType] = strawberry.field(description="primary key client generated", default=None)
     name: typing.Optional[str] = strawberry.field(description="name", default=None)
     name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
-    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
-    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
+    state_id: typing.Optional[IDType] = strawberry.field(
+        description="stav přijímacího řízení", 
+        default=None,
+        directives=[
+            Relation(to="StateGQLModel")
+        ]
+    )
+    payment_info_id: typing.Optional[IDType] = strawberry.field(
+        description="platební podmínky", 
+        default=None,
+        directives=[
+            Relation(to="PaymentInfoGQLModel")
+        ]
+    )
     application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
     application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
     end_date: typing.Optional[datetime.datetime] = strawberry.field(description="Konec přijímacího řízení", default=None)
@@ -176,8 +210,20 @@ class AdmissionUpdateGQLModel:
     lastchange: datetime.datetime = strawberry.field(description="timestamp for concurrent update")
     name: typing.Optional[str] = strawberry.field(description="name", default=None)
     name_en: typing.Optional[str] = strawberry.field(description="name en", default=None)
-    state_id: typing.Optional[IDType] = strawberry.field(description="stav přijímacího řízení", default=None)
-    payment_info_id: typing.Optional[IDType] = strawberry.field(description="platební podmínky", default=None)
+    state_id: typing.Optional[IDType] = strawberry.field(
+        description="stav přijímacího řízení", 
+        default=None,
+        directives=[
+            Relation(to="StateGQLModel")
+        ]
+    )
+    payment_info_id: typing.Optional[IDType] = strawberry.field(
+        description="platební podmínky", 
+        default=None,
+        directives=[
+            Relation(to="PaymentInfoGQLModel")
+        ]
+    )
     application_start_date: typing.Optional[datetime.datetime] = strawberry.field(description="Od kdy lze podávat přihlášky", default=None)
     application_last_date: typing.Optional[datetime.datetime] = strawberry.field(description="Poslední možnost podání přihlášky", default=None)
     end_date: typing.Optional[datetime.datetime] = strawberry.field(description="Konec přijímacího řízení", default=None)

@@ -13,7 +13,23 @@ UserGQLModel = typing.Annotated["UserGQLModel", strawberry.lazy(".UserGQLModel")
 # async def resolve_reference(cls, info: strawberry.types.Info, id: IDType, **otherData):
 #     _id = IDType(id) if isinstance(id, str) else id
 #     return None if id is None else cls(id=_id, **otherData)
+import strawberry
 
+from strawberry.federation.schema_directive import schema_directive, Location
+@schema_directive(
+    repeatable=True,
+    compose=True,
+    description="Description for foreign keys",
+    locations=[Location.INPUT_FIELD_DEFINITION],
+    
+)
+class Relation:
+    """
+    @relation(to: Typ, field: 'id')
+    říká, že pole inputu je cizí klíč na zadaný typ.
+    """
+    to: str
+    field: str = "id"
 
 @strawberry.interface(
     # keys=["id"], 
@@ -51,32 +67,35 @@ class BaseGQLModel:
         description="primary key", 
         # default=None,
         permission_classes=[OnlyForAuthentized]
-        )
+    )
     lastchange: typing.Optional[datetime.datetime] = strawberry.field(
         description="timestamp", 
         default=None,
         permission_classes=[OnlyForAuthentized]
-        )
+    )
     created: typing.Optional[datetime.datetime] = strawberry.field(
         description="date & time of unit born", 
         default=None,
         permission_classes=[OnlyForAuthentized]
-        )
+    )
     createdby_id: typing.Optional[IDType] = strawberry.field(
         description="who created this entity", 
         default=None,
-        permission_classes=[OnlyForAuthentized]
-        )
+        permission_classes=[OnlyForAuthentized],
+        directives=[Relation(to="UserGQLModel")]
+    )
     changedby_id: typing.Optional[IDType] = strawberry.field(
         description="who changed this entity", 
         default=None,
-        permission_classes=[OnlyForAuthentized]
-        )
+        permission_classes=[OnlyForAuthentized],
+        directives=[Relation(to="UserGQLModel")]
+    )
     rbacobject_id: typing.Optional[IDType] = strawberry.field(
         description="rbac ruling object", 
         default=None,
-        permission_classes=[OnlyForAuthentized]
-        )
+        permission_classes=[OnlyForAuthentized],
+        directives=[Relation(to="GroupGQLModel"), Relation(to="UserGQLModel")]
+    )
 
     @strawberry.field(
         description="who created this entity",
@@ -151,20 +170,3 @@ rbacobject: typing.Optional["RBACObjectGQLModel"] = strawberry.federation.field(
 # rbacobject = strawberry.federation.field(shareable=True, graphql_type=typing.Optional["RBACObjectGQLModel"])
 
 
-import strawberry
-
-from strawberry.federation.schema_directive import schema_directive, Location
-@schema_directive(
-    repeatable=True,
-    compose=True,
-    description="Description for foreign keys",
-    locations=[Location.INPUT_FIELD_DEFINITION],
-    
-)
-class Relation:
-    """
-    @relation(to: Typ, field: 'id')
-    říká, že pole inputu je cizí klíč na zadaný typ.
-    """
-    to: str
-    field: str = "id"

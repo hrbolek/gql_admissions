@@ -36,8 +36,7 @@ AdmissionGQLModel = typing.Annotated["AdmissionGQLModel", strawberry.lazy(".Admi
 PaymentGQLModel = typing.Annotated["PaymentGQLModel", strawberry.lazy(".PaymentGQLModel")]
 
 
-@createInputs
-@dataclasses.dataclass
+@createInputs(v2=True)
 class PaymentInfoInputFilter:
     id: IDType
     account_number: str
