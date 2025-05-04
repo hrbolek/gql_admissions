@@ -736,7 +736,7 @@ async def test_page(sdl_doc, ops, executor):
 
 async def test_scalar(sdl_doc, ops, executor):
     """
-    Tests the single‑item read (scalar) operation using an ID
+    Tests the single-item read (scalar) operation using an ID
     obtained from the paged read.
     """
     # 1) Get the paged result and pick the first entity
@@ -907,6 +907,7 @@ def createTests(schema):
             elif optype == "delete":
                 return await test_delete(sdl_doc, ops, SchemaExecutor)
             else:
+                return await createResolveTest(sdl_doc, {typename: []})
                 raise ValueError(f"Unknown operation {optype} for {typename}")
         return test_func
 
@@ -942,6 +943,35 @@ def createTests(schema):
     result["test_validate_relation_directives"] = T4
     return result
         
+# async def createResolveTestLocals(sdl_doc: DocumentNode, ops: dict):
+#     """
+#     Dynamically builds and returns a pytest async test that queries the federated
+#     _entities field using representations for each typename/id in `types`.
+#     """
+#     # 1) Build the _entities query from the SDL AST
+#     query = build_entities_query(sdl_doc)
+#     logging.info(f"Entities query: {query}")
+#     assert query, "Unable to build _entities query from SDL"
+
+#     @pytest.mark.asyncio
+#     async def test_entities(SchemaExecutor):
+#         await test_scalar(sdl_doc, ops, executor=SchemaExecutor)
+#         reps = [
+#             {"__typename": tn, "id": str(i)}
+#             for tn, ids in types.items() for i in ids
+#         ]
+#         result = await SchemaExecutor(query=query, variable_values={"representations": reps})
+#         errors = result.get("errors")
+#         assert errors is None, f"Error during entities execution: {errors}"
+#         data = result.get("data")
+#         assert data is not None, "Empty response, check federated resolver"
+#         entities = data.get("_entities")
+#         assert isinstance(entities, list) and entities, "No entities returned"
+#         return entities
+
+#     test_entities.__name__ = "test_entities"
+#     return test_entities
+
 async def createResolveTest(sdl_doc: DocumentNode, types: dict):
     """
     Dynamically builds and returns a pytest async test that queries the federated

@@ -16,12 +16,12 @@ UserGQLModel = typing.Annotated["UserGQLModel", strawberry.lazy(".UserGQLModel")
 import strawberry
 
 from strawberry.federation.schema_directive import schema_directive, Location
+from strawberry.directive import DirectiveLocation
 @schema_directive(
     repeatable=True,
     compose=True,
     description="Description for foreign keys",
-    locations=[Location.INPUT_FIELD_DEFINITION],
-    
+    locations=[Location.INPUT_FIELD_DEFINITION, Location.FIELD_DEFINITION, DirectiveLocation.FIELD],
 )
 class Relation:
     """
