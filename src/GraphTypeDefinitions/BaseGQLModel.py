@@ -57,11 +57,12 @@ class BaseGQLModel:
         loader = cls.getLoader(info=info)
         db_row = await loader.load(_id)
         
-        return None if db_row is None else cls.from_dataclass(db_row=db_row)
+        return cls(id=id) if db_row is None else cls.from_dataclass(db_row=db_row)
     
     @classmethod
     def resolve_reference(cls, info: strawberry.types.Info, id: uuid.UUID, **otherdata):
-        return cls.load_with_loader(info=info, id=id)
+        _id = IDType(id) if isinstance(id, str) else id
+        return cls.load_with_loader(info=info, id=_id)
        
     id: IDType = strawberry.field(
         description="primary key", 
@@ -128,8 +129,8 @@ class BaseGQLModelEx:
         id = data.get("id", None)
         id = IDType(id) if isinstance(id, str) else id
         data["id"] = id
-        result = cls(**data)
-        return result
+        
+        return None if id is None else cls(**data)
     
     # @classmethod
     # async def load_with_loader(cls, info: strawberry.types.Info, id: uuid.UUID):
@@ -138,7 +139,7 @@ class BaseGQLModelEx:
     #     _id = IDType(id) if isinstance(id, str) else id
     #     return cls(id=_id) if _id else None
     
-    id: uuid.UUID = strawberry.field()
+    id: uuid.UUID = strawberry.federation.field(external=True)
     # lastchange: typing.Optional[datetime.datetime] = strawberry.federation.field(shareable=True)
     # created: typing.Optional[datetime.datetime] = strawberry.federation.field(shareable=True)
     # createdby_id: typing.Optional[IDType] = strawberry.federation.field(shareable=True)
